@@ -1,0 +1,5 @@
+set historylog
+set nowrap
+set regexp
+set smooth
+set tabsize 4
