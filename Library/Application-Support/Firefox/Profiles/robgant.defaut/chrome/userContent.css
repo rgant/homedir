@@ -1,0 +1,8 @@
+/* Change cursor for JavaScript links */
+a[href^="javascript:"] { cursor: crosshair; }
+
+/* Change cursor for links that open in new window */
+:link[target="_blank"], :visited[target="_blank"],
+:link[target="_new"],	:visited[target="_new"] {
+	cursor: crosshair;
+}
