@@ -43,7 +43,6 @@ export PYTHONSTARTUP="$HOME/.pythonrc.py"
 export PIP_REQUIRE_VIRTUALENV=true
 
 #PATH="${PATH}:/usr/local/php5/bin:/usr/local/mysql/bin:$MAGICK_HOME/bin"
-
 export PATH="/usr/local/git/bin:/Users/rgant/bin:/opt/bin:/usr/local/heroku/bin:${PATH}:."
 
 # Manually activate .launchd.conf
@@ -51,6 +50,9 @@ launchctl list | grep name.robgant > /dev/null || {
 	<.launchd.conf xargs launchctl;
 }
 
+gpip () {
+        PIP_REQUIRE_VIRTUALENV="" sudo pip "$@";
+}
 
 dl () {
 	if [ "$#" -lt 1 ]; then
