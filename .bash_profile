@@ -40,6 +40,7 @@ export GREP_OPTIONS='--color=auto'
 export MAGICK_HOME='/opt/ImageMagick'
 #export DYLD_LIBRARY_PATH="$MAGICK_HOME/lib"
 export PYTHONSTARTUP="$HOME/.pythonrc.py"
+export PIP_REQUIRE_VIRTUALENV=true
 
 #PATH="${PATH}:/usr/local/php5/bin:/usr/local/mysql/bin:$MAGICK_HOME/bin"
 
