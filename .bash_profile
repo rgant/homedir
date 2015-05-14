@@ -32,6 +32,8 @@ alias modem_tunnel='ssh home -L 2000:modem.home.robgant.com:80 -N'
 alias router_tunnel='ssh home -L 2000:router.home.robgant.com:80 -N'
 #alias deluge_tunnel='ssh home -L 2080:localhost:8080 -N deluge-web -p 8080'
 #alias vnc_tunnel='ssh home -L 5900:localhost:5900 -N'
+alias funcs="grep -o '^[a-z0-9_]* () {' ~/.bash_profile | sed -e's/ () {//'"
+
 export CLICOLOR=1
 export EDITOR=nano
 export GREP_OPTIONS='--color=auto'
