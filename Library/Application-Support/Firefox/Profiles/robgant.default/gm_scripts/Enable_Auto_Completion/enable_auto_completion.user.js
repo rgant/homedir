@@ -1,18 +1,20 @@
 // ==UserScript==
-// @name        Enable Auto Completion
+// @name        Fix Most Pages
 // @namespace   robgant.name
-// @description Allow Autocompletion on all elements
+// @description Enable autocomplete
 // @include     *
 // @grant       none
 // ==/UserScript==
 
+// Enable Autocompletion where turned off
 Array.forEach(
-	document.querySelectorAll("*[autocomplete]")
+	document.querySelectorAll("*[autocomplete=off]")
 	,function(el) {
 		el.removeAttribute("autocomplete");
 	}
 );
 
+// Make password inputs sane
 var rtnfls_re = new RegExp("^ *(javascript: *)?return +false;? *$");
 Array.forEach(
 	document.querySelectorAll("input[type=password]")
@@ -33,5 +35,22 @@ Array.forEach(
 				el.removeAttribute(attr);
 			}
 		}
+	}
+);
+
+// Make _gaq click links work when GA isn't loaded.
+Array.forEach(
+	document.querySelectorAll("a[onclick^=_gaq]")
+  ,function(el) {
+    el.removeAttribute("onclick");
+  }
+);
+
+// Try to make HTML5 video and audio not autoplay
+Array.forEach(
+	document.querySelectorAll("video, audio")
+	,function(el) {
+		el.setAttribute('autoplay', false);
+		el.setAttribute('preload', 'none');
 	}
 );
