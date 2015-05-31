@@ -13,3 +13,4 @@ user_pref("network.dnsCacheExpriation", 3600);
 user_pref("network.http.pipelining", true);
 user_pref("network.prefetch-next", false);
 user_pref("plugins.click_to_play", true);
+user_pref("privacy.trackingprotection.enabled", true);
