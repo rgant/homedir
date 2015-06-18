@@ -174,7 +174,7 @@ sys_status () {
 
 	COLS=$(tput cols);
 	echo -ne "$txtbld";
-	printf '%.0s-' "$(jot - 1 "$COLS")";
+	printf '%.0s-' $(seq 1 "$COLS");
 	echo -e "$txtrst"
 }
 
