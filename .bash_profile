@@ -186,6 +186,7 @@ sys_status () {
 
 	COLS=$(tput cols);
 	echo -ne "$txtbld";
+	# shellcheck disable=SC2046
 	printf '%.0s-' $(seq 1 "$COLS");
 	echo -e "$txtrst"
 }
@@ -194,6 +195,7 @@ sys_status () {
 test -t 0 && {
 	FILE="$HOME/.hrly_info";
 	HR=$(date +"%F %H");
+	# shellcheck disable=SC2143
 	if [[ ! -f "$FILE" || ! $(grep "$HR" "$FILE";) ]]; then
 		echo "$HR" > "$FILE";
 		sys_status;
