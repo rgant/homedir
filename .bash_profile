@@ -1,3 +1,6 @@
+# Reset Profile in case tab was opened from a different profile.
+osascript -e 'tell application "Terminal" to set current settings of selected tab of the front window to settings set "Basic"';
+
 #txtund=$(tput sgr 0 1)	# Underline
 txtbld=$(tput bold)		# Bold
 #txtblk=$(tput setaf 0)	# Black
@@ -20,6 +23,8 @@ PS1="\[$txtgrn$txtbld\]\h\[$txtrst\]:\[$txtblu$txtbld\]\w\[$txtpur\]\$(__git_ps1
 HISTCONTROL=ignoreboth
 HISTSIZE=10000
 HISTFILESIZE=10000
+shopt -s histappend
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 alias rm='rm -i'
 alias cp='cp -i'
@@ -37,7 +42,7 @@ alias funcs="grep -o '^[a-z0-9_]* () {' ~/.bash_profile | sed -e's/ () {//'"
 export CLICOLOR=1
 export EDITOR=nano
 export GREP_OPTIONS='--color=auto'
-export MAGICK_HOME='/opt/ImageMagick'
+#export MAGICK_HOME='/opt/ImageMagick'
 #export DYLD_LIBRARY_PATH="$MAGICK_HOME/lib"
 export PYTHONSTARTUP="$HOME/.pythonrc.py"
 export PIP_REQUIRE_VIRTUALENV=true
@@ -46,7 +51,7 @@ export PIP_REQUIRE_VIRTUALENV=true
 export PATH="/usr/local/git/bin:/Users/rgant/bin:/opt/bin:/usr/local/heroku/bin:${PATH}:."
 
 # Manually activate .launchd.conf
-launchctl list | grep name.robgant > /dev/null || {
+launchctl list | grep -q name.robgant || {
 	<.launchd.conf xargs launchctl;
 }
 
@@ -91,6 +96,7 @@ servhttp () {
 tabname () {
 	[ -n "$1" ] && terminal_tabname=$1
 	#echo -n -e "\033]0;$1\007";
+	#echo "#### $terminal_tabname"
 	[ -n "$terminal_tabname" ] && printf "\e]1;$terminal_tabname\a";
 }
 tabname "$(hostname -s)"
@@ -151,9 +157,15 @@ ssh_init () {
 		ssh-add;
 	fi
 }
-ssh () { ssh_init; /usr/bin/ssh "$@"; tabname; }
-scp () { ssh_init; /usr/bin/scp "$@"; tabname; }
-sftp () { ssh_init; /usr/bin/sftp "$@"; tabname; }
+ssh () {
+	ssh_init;
+	osascript -e 'tell application "Terminal" to set current settings of selected tab of the front window to settings set "SSH"';
+	/usr/bin/ssh "$@";
+	tabname;
+	osascript -e 'tell application "Terminal" to set current settings of selected tab of the front window to settings set "Basic"';
+}
+scp () { ssh_init; /usr/bin/scp "$@"; }
+sftp () { ssh_init; /usr/bin/sftp "$@"; }
 
 md5 () { /sbin/md5 "$@" | sed -e's/^MD5 (\(.*\)) = \([0-9a-f]*\)$/\2 \1/' | sort; }
 
