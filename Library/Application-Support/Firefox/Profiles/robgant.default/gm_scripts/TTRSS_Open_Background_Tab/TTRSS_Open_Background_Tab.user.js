@@ -26,3 +26,28 @@ document.addEventListener('keydown', function(evt){
 	   evt.stopPropagation();
 	}
 }, true);
+
+(function(){
+	function patch_cdmExpandArticle(window) {
+		var orig = window.cdmExpandArticle;
+		window.cdmExpandArticle = function(){
+			//console.log('Monkey Patch');
+			result = orig.apply(this, arguments);
+			Array.forEach(
+				window.document.querySelectorAll('iframe[src^="https://www.youtube.com/embed/"]'),
+				function(el){
+					if (el.src && el.src.indexOf('showinfo=0') >= 0) {
+						el.src = el.src.replace('showinfo=0', 'showinfo=1');
+					}
+				}
+			);
+			return result;
+		}
+		//console.log('Monkey Patched cdmExpandArticle');
+	}
+
+	var scrpt = document.createElement('scr'+'ipt');
+	scrpt.appendChild(document.createTextNode('('+ patch_cdmExpandArticle +')(window);'));
+	(document.body || document.head || document.documentElement).appendChild(scrpt);
+	//console.log('Monkey Patching code injected.');
+})();
