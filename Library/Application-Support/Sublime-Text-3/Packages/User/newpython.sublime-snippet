@@ -1,0 +1,31 @@
+<snippet>
+    <content><![CDATA[
+"""
+$1
+"""
+from __future__ import (absolute_import, division, print_function,
+                        unicode_literals)
+try:
+    from builtins import *  # pylint: disable=unused-wildcard-import,redefined-builtin,wildcard-import
+except ImportError:
+    import sys
+    print("WARNING: Cannot Load builtins for py3 compatibility.",
+          file=sys.stderr)
+
+import logging
+
+def main():
+    pass
+
+if __name__ == "__main__":
+    logging.basicConfig()
+    main()
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>py</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <!-- <scope>source.python</scope> -->
+    <!-- Optional: Description to show in the menu -->
+    <description>New Python File</description>
+</snippet>
