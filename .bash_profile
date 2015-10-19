@@ -18,7 +18,7 @@ PS1="\[$txtgrn$txtbld\]\h\[$txtrst\]:\[$txtblu$txtbld\]\w\[$txtpur\]\$(__git_ps1
 
 # Use bash-completion, if available
 [[ $PS1 && -f /opt/etc/bash_completion ]] && \
-    . /opt/etc/bash_completion
+	. /opt/etc/bash_completion
 
 HISTCONTROL=ignoreboth
 HISTSIZE=10000
@@ -38,10 +38,11 @@ alias router_tunnel='ssh home -L 2000:router.home.robgant.com:80 -N'
 #alias deluge_tunnel='ssh home -L 2080:localhost:8080 -N deluge-web -p 8080'
 #alias vnc_tunnel='ssh home -L 5900:localhost:5900 -N'
 alias funcs="grep -o '^[a-z0-9_]* () {' ~/.bash_profile | sed -e's/ () {//'"
+alias pygrep="find ./ -name '*.py' -print0 | xargs -0 grep"
 
 export CLICOLOR=1
 export EDITOR=nano
-export GREP_OPTIONS='--color=auto'
+export GREP_OPTIONS='--color=auto --no-messages'
 #export MAGICK_HOME='/opt/ImageMagick'
 #export DYLD_LIBRARY_PATH="$MAGICK_HOME/lib"
 export PYTHONSTARTUP="$HOME/.pythonrc.py"
@@ -52,16 +53,16 @@ export PATH="/usr/local/git/bin:/Users/rgant/bin:/opt/bin:/usr/local/heroku/bin:
 
 # Manually activate .launchd.conf
 launchctl list | grep -q name.robgant || {
-	<.launchd.conf xargs launchctl;
+	<"$HOME/.launchd.conf" xargs launchctl;
 }
 
 gpip () {
-        PIP_REQUIRE_VIRTUALENV="" sudo pip "$@";
+	PIP_REQUIRE_VIRTUALENV="" sudo pip "$@";
 }
 
 dl () {
 	if [ "$#" -lt 1 ]; then
-		echo "Usage: ${FUNCNAME} URL_TO_DOWNLOAD [DIR_OR_NAME_TO_SAVE_AS]" >&2;
+		echo "Usage: ${FUNCNAME[0]} URL_TO_DOWNLOAD [DIR_OR_NAME_TO_SAVE_AS]" >&2;
 		return 1;
 	fi;
 
@@ -77,7 +78,7 @@ dl () {
 	fi;
 
 	# Download the file using the remote name
-	curl --remote-name "$1";
+	curl --location --remote-name "$1";
 
 	if [ -n "$2" ]; then
 		cd -;
@@ -97,7 +98,7 @@ tabname () {
 	[ -n "$1" ] && terminal_tabname=$1
 	#echo -n -e "\033]0;$1\007";
 	#echo "#### $terminal_tabname"
-	[ -n "$terminal_tabname" ] && printf "\e]1;$terminal_tabname\a";
+	[ -n "$terminal_tabname" ] && printf "\e]1;%s\a" "$terminal_tabname";
 }
 tabname "$(hostname -s)"
 
@@ -111,7 +112,7 @@ man () {
 
 pdfunprotect () {
 	if [ "$#" -ne 1 ]; then
-		echo "Usage: ${FUNCNAME} tounlock.pdf" >&2;
+		echo "Usage: ${FUNCNAME[0]} tounlock.pdf" >&2;
 		return 1;
 	fi
 
@@ -124,7 +125,7 @@ pdfunprotect () {
 
 pdfmerge () {
 	if [ "$#" -lt 3 ]; then
-		echo "Usage: ${FUNCNAME} output.pdf 1.pdf 2.pdf ... N.pdf" >&2;
+		echo "Usage: ${FUNCNAME[0]} output.pdf 1.pdf 2.pdf ... N.pdf" >&2;
 		return 1;
 	fi
 
@@ -143,8 +144,8 @@ start_agent () {
 init_agent () {
 	if [ -f "${SSH_ENV}" ]; then
 		source "${SSH_ENV}";
-		echo "${SSH_AGENT_PID}" > .ssh/ssh-agent.pid;
-		pgrep -u "$USER" -F .ssh/ssh-agent.pid -q ssh-agent || {
+		echo "${SSH_AGENT_PID}" > "$HOME/.ssh/ssh-agent.pid";
+		pgrep -u "$USER" -F "$HOME/.ssh/ssh-agent.pid" -q ssh-agent || {
 			start_agent;
 		}
 	else
@@ -196,7 +197,7 @@ test -t 0 && {
 	FILE="$HOME/.hrly_info";
 	HR=$(date +"%F %H");
 	# shellcheck disable=SC2143
-	if [[ ! -f "$FILE" || ! $(grep "$HR" "$FILE";) ]]; then
+	if [[ ! -f "$FILE" || ! $(grep "$HR" "$FILE") ]]; then
 		echo "$HR" > "$FILE";
 		sys_status;
 	fi
