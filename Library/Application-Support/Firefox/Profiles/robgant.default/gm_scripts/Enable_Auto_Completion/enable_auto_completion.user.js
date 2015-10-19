@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Fix Most Pages
 // @namespace   robgant.name
-// @description Enable autocomplete
+// @description Enable autocomplete, sanitize password inputs, disable _gaq links, fix youtube embeds.
 // @include     *
 // @grant       none
 // ==/UserScript==
@@ -46,11 +46,12 @@ Array.forEach(
   }
 );
 
-// Try to make HTML5 video and audio not autoplay
+// Show Info so I can add to Watch Later on YouTube Player
 Array.forEach(
-	document.querySelectorAll("video, audio")
-	,function(el) {
-		el.setAttribute('autoplay', false);
-		el.setAttribute('preload', 'none');
+	window.document.querySelectorAll('iframe[src^="https://www.youtube.com/embed/"], iframe[src^="http://www.youtube.com/embed/"]'),
+	function(el){
+		if (el.src && el.src.indexOf('showinfo=0') >= 0) {
+			el.src = el.src.replace('showinfo=0', 'showinfo=1');
+		}
 	}
 );
