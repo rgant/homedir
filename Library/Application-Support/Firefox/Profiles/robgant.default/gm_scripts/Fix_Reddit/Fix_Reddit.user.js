@@ -12,3 +12,13 @@ Array.forEach(
     el.setAttribute('target', '_blank');
   }
 );
+
+Array.forEach(
+  document.querySelectorAll('.subreddit')
+  ,function(el) {
+    if (el.textContent=='/r/nosleep' || el.textContent=='/r/WritingPrompts') {
+      var thing = el.parentNode.parentNode.parentNode;
+      thing.parentNode.removeChild(thing);
+    }
+  }
+);
