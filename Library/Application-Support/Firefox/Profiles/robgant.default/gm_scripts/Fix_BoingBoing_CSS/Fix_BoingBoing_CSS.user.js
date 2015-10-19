@@ -3,6 +3,7 @@
 // @description Add style to hide element and use normal youtube embeds.
 // @namespace   name.robgant
 // @include     http://boingboing.net/*/*/*/*
+// @include     https://boingboing.net/*/*/*/*
 // @grant       GM_addStyle
 // ==/UserScript==
 
@@ -23,7 +24,7 @@ Array.forEach(
       embed.setAttribute('allowfullscreen', true);
       embed.setAttribute('width', el.clientWidth);
       embed.setAttribute('height', el.clientHeight);
-      embed.setAttribute('src', 'https://www.youtube.com/embed/' + m[1]);
+      embed.setAttribute('src', 'https://www.youtube.com/embed/' + m[1] + '?showinfo=1');
 
       el.parentNode.replaceChild(embed, el);
     }    
