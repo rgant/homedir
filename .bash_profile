@@ -24,7 +24,7 @@ HISTCONTROL=ignoreboth
 HISTSIZE=10000
 HISTFILESIZE=10000
 shopt -s histappend
-export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+#export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 alias rm='rm -i'
 alias cp='cp -i'
@@ -39,6 +39,8 @@ alias router_tunnel='ssh home -L 2000:router.home.robgant.com:80 -N'
 #alias vnc_tunnel='ssh home -L 5900:localhost:5900 -N'
 alias funcs="grep -o '^[a-z0-9_]* () {' ~/.bash_profile | sed -e's/ () {//'"
 alias pygrep="find ./ -name '*.py' -print0 | xargs -0 grep"
+alias phpgrep="find ./ -name '*.php' -print0 | xargs -0 grep"
+alias htmlgrep="find ./ -name '*.html' -print0 | xargs -0 grep"
 
 export CLICOLOR=1
 export EDITOR=nano
@@ -49,7 +51,10 @@ export PYTHONSTARTUP="$HOME/.pythonrc.py"
 export PIP_REQUIRE_VIRTUALENV=true
 
 #PATH="${PATH}:/usr/local/php5/bin:/usr/local/mysql/bin:$MAGICK_HOME/bin"
-export PATH="/usr/local/git/bin:/Users/rgant/bin:/opt/bin:/usr/local/heroku/bin:${PATH}:."
+export PATH="$HOME/.pyenv/bin:/usr/local/git/bin:/Users/rgant/bin:/opt/bin:/usr/local/heroku/bin:${PATH}:."
+
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
 # Manually activate .launchd.conf
 launchctl list | grep -q name.robgant || {
@@ -84,6 +89,7 @@ dl () {
 		cd -;
 	fi;
 }
+
 # Start an HTTP server from a directory, optionally specifying the port
 servhttp () {
 	local port="${1:-8000}";
@@ -131,15 +137,18 @@ pdfmerge () {
 
 	OUT="$1";
 	shift;
-	gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile="${OUT}" "$@"; 
+	gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile="${OUT}" "$@";
 }
 
 #SSH Agent function
 SSH_ENV="$HOME/.ssh/environment";
 start_agent () {
-	/usr/bin/ssh-agent -t 14400 | sed 's/^echo/#echo/' > "${SSH_ENV}"
-	chmod 600 "${SSH_ENV}"
-	source "${SSH_ENV}"
+	/usr/bin/ssh-agent -t 14400 | sed 's/^echo/#echo/' > "${SSH_ENV}";
+	chmod 600 "${SSH_ENV}";
+	source "${SSH_ENV}";
+
+	# Start the remote pbcopy server
+	nohup "$HOME/bin/rpbcopy-server" 58827 > "$TMPDIR/rpbcopy.out" &
 }
 init_agent () {
 	if [ -f "${SSH_ENV}" ]; then
@@ -161,7 +170,7 @@ ssh_init () {
 ssh () {
 	ssh_init;
 	osascript -e 'tell application "Terminal" to set current settings of selected tab of the front window to settings set "SSH"';
-	/usr/bin/ssh "$@";
+	/usr/bin/ssh -R 58827:localhost:58827 "$@";
 	tabname;
 	osascript -e 'tell application "Terminal" to set current settings of selected tab of the front window to settings set "Basic"';
 }
@@ -201,4 +210,17 @@ test -t 0 && {
 		echo "$HR" > "$FILE";
 		sys_status;
 	fi
+}
+
+develop () {
+	cd "$1";
+	tabname "$(basename "$PWD")";
+	if [[ -d node_modules/.bin/ ]]; then
+		export PATH="$1/node_modules/.bin:${PATH}";
+	fi
+	if [[ -d vendor/bin/ ]]; then
+		export PATH="$1/vendor/bin:${PATH}";
+	fi
+	git pull;
+	git status;
 }
