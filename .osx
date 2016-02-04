@@ -39,10 +39,14 @@ defaults write com.apple.dock showhidden -bool true
 # Bottom right screen corner → Start screen saver
 defaults write com.apple.dock wvous-br-corner -int 5
 
+# Keep dock on main screen, hopefully (doesn't work)
+#defaults write com.apple.dock position-immutable -bool yes
+
 # Enable the Develop menu and the Web Inspector in Safari
 defaults write com.apple.Safari IncludeDevelopMenu -bool true
 defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
 defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true
+#defaults write com.apple.Safari IncludeInternalDebugMenu 1
 
 # Shorten display of the Notification Center Banner (Makes iTunes less annoying)
 defaults write com.apple.notificationcenterui bannerTime 1
