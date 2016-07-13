@@ -19,7 +19,14 @@ def main():
 
 if __name__ == "__main__":
     logging.basicConfig()
-    main()
+    try:
+        main()
+    except (SystemExit, KeyboardInterrupt):
+        logging.info('Exiting')
+        raise
+    except:
+        logging.exception('Uncaught Exception')
+        raise
 
 ]]></content>
     <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->

@@ -1,5 +1,6 @@
 [
 	{ "keys": ["super+t"], "command": "unbound" },
 	{ "keys": ["super+v"], "command": "paste_and_indent" },
-	{ "keys": ["super+shift+v"], "command": "paste" }
+	{ "keys": ["super+shift+v"], "command": "paste" },
+    { "keys": ["super+k", "super+t"], "command": "title_case" }
 ]
