@@ -16,7 +16,7 @@ Array.forEach(
 Array.forEach(
   document.querySelectorAll('.subreddit')
   ,function(el) {
-    if (el.textContent=='/r/nosleep' || el.textContent=='/r/WritingPrompts') {
+    if (el.textContent=='/r/nosleep' || el.textContent=='/r/WritingPrompts' || el.textContent=='/r/The_Donald') {
       var thing = el.parentNode.parentNode.parentNode;
       thing.parentNode.removeChild(thing);
     }

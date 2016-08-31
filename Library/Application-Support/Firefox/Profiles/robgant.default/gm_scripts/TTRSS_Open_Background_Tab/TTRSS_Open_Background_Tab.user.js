@@ -45,7 +45,7 @@ document.addEventListener('keydown', function(evt){
 		}
 		//console.log('Monkey Patched cdmExpandArticle');
 	}
-
+	
 	var scrpt = document.createElement('scr'+'ipt');
 	scrpt.appendChild(document.createTextNode('('+ patch_cdmExpandArticle +')(window);'));
 	(document.body || document.head || document.documentElement).appendChild(scrpt);
