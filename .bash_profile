@@ -161,21 +161,12 @@ init_agent () {
 		start_agent;
 	fi;
 }
-ssh_init () {
-	ssh-add -l >/dev/null 2>&1;
-	if [ $? -eq 1 ]; then
-		ssh-add;
-	fi
-}
 ssh () {
-	ssh_init;
 	osascript -e 'tell application "Terminal" to set current settings of selected tab of the front window to settings set "SSH"';
 	/usr/bin/ssh -R 58827:localhost:58827 "$@";
 	tabname;
 	osascript -e 'tell application "Terminal" to set current settings of selected tab of the front window to settings set "Basic"';
 }
-scp () { ssh_init; /usr/bin/scp "$@"; }
-sftp () { ssh_init; /usr/bin/sftp "$@"; }
 
 md5 () { /sbin/md5 "$@" | sed -e's/^MD5 (\(.*\)) = \([0-9a-f]*\)$/\2 \1/' | sort; }
 
