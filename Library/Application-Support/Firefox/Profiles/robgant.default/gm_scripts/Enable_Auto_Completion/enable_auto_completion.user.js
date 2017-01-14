@@ -27,7 +27,6 @@ function sanitize_page() {
 		}
 	);
 
-
 	// Make password inputs sane
 	var rtnfls_re = new RegExp("^ *(javascript: *)?return +false;? *$");
 	Array.forEach(
@@ -60,26 +59,14 @@ function sanitize_page() {
 		}
 	);
 
-	// Try to make HTML5 video and audio not autoplay
-	// Array.forEach(
-	// 	document.querySelectorAll("video, audio")
-	// 	,function(el) {
-	// 		el.setAttribute('autoplay', false);
-	// 		el.setAttribute('preload', 'none');
-	// 	}
-	// );
-	// Array.forEach(
-	// 	document.querySelectorAll('iframe[src*="autoplay="]')
-	// 	,function(el) {
-	// // http://www.denverpost.com treats any value (even 0) of the autoplay parameter as a true.
-	// // 		var s = el.src.replace(/autoplay=1/, 'autoplay=0');
-	// // 		s = s.replace(/autoplay=true/, 'autoplay=false');
-	// // 		s = s.replace(/autoplay=t/, 'autoplay=f');
-	// // 		s = s.replace(/autoplay=[^0f][^&]*/, 'autoplay=');
-	// 		el.src = el.src.replace(/autoplay=[^&]+/, 'autoplay=');
-	// 	}
-	// );
-
+	// Try to make HTML5 video and audio show controls
+	Array.forEach(
+		document.querySelectorAll("video, audio")
+		,function(el) {
+			el.setAttribute('controls', 'controls');
+		}
+	);
+	
 	// Show Info so I can add to Watch Later on YouTube Player
 	Array.forEach(
 		window.document.querySelectorAll('iframe[src^="https://www.youtube.com/embed/"], iframe[src^="http://www.youtube.com/embed/"]'),

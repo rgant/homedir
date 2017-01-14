@@ -7,7 +7,7 @@
 // ==/UserScript==
 
 Array.forEach(
-	document.querySelectorAll('a[class~=title],a[class~=comments]')
+	document.querySelectorAll('a.title,a.comments,a.bylink')
   ,function(el) {
     el.setAttribute('target', '_blank');
   }
@@ -22,3 +22,35 @@ Array.forEach(
     }
   }
 );
+
+var entries = document.querySelectorAll('#siteTable .thing'),
+    indx = -1;
+function page_nav(evt) {
+    var key = evt.which;
+    // 106 = j, 107 = k
+    if (
+        !evt.altKey && !evt.ctrlKey && !evt.metaKey && !evt.shiftKey
+        && (key == 106 || key == 107)
+    ) {
+        evt.preventDefault();
+        evt.stopPropagation();
+
+        if (key == 106) {
+            indx++;
+        } else {
+            indx--;
+        }
+
+        if (indx < 0) {
+            indx = 0;
+        } else if (indx >= entries.length) {
+            indx = entries.length - 1;
+        }
+
+        var item = entries.item(indx);
+        if (item && item.id) {
+            window.location.hash = '#' + item.id;
+        }
+    }
+}
+document.addEventListener('keypress', page_nav, false);
