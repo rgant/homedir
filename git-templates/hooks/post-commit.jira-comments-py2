@@ -1,0 +1,76 @@
+#!/usr/bin/env python
+"""
+post-commit hook that adds commit message as comment to issue in JIRA
+"""
+
+import base64
+import json
+import logging
+import re
+import subprocess
+import urllib2
+
+
+def add_comment(issue, msg):
+    """
+    Add a new comment to issue.
+    :param str issue: JIRA Issue ID IR-1613
+    :param str msg: The comment body
+    :return bool: Successfully added comment.
+    """
+    url = 'https://NAME.atlassian.net/rest/api/latest/issue/%s/comment' % issue
+    data = json.dumps({'body': msg})
+    request = urllib2.Request(url)
+    base64string = base64.b64encode('%s:%s' % ('USER', 'PASSWORD'))
+    request.add_header("Authorization", "Basic %s" % base64string)
+    request.add_header("Content-Type", "application/json")
+    request.add_data(data)
+    result = urllib2.urlopen(request)
+    return result.msg == 'OK'
+
+def get_commit():
+    """
+    Gets the most recent comment message from git.
+    :return tuple(str): sha1 commit ref, commit message
+    """
+    out = subprocess.check_output(['git', 'show', '--oneline', '--decorate',
+                                   '--no-patch', 'HEAD']).strip()
+    parts = out.partition(' ')
+    return (parts[0], parts[2])
+
+def get_beanstalkapp_link(ref):
+    """
+    Creates a JIRA markdown compatible link to the changeset ref.
+    :param str ref: changeset sha1 hash
+    :return str: markdown for link to changeset in beanstalkapp
+    """
+    return ('[Changeset: {0}|https://NAME.beanstalkapp.com/PROJECT/changesets/{0}]').format(ref)
+
+def get_issue_ids(msg):
+    """
+    Finds all issue IDs in commit message.
+    :param str msg: git commit message
+    :return list(str) JIRA issue IDs
+    """
+    pttrn = re.compile(r'\bKEY-\d+\b')
+    return pttrn.findall(msg)
+
+def main():
+    """ Load the most recent commit message and add comments to any referenced tickets. """
+    ref, msg = get_commit()
+    issues = get_issue_ids(msg)
+    beanstalk_link = get_beanstalkapp_link(ref)
+    msg += '\n' + beanstalk_link
+    for issue in issues:
+        add_comment(issue, msg)
+
+if __name__ == "__main__":
+    logging.basicConfig()
+    try:
+        main()
+    except (SystemExit, KeyboardInterrupt):
+        logging.info('Exiting')
+        raise
+    except:
+        logging.exception('Uncaught Exception')
+        raise
