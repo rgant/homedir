@@ -31,12 +31,7 @@
                     "html": [
                         "<\\w+> proprietary attribute \"ng-",
                         "<\\w+> proprietary attribute \"ui-",
-                        "trimming empty",
-                        "<\\w+> proprietary attribute \"dropdown",
-                        "<\\w+> proprietary attribute \"drag-over-class",
-                        "<\\w+> proprietary attribute \"allow-dir",
-                        "<\\w+> proprietary attribute \"focus-input",
-                        "<\\w+> proprietary attribute \"caretpos"
+                        "trimming empty"
                     ],
                     "php": [
                         "plain text isn't allowed in <head> elements"
@@ -70,6 +65,11 @@
                 "@disable": false,
                 "args": [],
                 "exclude": "",
+                "excludes": []
+            },
+            "tslint": {
+                "@disable": false,
+                "args": [],
                 "excludes": []
             }
         },

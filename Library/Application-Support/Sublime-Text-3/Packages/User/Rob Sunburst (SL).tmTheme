@@ -27,6 +27,8 @@
 				<string>#FFFF0033</string>
 				<key>inactiveSelection</key>
 				<string>#FFFF0033</string>
+				<key>inactiveSelectionForeground</key>
+				<string>#FFFF0033</string>
 			</dict>
 		</dict>
 		<dict>
