@@ -1,7 +1,6 @@
 """ Rob's PythonRC file. """
 # Code in py3-ish mode
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
+from __future__ import (absolute_import, division, print_function, unicode_literals)
 try:
     from builtins import *  # pylint: disable=unused-wildcard-import,redefined-builtin,wildcard-import
 except ImportError:
