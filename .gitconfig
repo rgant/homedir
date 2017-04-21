@@ -1,0 +1,17 @@
+[user]
+	name = J Rob Gant
+	email = rgant@alum.wpi.edu
+[alias]
+	# Unstage a file (opposite of add)
+	del = reset HEAD
+	# Throw away modification to a file
+	undo = checkout --
+	ch = checkout
+	a = add
+[core]
+	autocrlf = input
+	excludesFile = /Users/rgant/.gitignore
+[fetch]
+	prune = true
+[merge]
+	conflictStyle = diff3
