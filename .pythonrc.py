@@ -81,3 +81,9 @@ import sys
 sys.ps1 = '\001\033[1;32m\002>>> \001\033[0m\002'
 sys.ps2 = '\001\033[1;32m\002... \001\033[0m\002'
 del sys
+
+# If there is a local "console" file when python is invoked then run it in this scope.
+try:
+    exec(open('console.py').read())
+except IOError:
+    pass
