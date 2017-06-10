@@ -2,16 +2,31 @@
 	name = J Rob Gant
 	email = rgant@alum.wpi.edu
 [alias]
-	# Unstage a file (opposite of add)
-	del = reset HEAD
-	# Throw away modification to a file
-	undo = checkout --
-	ch = checkout
 	a = add
+	ap = add --patch
+	c = commit
+	ca = commit --ammend
+	ch = checkout
+	cm = commit --message
+	d = diff
+	del = reset HEAD # Unstage a file (opposite of add)
+	l = log --graph --all --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset'
+	ll = log --stat --abbrev-commit
+	master = checkout master
+	s = status
+	undo = checkout -- # Throw away modification to a file
+	alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\\t => \\2/' | sort
 [core]
 	autocrlf = input
-	excludesFile = /Users/rgant/.gitignore
+	excludesfile = ~/.gitignore
+	pager = less -r
+	quotepath = false
 [fetch]
 	prune = true
 [merge]
 	conflictStyle = diff3
+[branch "master"]
+	mergeoptions = --ff-only
+	rebase = true
+[diff]
+	compactionHeuristic = true
