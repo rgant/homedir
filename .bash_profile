@@ -13,7 +13,7 @@ txtpur=$(tput setaf 5)	# Purple
 #txtwht=$(tput setaf 7)	# White
 txtrst=$(tput sgr0)		# Text reset
 
-source /usr/local/git/contrib/completion/git-prompt.sh
+source /usr/local/etc/bash_completion.d/git-prompt.sh
 PS1="\[$txtgrn$txtbld\]\h\[$txtrst\]:\[$txtblu$txtbld\]\w\[$txtpur\]\$(__git_ps1)\[$txtrst\]\$ "
 
 # Use bash-completion, if available
