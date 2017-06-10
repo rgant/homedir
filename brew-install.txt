@@ -1,0 +1,1 @@
+brew install bash-completion git gnupg2 mariadb node openssl p7zip s3cmd shellcheck sqlite tidy-html5 unrar xz yarn
