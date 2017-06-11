@@ -1,1 +1,1 @@
-brew install bash-completion git gnupg2 mariadb node openssl p7zip pyenv s3cmd shellcheck sqlite tidy-html5 unrar xz yarn
+brew install bash-completion git gnupg2 mariadb node openssl p7zip pyenv pyenv-virtualenv s3cmd shellcheck sqlite tidy-html5 unrar xz yarn
