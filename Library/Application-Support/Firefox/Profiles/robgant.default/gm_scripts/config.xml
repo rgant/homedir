@@ -1,0 +1,87 @@
+<UserScriptConfig>
+	<Script basedir="Enable_Auto_Completion" checkRemoteUpdates="1" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="Enable autocomplete, sanitize password inputs, disable _gaq links, disable video &amp; audio autoplay, fix youtube embeds." enabled="true" filename="enable_auto_completion.user.js" installTime="1362430655622" modified="1483496327000" name="Fix Most Pages" namespace="robgant.name" noframes="false" runAt="document-end" updateMetaStatus="unknown" uuid="f0ce3771-0543-984c-b924-6db39858400f" version="null" installurl="file:///Users/rgant/Public/enable_auto_completion/enable_auto_completion.user.js" updateurl="file:///Users/rgant/Public/enable_auto_completion/enable_auto_completion.user.js">
+		<Grant>none</Grant>
+		<Include>*</Include>
+	</Script>
+	<Script basedir="Fark_Auto_Article_Link" checkRemoteUpdates="1" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="Automatically visit Articles from RSS, and others" enabled="true" filename="fark_auto_article_link.user.js" installTime="1362430664866" modified="1485182946000" name="Fix Fark" namespace="name.robgant" noframes="false" runAt="document-end" updateMetaStatus="unknown" uuid="21309f53-e217-0e4d-bef9-2c71bb3f625f" version="null" installurl="file:///Users/rgant/Public/fark_auto_article_link/fark_auto_article_link.user.js" updateurl="file:///Users/rgant/Public/fark_auto_article_link/fark_auto_article_link.user.js">
+		<Grant>none</Grant>
+		<Include>http://www.fark.com/comments/*</Include>
+		<Include>https://www.fark.com/comments/*</Include>
+		<Include>http://www.fark.com/vidplayer/*</Include>
+		<Include>https://www.fark.com/vidplayer/*</Include>
+	</Script>
+	<Script basedir="Remove_UTM" checkRemoteUpdates="1" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="Removes the UTM Tracking garbage from URLs" enabled="true" filename="remove_utm.user.js" installTime="1362430691311" modified="1428179719000" name="Remove UTM" namespace="robgant.name" noframes="false" runAt="document-start" updateMetaStatus="unknown" uuid="925e1bce-9fca-004b-ae97-6fe97658a8fc" version="null" installurl="file:///Users/rgant/Public/remove_utm/remove_utm.user.js" updateurl="file:///Users/rgant/Public/remove_utm/remove_utm.user.js">
+		<Grant>none</Grant>
+		<Include>*</Include>
+	</Script>
+	<Script basedir="Wired_View_All_Fix" checkRemoteUpdates="1" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="Displays articles on Wired unpaginated." enabled="true" filename="wired_view_all_fix.user.js" installTime="1362430701307" modified="1474910062000" name="Wired View All Fix" namespace="robgant.name" noframes="false" runAt="document-start" updateMetaStatus="unknown" uuid="dcbd04bf-ed10-6e46-a912-35bb0dca3ea1" version="null" installurl="file:///Users/rgant/Public/wired_view_all_fix/wired_view_all_fix.user.js" updateurl="file:///Users/rgant/Public/wired_view_all_fix/wired_view_all_fix.user.js">
+		<Grant>none</Grant>
+		<Include>https://www.wired.com/*/*/*/</Include>
+	</Script>
+	<Script basedir="TTRSS_Open_Background_Tab" checkRemoteUpdates="1" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="Adds keyboard shortcut to open article in a new background tab" enabled="true" filename="TTRSS_Open_Background_Tab.user.js" installTime="1372686257000" modified="1472480616000" name="TTRSS Open Background Tab" namespace="name.robgant.slashdot" noframes="false" runAt="document-end" updateMetaStatus="unknown" uuid="49c3458a-75d8-6d46-8462-f86b7e664a50" version="null" installurl="file:///Users/rgant/Public/Dropbox/ff-shared/gm_scripts/TTRSS_Open_Background_Tab/TTRSS_Open_Background_Tab.user.js" updateurl="file:///Users/rgant/Public/Dropbox/ff-shared/gm_scripts/TTRSS_Open_Background_Tab/TTRSS_Open_Background_Tab.user.js">
+		<Grant>GM_openInTab</Grant>
+		<Include>https://rss.wh0rd.org/</Include>
+		<Include>https://rss.wh0rd.org/#f*</Include>
+		<Include>https://rss.wh0rd.org/index.php*</Include>
+	</Script>
+	<Script basedir="Remove_Position_Fixed" checkRemoteUpdates="1" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="Makes some things on the page with position fixed become static. Adds a menu command to run the script." enabled="false" filename="Remove_Position_Fixed.user.js" installTime="1395507352000" modified="1430505676000" name="Remove Position Fixed" namespace="name.robgant" noframes="false" runAt="document-end" updateMetaStatus="unknown" uuid="308262dd-403b-d44c-88bb-3bd7eb73c47e" version="null" installurl="file:///Users/rgant/Public/Dropbox/ff-shared/gm_scripts/Remove_Position_Fixed/Remove_Position_Fixed.user.js" updateurl="file:///Users/rgant/Public/Dropbox/ff-shared/gm_scripts/Remove_Position_Fixed/Remove_Position_Fixed.user.js">
+		<Grant>GM_registerMenuCommand</Grant>
+		<Grant>GM_getValue</Grant>
+		<Grant>GM_setValue</Grant>
+		<Include>*</Include>
+	</Script>
+	<Script basedir="Fix_Slashdot" checkRemoteUpdates="1" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="Hides some annoying elements" enabled="true" filename="Fix_Slashdot.user.js" installTime="1397138090000" modified="1493226027000" name="Fix Slashdot" namespace="name.robgant" noframes="false" runAt="document-end" updateMetaStatus="unknown" uuid="5f087920-43c1-1044-acdb-2b4441ed427e" version="null" installurl="file:///Users/rgant/Public/Dropbox/ff-shared/gm_scripts/Fix_Slashdot/Fix_Slashdot.user.js" updateurl="file:///Users/rgant/Public/Dropbox/ff-shared/gm_scripts/Fix_Slashdot/Fix_Slashdot.user.js">
+		<Grant>GM_addStyle</Grant>
+		<Include>http://*.slashdot.org/story/*</Include>
+		<Include>http://slashdot.org/story/*</Include>
+		<Include>https://*.slashdot.org/story/*</Include>
+		<Include>https://slashdot.org/story/*</Include>
+	</Script>
+	<Script basedir="Fix_CSS_on_Raw_Story" checkRemoteUpdates="1" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="Hides annoying elements" enabled="false" filename="Fix_CSS_on_Raw_Story.user.js" installTime="1419131282000" modified="1430505623000" name="Fix CSS on Raw Story" namespace="name.robgant" noframes="false" runAt="document-end" updateMetaStatus="unknown" uuid="7d4a022b-9df5-f642-8b03-d9a8f8c99135" version="null" installurl="file:///Users/rgant/Public/Dropbox/ff-shared/gm_scripts/Fix_CSS_on_Raw_Story/Fix_CSS_on_Raw_Story.user.js" updateurl="file:///Users/rgant/Public/Dropbox/ff-shared/gm_scripts/Fix_CSS_on_Raw_Story/Fix_CSS_on_Raw_Story.user.js">
+		<Grant>GM_addStyle</Grant>
+		<Include>http://www.rawstory.com/rs/*/*/*</Include>
+	</Script>
+	<Script basedir="Fix_BoingBoing_CSS" checkRemoteUpdates="1" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="Add style to hide element and use normal youtube embeds." enabled="true" filename="Fix_BoingBoing_CSS.user.js" installTime="1419134506000" modified="1441047342000" name="Fix BoingBoing" namespace="name.robgant" noframes="false" runAt="document-end" updateMetaStatus="unknown" uuid="19991278-fb90-3e4c-b96f-0fa6b44e1b17" version="null" installurl="file:///Users/rgant/Public/Dropbox/ff-shared/gm_scripts/Fix_BoingBoing_CSS/Fix_BoingBoing_CSS.user.js" updateurl="file:///Users/rgant/Public/Dropbox/ff-shared/gm_scripts/Fix_BoingBoing_CSS/Fix_BoingBoing_CSS.user.js">
+		<Grant>GM_addStyle</Grant>
+		<Include>http://boingboing.net/*/*/*/*</Include>
+		<Include>https://boingboing.net/*/*/*/*</Include>
+	</Script>
+	<Script basedir="Fix_the_Register" checkRemoteUpdates="1" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="Hides annoying elements" enabled="true" filename="Fix_the_Register.user.js" installTime="1424215367000" modified="1430505530000" name="Fix the Register" namespace="name.robgant" noframes="false" runAt="document-end" updateMetaStatus="unknown" uuid="127c4485-174b-244a-a7e8-a8c043502a84" version="null" installurl="file:///Users/rgant/Public/Dropbox/ff-shared/gm_scripts/Fix_the_Register/Fix_the_Register.user.js" updateurl="file:///Users/rgant/Public/Dropbox/ff-shared/gm_scripts/Fix_the_Register/Fix_the_Register.user.js">
+		<Grant>GM_addStyle</Grant>
+		<Include>http://www.theregister.co.uk/*/*/*/*/</Include>
+	</Script>
+	<Script basedir="Fix_Reddit" checkRemoteUpdates="1" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="Open articles and comments pages in new tabs" enabled="true" filename="Fix_Reddit.user.js" installTime="1428365596000" modified="1487300634000" name="Fix Reddit" namespace="name.robgant" noframes="false" runAt="document-end" updateMetaStatus="unknown" uuid="215aad83-7db6-ca4d-9808-1f06f58e26c6" version="null" installurl="file:///Users/rgant/Public/Dropbox/ff-shared/gm_scripts/Fix_Reddit/Fix_Reddit.user.js" updateurl="file:///Users/rgant/Public/Dropbox/ff-shared/gm_scripts/Fix_Reddit/Fix_Reddit.user.js">
+		<Grant>none</Grant>
+		<Include>https://www.reddit.com/*</Include>
+		<UserInclude>https://np.reddit.com/*</UserInclude>
+	</Script>
+	<Script basedir="Fix_Prima_Guide" checkRemoteUpdates="1" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="Does nothing right now..." enabled="false" filename="Fix_Prima_Guide.user.js" installTime="1429024530000" modified="1430505436000" name="Fix Prima Guide" namespace="name.robgant" noframes="false" runAt="document-end" updateMetaStatus="unknown" uuid="e3895c86-eb5e-f24c-a05b-1e83eb24660d" version="null" installurl="file:///Users/rgant/Public/Dropbox/ff-shared/gm_scripts/Fix_Prima_Guide/Fix_Prima_Guide.user.js" updateurl="file:///Users/rgant/Public/Dropbox/ff-shared/gm_scripts/Fix_Prima_Guide/Fix_Prima_Guide.user.js">
+		<Grant>GM_addStyle</Grant>
+		<Include>http://www.primagames.com/games/pillars-eternity/guides/pillars-of-eternity-eguide/*</Include>
+	</Script>
+	<Script basedir="Fix_Wirecutter_&amp;_Sweethome" checkRemoteUpdates="1" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="Fix lazy loaded images" enabled="true" filename="Fix_Wirecutter_&amp;_Sweethome.user.js" installTime="1430753504000" modified="1430753565000" name="Fix Wirecutter &amp; Sweethome" namespace="name.robgant" noframes="false" runAt="document-end" updateMetaStatus="unknown" uuid="a04e67d2-a059-e14d-b439-c62069781e5d" version="null" installurl="file:///Users/rgant/Public/Dropbox/ff-shared/gm_scripts/Fix_Wirecutter_&amp;_Sweethome/Fix_Wirecutter_&amp;_Sweethome.user.js" updateurl="file:///Users/rgant/Public/Dropbox/ff-shared/gm_scripts/Fix_Wirecutter_&amp;_Sweethome/Fix_Wirecutter_&amp;_Sweethome.user.js">
+		<Grant>none</Grant>
+		<Include>http://thesweethome.com/*</Include>
+		<Include>http://wirecutter.com/*</Include>
+	</Script>
+	<Script basedir="Fix_Steam" checkRemoteUpdates="1" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="Removes JS from Links" enabled="true" filename="Fix_Steam.user.js" installTime="1430867730000" modified="1430867822000" name="Fix Steam" namespace="name.robgant" noframes="false" runAt="document-end" updateMetaStatus="unknown" uuid="f82a744d-c5a9-1148-aabd-418abe8036ed" version="null" installurl="file:///Users/rgant/Public/Dropbox/ff-shared/gm_scripts/Fix_Steam/Fix_Steam.user.js" updateurl="file:///Users/rgant/Public/Dropbox/ff-shared/gm_scripts/Fix_Steam/Fix_Steam.user.js">
+		<Grant>none</Grant>
+		<Include>https://steamcommunity.com/*</Include>
+	</Script>
+	<Script basedir="Fix_Slack" checkRemoteUpdates="1" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="Don't let Slack steal my keyboard shortcuts" enabled="true" filename="Fix_Slack.user.js" installTime="1439824324000" modified="1439824329000" name="Fix Slack" namespace="name.robgant" noframes="false" runAt="document-end" updateMetaStatus="unknown" uuid="51f8cbcb-ad64-9246-8f89-06e01e59b08d" version="null" installurl="file:///Users/rgant/Library/Application%20Support/Firefox/Profiles/o0d8klac.default/gm_scripts/Fix_Slack/Fix_Slack.user.js" updateurl="file:///Users/rgant/Library/Application%20Support/Firefox/Profiles/o0d8klac.default/gm_scripts/Fix_Slack/Fix_Slack.user.js">
+		<Grant>none</Grant>
+		<Include>https://*.slack.com/messages/*/</Include>
+	</Script>
+	<Script basedir="Block_In_Page_JavaScript" checkRemoteUpdates="1" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="Prevents all scripts from executing." enabled="true" filename="Block_In_Page_JavaScript.user.js" installTime="1472236977000" modified="1489582126000" name="Block In Page JavaScript" namespace="name.robgant" noframes="false" runAt="document-start" updateMetaStatus="unknown" uuid="2279ae8b-213a-674b-93e6-4843608012ee" version="null" installurl="file:///Users/rgant/Library/Application%20Support/Firefox/Profiles/o0d8klac.default/gm_scripts/Block_In_Page_JavaScript/Block_In_Page_JavaScript.user.js" updateurl="file:///Users/rgant/Library/Application%20Support/Firefox/Profiles/o0d8klac.default/gm_scripts/Block_In_Page_JavaScript/Block_In_Page_JavaScript.user.js">
+		<Grant>none</Grant>
+		<Include>http://www.msn.com/*</Include>
+		<Include>http://www.usatoday.com/*</Include>
+		<Include>https://www.msn.com/*</Include>
+		<Include>https://www.usatoday.com/*</Include>
+		<Include>http://nymag.com/*</Include>
+	</Script>
+	<Script basedir="Fix_Youtube" checkRemoteUpdates="1" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="Hide the masthead and don't go into watchlist mode" enabled="true" filename="Fix_Youtube.user.js" installTime="1472613382000" modified="1472613483000" name="Fix Youtube" namespace="name.robgant" noframes="false" runAt="document-end" updateMetaStatus="unknown" uuid="3ee20d53-3d16-b14e-a05d-b6c010f202a6" version="null" installurl="file:///Users/rgant/Fix_Youtube.user.js" updateurl="file:///Users/rgant/Fix_Youtube.user.js">
+		<Grant>none</Grant>
+		<Include>https://www.youtube.com/*</Include>
+	</Script>
+</UserScriptConfig>
