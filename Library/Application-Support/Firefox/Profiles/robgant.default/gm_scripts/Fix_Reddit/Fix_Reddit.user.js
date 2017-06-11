@@ -16,12 +16,17 @@ Array.forEach(
 Array.forEach(
   document.querySelectorAll('.subreddit')
   ,function(el) {
-    if (el.textContent=='/r/nosleep' || el.textContent=='/r/WritingPrompts' || el.textContent=='/r/The_Donald') {
+    if (el.textContent=='r/nosleep' || el.textContent=='r/WritingPrompts' || el.textContent=='r/The_Donald') {
       var thing = el.parentNode.parentNode.parentNode;
       thing.parentNode.removeChild(thing);
     }
   }
 );
+
+var search_el = document.querySelector('input[name=restrict_sr]');
+if (search_el) {
+    search_el.checked = true;
+}
 
 var entries = document.querySelectorAll('#siteTable .thing'),
     indx = -1;
@@ -29,6 +34,7 @@ function page_nav(evt) {
     var key = evt.which;
     // 106 = j, 107 = k
     if (
+        evt.target.nodeName !== 'INPUT' &&
         !evt.altKey && !evt.ctrlKey && !evt.metaKey && !evt.shiftKey
         && (key == 106 || key == 107)
     ) {

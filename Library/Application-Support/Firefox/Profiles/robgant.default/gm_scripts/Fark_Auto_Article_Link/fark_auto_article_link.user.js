@@ -16,7 +16,7 @@ if (window.history.length <= 1 && !window.location.hash) {
 		var icon_img = tr_el.cells.item(1).getElementsByTagName('a').item(0);
 		if (icon_img && icon_img.title != 'Photoshop') {
 			var lnk = tr_el.getElementsByTagName('a').item(0).href;
-			if (lnk && !lnk.match(/http:\/\/www\.fark\.co(\/cgi\/go\.pl\?i=\d+&l!|m\/goto\/\d+\/)http:\/\/www\.fark\.com\//)) {
+			if (lnk && !lnk.match(/http:\/\/www\.fark\.co(\/cgi\/go\.pl\?i=\d+&l!|m\/goto\/\d+\/)www\.fark\.com\//)) {
 				window.location = lnk;
 			} else {
 				console.error("lnk not found");
