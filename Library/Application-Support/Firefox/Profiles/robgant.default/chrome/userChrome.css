@@ -8,3 +8,9 @@
 
 /* Make saved passwords fixed width for easier reading */
 tree#signonsTree > treechildren { font-family: monospace } 
+
+/* Always show reader button. */
+#reader-mode-button {
+    display: -moz-box !important;
+    visibility: visible !important;
+}
