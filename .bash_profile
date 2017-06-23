@@ -1,3 +1,4 @@
+#!/bin/bash
 # Reset Profile in case tab was opened from a different profile.
 osascript -e 'tell application "Terminal" to set current settings of selected tab of the front window to settings set "Basic"';
 
@@ -17,8 +18,9 @@ source /usr/local/etc/bash_completion.d/git-prompt.sh
 PS1="\[$txtgrn$txtbld\]\h\[$txtrst\]:\[$txtblu$txtbld\]\w\[$txtpur\]\$(__git_ps1)\[$txtrst\]\$ "
 
 # Use bash-completion, if available
-[[ $PS1 && -f /opt/etc/bash_completion ]] && \
-	. /opt/etc/bash_completion
+if [[ $PS1 && -f /usr/local/etc/bash_completion ]]; then
+	source /usr/local/etc/bash_completion
+fi
 
 HISTCONTROL=ignoreboth
 HISTSIZE=10000
@@ -31,6 +33,7 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias df='df -h'
 alias du='du -h'
+alias diff='diff --unified'
 alias movsync='rsync --archive --compress --delete --exclude=.DS_Store --progress rsync://media-center.home.robgant.com/rgant/Movies/ ~/Movies/'
 alias newmusic='rsync --archive --compress --progress rsync://media-center.home.robgant.com/rgant/Music/new/ ./Music/new/'
 alias modem_tunnel='ssh home -L 2000:modem.home.robgant.com:80 -N'
@@ -51,15 +54,18 @@ export PYTHONSTARTUP="$HOME/.pythonrc.py"
 export PIP_REQUIRE_VIRTUALENV=true
 
 #PATH="${PATH}:/usr/local/php5/bin:/usr/local/mysql/bin:$MAGICK_HOME/bin"
-export PATH="$HOME/.pyenv/bin:/usr/local/git/bin:/Users/rgant/bin:/opt/bin:/usr/local/heroku/bin:${PATH}:."
+export PATH="/Users/rgant/bin:${PATH}:."
 
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
-# Manually activate .launchd.conf
-launchctl list | grep -q name.robgant || {
-	<"$HOME/.launchd.conf" xargs launchctl;
-}
+# Don't run this in tmux
+if [ -z "$TMUX" ]; then
+	# Manually activate .launchd.conf
+	launchctl list | grep -q name.robgant || {
+		<"$HOME/.launchd.conf" xargs launchctl;
+	}
+fi
 
 gpip () {
 	PIP_REQUIRE_VIRTUALENV="" sudo pip "$@";
@@ -146,9 +152,6 @@ start_agent () {
 	/usr/bin/ssh-agent -t 14400 | sed 's/^echo/#echo/' > "${SSH_ENV}";
 	chmod 600 "${SSH_ENV}";
 	source "${SSH_ENV}";
-
-	# Start the remote pbcopy server
-	nohup "$HOME/bin/rpbcopy-server" 58827 > "$TMPDIR/rpbcopy.out" &
 }
 init_agent () {
 	if [ -f "${SSH_ENV}" ]; then
@@ -163,15 +166,15 @@ init_agent () {
 }
 ssh () {
 	osascript -e 'tell application "Terminal" to set current settings of selected tab of the front window to settings set "SSH"';
-	/usr/bin/ssh -R 58827:localhost:58827 "$@";
+	/usr/bin/ssh "$@";
 	tabname;
 	osascript -e 'tell application "Terminal" to set current settings of selected tab of the front window to settings set "Basic"';
 }
 
-md5 () { /sbin/md5 "$@" | sed -e's/^MD5 (\(.*\)) = \([0-9a-f]*\)$/\2 \1/' | sort; }
-
 # Only init the agent if we are on a terminal
 test -t 0 && init_agent;
+
+md5 () { /sbin/md5 "$@" | sed -e's/^MD5 (\(.*\)) = \([0-9a-f]*\)$/\2 \1/' | sort; }
 
 sys_status () {
 	### System Status
@@ -205,6 +208,12 @@ test -t 0 && {
 
 develop () {
 	cd "$1";
+#	tmux new-session \; \
+#		send-keys '_develop' C-m \; \
+#		split-window -h;
+#}
+#
+#_develop () {
 	tabname "$(basename "$PWD")";
 	if [[ -d node_modules/.bin/ ]]; then
 		export PATH="$1/node_modules/.bin:${PATH}";
@@ -212,6 +221,33 @@ develop () {
 	if [[ -d vendor/bin/ ]]; then
 		export PATH="$1/vendor/bin:${PATH}";
 	fi
-	git pull;
+	# https://www.derekgourlay.com/blog/git-when-to-merge-vs-when-to-rebase/
+	git fetch;
 	git status;
 }
+
+kill_jobs () {
+	for ID in $(jobs -p); do
+		GID=$(ps -o pgid= -p "$ID");
+		pkill -g "$GID";
+	done
+}
+trap kill_jobs EXIT;
+
+# Change the indentation of files with 2 space indentation to 4 spaces.
+redent () {
+	find "${1-'./'}" -path '*/.git/*' -prune \
+		-o -path '*/assets/*' -prune \
+		-o -name 'favicon.ico' -prune \
+		-o -type f \
+		-exec sh -c 'grep -q "^  [^ ]" $1 && unexpand -t 2 $1 | expand -t 4 > $1.tmp && mv $1.tmp $1' _ '{}' \;
+}
+
+# This updates the path, but I think homebrew already has it covered
+# source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc';
+# pyenv and google cloud sdk from homebrew right now don't install completions correctly so don't do this:
+# source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc';
+# Instead:
+# cd /usr/local/etc/bash_completion.d/
+# ln -s ../../Cellar/pyenv/*/completions/pyenv.bash
+# ln -s ../../Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc google-cloud-sdk
