@@ -5,7 +5,7 @@
 	a = add
 	ap = add --patch
 	c = commit
-	ca = commit --ammend
+	ca = commit --amend
 	ch = checkout
 	cm = commit --message
 	d = diff
