@@ -16,6 +16,8 @@
 		"SublimeLinter-html-tidy",
 		"SublimeLinter-jshint",
 		"SublimeLinter-pylint",
+		"SublimeLinter-rubocop",
+		"SublimeLinter-ruby",
 		"SublimeLinter-shellcheck",
 		"TypeScript"
 	]
