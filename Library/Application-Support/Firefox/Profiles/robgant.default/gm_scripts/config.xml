@@ -46,7 +46,7 @@
 		<Grant>GM_addStyle</Grant>
 		<Include>http://www.theregister.co.uk/*/*/*/*/</Include>
 	</Script>
-	<Script basedir="Fix_Reddit" checkRemoteUpdates="1" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="Open articles and comments pages in new tabs" enabled="true" filename="Fix_Reddit.user.js" installTime="1428365596000" modified="1497142067000" name="Fix Reddit" namespace="name.robgant" noframes="false" runAt="document-end" updateMetaStatus="unknown" uuid="215aad83-7db6-ca4d-9808-1f06f58e26c6" version="null" installurl="file:///Users/rgant/Public/Dropbox/ff-shared/gm_scripts/Fix_Reddit/Fix_Reddit.user.js" updateurl="file:///Users/rgant/Public/Dropbox/ff-shared/gm_scripts/Fix_Reddit/Fix_Reddit.user.js">
+	<Script basedir="Fix_Reddit" checkRemoteUpdates="1" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="Open articles and comments pages in new tabs" enabled="true" filename="Fix_Reddit.user.js" installTime="1428365596000" modified="1502218291000" name="Fix Reddit" namespace="name.robgant" noframes="false" runAt="document-end" updateMetaStatus="unknown" uuid="215aad83-7db6-ca4d-9808-1f06f58e26c6" version="null" installurl="file:///Users/rgant/Public/Dropbox/ff-shared/gm_scripts/Fix_Reddit/Fix_Reddit.user.js" updateurl="file:///Users/rgant/Public/Dropbox/ff-shared/gm_scripts/Fix_Reddit/Fix_Reddit.user.js">
 		<Grant>none</Grant>
 		<Include>https://www.reddit.com/*</Include>
 		<UserInclude>https://np.reddit.com/*</UserInclude>
@@ -66,6 +66,7 @@
 		<Include>https://www.msn.com/*</Include>
 		<Include>https://www.usatoday.com/*</Include>
 		<Include>http://nymag.com/*</Include>
+		<UserInclude>http://www.salon.com/*</UserInclude>
 	</Script>
 	<Script basedir="Fix_Youtube" checkRemoteUpdates="1" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="Hide the masthead and don't go into watchlist mode" enabled="true" filename="Fix_Youtube.user.js" installTime="1472613382000" modified="1497130965000" name="Fix Youtube" namespace="name.robgant" noframes="false" runAt="document-end" updateMetaStatus="unknown" uuid="3ee20d53-3d16-b14e-a05d-b6c010f202a6" version="null" installurl="file:///Users/rgant/Fix_Youtube.user.js" updateurl="file:///Users/rgant/Fix_Youtube.user.js">
 		<Grant>none</Grant>

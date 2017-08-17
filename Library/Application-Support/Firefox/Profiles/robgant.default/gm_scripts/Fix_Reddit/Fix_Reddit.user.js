@@ -17,7 +17,7 @@ Array.forEach(
   document.querySelectorAll('.subreddit')
   ,function(el) {
     if (el.textContent=='r/nosleep' || el.textContent=='r/WritingPrompts' || el.textContent=='r/The_Donald') {
-      var thing = el.parentNode.parentNode.parentNode;
+      var thing = el.parentNode.parentNode.parentNode.parentNode;
       thing.parentNode.removeChild(thing);
     }
   }
@@ -34,7 +34,7 @@ function page_nav(evt) {
     var key = evt.which;
     // 106 = j, 107 = k
     if (
-        evt.target.nodeName !== 'INPUT' &&
+        evt.target.nodeName !== 'INPUT' && evt.target.nodeName !== 'TEXTAREA' &&
         !evt.altKey && !evt.ctrlKey && !evt.metaKey && !evt.shiftKey
         && (key == 106 || key == 107)
     ) {
