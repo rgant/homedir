@@ -5,13 +5,17 @@
 	],
 	"installed_packages":
 	[
+		"Better CoffeeScript",
 		"EasyDiff",
 		"LESS",
 		"Package Control",
 		"PackageResourceViewer",
 		"Sass",
 		"SublimeLinter",
+		"SublimeLinter-coffeelint",
 		"SublimeLinter-contrib-eslint",
+		"SublimeLinter-contrib-haml-lint",
+		"SublimeLinter-contrib-sass-lint",
 		"SublimeLinter-csslint",
 		"SublimeLinter-html-tidy",
 		"SublimeLinter-jshint",
