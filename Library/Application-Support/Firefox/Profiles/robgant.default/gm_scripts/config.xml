@@ -18,7 +18,7 @@
 		<Grant>none</Grant>
 		<Include>https://www.wired.com/*/*/*/</Include>
 	</Script>
-	<Script basedir="TTRSS_Open_Background_Tab" checkRemoteUpdates="1" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="Adds keyboard shortcut to open article in a new background tab" enabled="true" filename="TTRSS_Open_Background_Tab.user.js" installTime="1372686257000" modified="1506018131000" name="TTRSS Open Background Tab" namespace="name.robgant.slashdot" noframes="false" runAt="document-end" updateMetaStatus="unknown" uuid="49c3458a-75d8-6d46-8462-f86b7e664a50" version="null" installurl="file:///Users/rgant/Public/Dropbox/ff-shared/gm_scripts/TTRSS_Open_Background_Tab/TTRSS_Open_Background_Tab.user.js" updateurl="file:///Users/rgant/Public/Dropbox/ff-shared/gm_scripts/TTRSS_Open_Background_Tab/TTRSS_Open_Background_Tab.user.js">
+	<Script basedir="TTRSS_Open_Background_Tab" checkRemoteUpdates="1" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="Adds keyboard shortcut to open article in a new background tab" enabled="true" filename="TTRSS_Open_Background_Tab.user.js" installTime="1372686257000" modified="1506018220000" name="TTRSS Open Background Tab" namespace="name.robgant.slashdot" noframes="false" runAt="document-end" updateMetaStatus="unknown" uuid="49c3458a-75d8-6d46-8462-f86b7e664a50" version="null" installurl="file:///Users/rgant/Public/Dropbox/ff-shared/gm_scripts/TTRSS_Open_Background_Tab/TTRSS_Open_Background_Tab.user.js" updateurl="file:///Users/rgant/Public/Dropbox/ff-shared/gm_scripts/TTRSS_Open_Background_Tab/TTRSS_Open_Background_Tab.user.js">
 		<Grant>GM_openInTab</Grant>
 		<Include>https://rss.wh0rd.org/</Include>
 		<Include>https://rss.wh0rd.org/#f*</Include>
@@ -71,5 +71,9 @@
 	<Script basedir="Fix_Youtube" checkRemoteUpdates="1" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="Hide the masthead and don't go into watchlist mode" enabled="true" filename="Fix_Youtube.user.js" installTime="1472613382000" modified="1497130965000" name="Fix Youtube" namespace="name.robgant" noframes="false" runAt="document-end" updateMetaStatus="unknown" uuid="3ee20d53-3d16-b14e-a05d-b6c010f202a6" version="null" installurl="file:///Users/rgant/Fix_Youtube.user.js" updateurl="file:///Users/rgant/Fix_Youtube.user.js">
 		<Grant>none</Grant>
 		<Include>https://www.youtube.com/*</Include>
+	</Script>
+	<Script basedir="Redirect_to_smile.amazon.com" checkRemoteUpdates="1" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="Redirect Amazon to Smile" enabled="true" filename="Redirect_to_smile.amazon.com.user.js" installTime="1506447304000" modified="1506447517000" name="Redirect to smile.amazon.com" namespace="name.robgant" noframes="false" runAt="document-start" updateMetaStatus="unknown" uuid="6e564c8d-998d-9544-8468-abee31cc7564" version="1" installurl="file:///Users/rgant/Programming/homedir/Library/Application-Support/Firefox/Profiles/robgant.default/gm_scripts/Redirect_to_smile.amazon.com/Redirect_to_smile.amazon.com.user.js" updateurl="file:///Users/rgant/Programming/homedir/Library/Application-Support/Firefox/Profiles/robgant.default/gm_scripts/Redirect_to_smile.amazon.com/Redirect_to_smile.amazon.com.user.js">
+		<Grant>none</Grant>
+		<Include>https://www.amazon.com/*</Include>
 	</Script>
 </UserScriptConfig>
