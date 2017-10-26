@@ -16,8 +16,11 @@ Array.forEach(
 Array.forEach(
   document.querySelectorAll('.subreddit')
   ,function(el) {
-    if (el.textContent=='r/nosleep' || el.textContent=='r/WritingPrompts' || el.textContent=='r/The_Donald' || el.textContent=='r/vegan') {
-      var thing = el.parentNode.parentNode.parentNode.parentNode;
+    if (el.textContent.endsWith('nosleep') || el.textContent.endsWith('WritingPrompts') || el.textContent.endsWith('The_Donald') || el.textContent.endsWith('vegan') || el.textContent.endsWith('sports')) {
+      var thing = el.parentNode;
+      while (thing && !thing.classList.contains('thing')) {
+          thing = thing.parentNode;
+      }
       thing.parentNode.removeChild(thing);
     }
   }

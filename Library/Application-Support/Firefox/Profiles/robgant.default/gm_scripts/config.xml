@@ -46,7 +46,7 @@
 		<Grant>GM_addStyle</Grant>
 		<Include>http://www.theregister.co.uk/*/*/*/*/</Include>
 	</Script>
-	<Script basedir="Fix_Reddit" checkRemoteUpdates="1" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="Open articles and comments pages in new tabs" enabled="true" filename="Fix_Reddit.user.js" installTime="1428365596000" modified="1503079591000" name="Fix Reddit" namespace="name.robgant" noframes="false" runAt="document-end" updateMetaStatus="unknown" uuid="215aad83-7db6-ca4d-9808-1f06f58e26c6" version="null" installurl="file:///Users/rgant/Public/Dropbox/ff-shared/gm_scripts/Fix_Reddit/Fix_Reddit.user.js" updateurl="file:///Users/rgant/Public/Dropbox/ff-shared/gm_scripts/Fix_Reddit/Fix_Reddit.user.js">
+	<Script basedir="Fix_Reddit" checkRemoteUpdates="1" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="Open articles and comments pages in new tabs" enabled="true" filename="Fix_Reddit.user.js" installTime="1428365596000" modified="1509048156957" name="Fix Reddit" namespace="name.robgant" noframes="false" runAt="document-end" updateMetaStatus="unknown" uuid="215aad83-7db6-ca4d-9808-1f06f58e26c6" version="null" installurl="file:///Users/rgant/Public/Dropbox/ff-shared/gm_scripts/Fix_Reddit/Fix_Reddit.user.js" updateurl="file:///Users/rgant/Public/Dropbox/ff-shared/gm_scripts/Fix_Reddit/Fix_Reddit.user.js">
 		<Grant>none</Grant>
 		<Include>https://www.reddit.com/*</Include>
 		<UserInclude>https://np.reddit.com/*</UserInclude>
