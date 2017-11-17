@@ -3,7 +3,14 @@
 // @description Hides annoying elements
 // @namespace   name.robgant
 // @include     http://www.theregister.co.uk/*/*/*/*/
-// @grant       GM_addStyle
+// @include     https://www.theregister.co.uk/*/*/*/*/
+// @grant       none
 // ==/UserScript==
 
-GM_addStyle('body #site_nav.glue{position:static !important;}');
+let head = document.getElementsByTagName('head')[0];
+if (head) {
+  let style = document.createElement('style');
+  style.setAttribute('type', 'text/css');
+  style.textContent = 'body #site_nav.glue{position:static !important;}';
+  head.appendChild(style);
+}

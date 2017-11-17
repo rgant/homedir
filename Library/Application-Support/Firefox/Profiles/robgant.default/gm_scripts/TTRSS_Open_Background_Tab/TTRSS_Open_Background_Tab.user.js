@@ -5,7 +5,7 @@
 // @include     https://rss.wh0rd.org/
 // @include     https://rss.wh0rd.org/#f*
 // @include     https://rss.wh0rd.org/index.php*
-// @grant       GM_openInTab
+// @grant       GM.openInTab
 // ==/UserScript==
 
 document.addEventListener('keydown', function(evt){
@@ -18,7 +18,7 @@ document.addEventListener('keydown', function(evt){
 			    if (lnk) {
     				evt.stopPropagation();
     				evt.preventDefault();
-    				var tab = GM_openInTab(lnk.href, true);
+    				var tab = GM.openInTab(lnk.href, true);
     			}
 			}
 		}
@@ -45,7 +45,7 @@ document.addEventListener('keydown', function(evt){
 		}
 		//console.log('Monkey Patched cdmExpandArticle');
 	}
-	
+
 	var scrpt = document.createElement('scr'+'ipt');
 	scrpt.appendChild(document.createTextNode('('+ patch_cdmExpandArticle +')(window);'));
 	(document.body || document.head || document.documentElement).appendChild(scrpt);

@@ -16,7 +16,14 @@ Array.forEach(
 Array.forEach(
   document.querySelectorAll('.subreddit')
   ,function(el) {
-    if (el.textContent.endsWith('nosleep') || el.textContent.endsWith('WritingPrompts') || el.textContent.endsWith('The_Donald') || el.textContent.endsWith('vegan') || el.textContent.endsWith('sports')) {
+    if (el.textContent.endsWith('nosleep') ||
+        el.textContent.endsWith('WritingPrompts') ||
+        el.textContent.endsWith('The_Donald') ||
+        el.textContent.endsWith('vegan') ||
+        el.textContent.endsWith('sports') ||
+        el.textContent.endsWith('Patriots') ||
+        el.textContent.endsWith('bostonceltics')
+       ) {
       var thing = el.parentNode;
       while (thing && !thing.classList.contains('thing')) {
           thing = thing.parentNode;

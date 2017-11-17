@@ -6,11 +6,16 @@
 // @include     http://slashdot.org/story/*
 // @include     https://*.slashdot.org/story/*
 // @include     https://slashdot.org/story/*
-// @grant       GM_addStyle
+// @grant       none
 // ==/UserScript==
 
-GM_addStyle('.main-content {margin-right: 0 !important;}');
-GM_addStyle('.banner-wrapper, .view_mode, .adwrap {display: none !important;}');
+let head = document.getElementsByTagName('head')[0];
+if (head) {
+  let style = document.createElement('style');
+  style.setAttribute('type', 'text/css');
+  style.textContent = '.main-content {margin-right: 0 !important;}.banner-wrapper, .view_mode, .adwrap {display: none !important;}';
+  head.appendChild(style);
+}
 
 var an_el = document.getElementById('announcement'),
     cm_el = document.getElementById('comments');
