@@ -14,12 +14,13 @@ document.addEventListener('keydown', function(evt){
 		if (headlines_el) {
 			var entry_el = headlines_el.getElementsByClassName('Selected').item(0);
 			if (entry_el) {
-			    var lnk = entry_el.getElementsByClassName('title').item(0);
-			    if (lnk) {
-    				evt.stopPropagation();
-    				evt.preventDefault();
-    				var tab = GM.openInTab(lnk.href, true);
-    			}
+				var lnk = entry_el.getElementsByClassName('title').item(0);
+				if (lnk) {
+					evt.stopPropagation();
+					evt.preventDefault();
+					var tab = GM.openInTab(lnk.href, true);
+					//console.log('openInTab', lnk.href);
+				}
 			}
 		}
 	} else if (evt.metaKey) {
@@ -42,7 +43,7 @@ document.addEventListener('keydown', function(evt){
 				}
 			);
 			return result;
-		}
+		};
 		//console.log('Monkey Patched cdmExpandArticle');
 	}
 

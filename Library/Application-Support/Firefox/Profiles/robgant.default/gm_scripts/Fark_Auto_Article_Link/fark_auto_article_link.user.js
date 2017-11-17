@@ -29,9 +29,6 @@ if (window.history.length <= 1 && !window.location.hash) {
 	}
 }
 
-var sheet = document.styleSheets[document.styleSheets.length-1];
-sheet.insertRule("#abPleaBar { visibility:hidden; display:none; }", sheet.cssRules.length);
-
 var entries = document.querySelectorAll('div#commentsArea > table.notctable, div#commentsArea > table.notctableTF'),
     indx = -1;
 function page_nav(evt) {
