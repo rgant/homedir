@@ -31,7 +31,8 @@ def add_comment(issue, msg):
 
 def get_commit():
     """
-    Gets the most recent comment message from git.
+    Gets the most recent comment message from git. Must be the most recent because that is
+    the only one that will be decorated with the branch name.
     :return tuple(str): sha1 commit ref, commit message
     """
     out = subprocess.check_output(['git', 'show', '--oneline', '--decorate',
@@ -39,13 +40,14 @@ def get_commit():
     parts = out.partition(' ')
     return (parts[0], parts[2])
 
-def get_beanstalkapp_link(ref):
+def get_repo_link(ref):
     """
     Creates a JIRA markdown compatible link to the changeset ref.
     :param str ref: changeset sha1 hash
-    :return str: markdown for link to changeset in beanstalkapp
+    :return str: markdown for link to changeset in repo
     """
-    return ('[Changeset: {0}|https://NAME.beanstalkapp.com/PROJECT/changesets/{0}]').format(ref)
+    #return ('[Changeset: {0}|https://NAME.beanstalkapp.com/PROJECT/changesets/{0}]').format(ref)
+    return ('[Changeset: {0}|https://github.com/NAME/PROJECT/commit/{0}]').format(ref)
 
 def get_issue_ids(msg):
     """
@@ -60,8 +62,8 @@ def main():
     """ Load the most recent commit message and add comments to any referenced tickets. """
     ref, msg = get_commit()
     issues = get_issue_ids(msg)
-    beanstalk_link = get_beanstalkapp_link(ref)
-    msg += '\n' + beanstalk_link
+    repo_link = get_repo_link(ref)
+    msg += '\n' + repo_link
     for issue in issues:
         add_comment(issue, msg)
 
