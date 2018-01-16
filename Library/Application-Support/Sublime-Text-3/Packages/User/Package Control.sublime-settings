@@ -5,6 +5,7 @@
 	],
 	"installed_packages":
 	[
+		"Babel",
 		"Better CoffeeScript",
 		"EasyDiff",
 		"LESS",
@@ -13,10 +14,10 @@
 		"Sass",
 		"SublimeLinter",
 		"SublimeLinter-coffeelint",
-		"SublimeLinter-contrib-eslint",
 		"SublimeLinter-contrib-haml-lint",
 		"SublimeLinter-contrib-sass-lint",
 		"SublimeLinter-csslint",
+		"SublimeLinter-eslint",
 		"SublimeLinter-html-tidy",
 		"SublimeLinter-jshint",
 		"SublimeLinter-pylint",
