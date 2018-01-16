@@ -6,7 +6,7 @@
 	"auto_complete_commit_on_tab": true,
 	"auto_complete_delay": 100,
 	"bold_folder_labels": true,
-	"color_scheme": "Packages/User/Rob Sunburst (SL).tmTheme",
+	"color_scheme": "Packages/Color Scheme - Default/Monokai.sublime-color-scheme",
 	"default_line_ending": "unix",
 	"ensure_newline_at_eof_on_save": true,
 	"fade_fold_buttons": false,
@@ -28,6 +28,7 @@
 	],
 	"shift_tab_unindent": true,
 	"tab_size": 4,
+	"theme": "Default.sublime-theme",
 	"translate_tabs_to_spaces": true,
 	"trim_trailing_white_space_on_save": true,
 	"word_wrap": false
