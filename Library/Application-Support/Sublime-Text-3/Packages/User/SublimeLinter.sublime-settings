@@ -1,131 +1,42 @@
+// SublimeLinter Settings - User
 {
-    "user": {
-        "debug": false,
-        "delay": 0.25,
-        "error_color": "D02000",
-        "gutter_theme": "Packages/SublimeLinter/gutter-themes/Default/Default.gutter-theme",
-        "gutter_theme_excludes": [],
-        "lint_mode": "save only",
-        "linters": {
-            "coffeelint": {
-                "@disable": false,
-                "args": [],
-                "excludes": []
-            },
-            "csslint": {
-                "@disable": false,
-                "args": [],
-                "errors": "",
-                "excludes": [],
-                "ignore": "",
-                "warnings": ""
-            },
-            "eslint": {
-                "@disable": false,
-                "args": [],
-                "excludes": []
-            },
-            "hamllint": {
-                "@disable": false,
-                "args": [],
-                "excludes": []
-            },
-            "htmltidy": {
-                "@disable": false,
-                "args": [
-                    "--show-body-only",
-                    "yes"
+    "debug": true,
+    "lint_mode": "save",
+    "linters": {
+        "htmltidy": {
+            "args": [
+                "--show-body-only",
+                "yes"
+            ],
+            "ignore_match": {
+                "html": [
+                    "<\\w+> proprietary attribute \"ng-",
+                    "<\\w+> proprietary attribute \"ui-",
+                    "trimming empty"
                 ],
-                "excludes": [],
-                "ignore_match": {
-                    "html": [
-                        "<\\w+> proprietary attribute \"ng-",
-                        "<\\w+> proprietary attribute \"ui-",
-                        "trimming empty"
-                    ],
-                    "php": [
-                        "plain text isn't allowed in <head> elements"
-                    ]
-                }
-            },
-            "jshint": {
-                "@disable": false,
-                "args": [],
-                "excludes": []
-            },
-            "json": {
-                "@disable": false,
-                "args": [],
-                "excludes": [],
-                "strict": true
-            },
-            "pylint": {
-                "@disable": false,
-                "args": [],
-                "disable": "",
-                "enable": "",
-                "excludes": [],
-                "paths": [],
-                "rcfile": "",
-                "show-codes": true
-            },
-            "rubocop": {
-                "@disable": false,
-                "args": [],
-                "excludes": []
-            },
-            "ruby": {
-                "@disable": false,
-                "args": [],
-                "excludes": []
-            },
-            "sass": {
-                "@disable": false,
-                "args": [],
-                "excludes": []
-            },
-            "shellcheck": {
-                "@disable": false,
-                "args": [],
-                "exclude": "",
-                "excludes": []
-            },
-            "tslint": {
-                "@disable": false,
-                "args": [],
-                "excludes": []
+                "php": [
+                    "plain text isn't allowed in <head> elements"
+                ]
             }
         },
-        "mark_style": "outline",
-        "no_column_highlights_line": false,
-        "passive_warnings": false,
-        "paths": {
-            "linux": [],
-            "osx": [],
-            "windows": []
+        "mypy": {
+            "disable": true,
+            "args": ["--ignore-missing-imports"]
         },
-        "python_paths": {
-            "linux": [],
-            "osx": [],
-            "windows": []
-        },
-        "rc_search_limit": 3,
-        "shell_timeout": 10,
-        "show_errors_on_save": true,
-        "show_marks_in_minimap": true,
-        "syntax_map": {
-            "html (django)": "html",
-            "html (rails)": "html",
-            "html 5": "html",
-            "php": "html",
-            "python django": "python"
-        },
-        "tooltip_fontsize": "1rem",
-        "tooltip_theme": "Packages/SublimeLinter/tooltip-themes/Default/Default.tooltip-theme",
-        "tooltip_theme_excludes": [],
-        "tooltips": false,
-        "use_current_shell_path": false,
-        "warning_color": "DDB700",
-        "wrap_find": true
-    }
+        "sass": {
+            "excludes": ["*.css"]
+        }
+    },
+    "no_column_highlights_line": true,
+    "paths": {
+        "osx": [
+            "/Users/rgant/.rbenv/shims",
+            "/Users/rgant/.pyenv/shims",
+            "/usr/local/bin",
+            "/usr/bin",
+            "/bin",
+            "/usr/sbin",
+            "/sbin"],
+    },
+    "show_panel_on_save": "view",
 }
