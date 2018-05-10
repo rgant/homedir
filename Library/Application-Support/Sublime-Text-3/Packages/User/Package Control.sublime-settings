@@ -14,10 +14,13 @@
 		"Sass",
 		"SublimeLinter",
 		"SublimeLinter-coffeelint",
+		"SublimeLinter-contrib-dockerfilelint",
+		"SublimeLinter-contrib-markdownlint",
 		"SublimeLinter-contrib-mypy",
 		"SublimeLinter-contrib-sass-lint",
 		"SublimeLinter-csslint",
 		"SublimeLinter-eslint",
+		"SublimeLinter-haml",
 		"SublimeLinter-haml-lint",
 		"SublimeLinter-html-tidy",
 		"SublimeLinter-jshint",
@@ -25,6 +28,7 @@
 		"SublimeLinter-rubocop",
 		"SublimeLinter-ruby",
 		"SublimeLinter-shellcheck",
-		"TypeScript"
+		"TypeScript",
+		"Vue Syntax Highlight"
 	]
 }
