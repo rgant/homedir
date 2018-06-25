@@ -6,18 +6,10 @@
         "htmltidy": {
             "args": [
                 "--show-body-only",
+                "yes",
+                "--input-xml",
                 "yes"
-            ],
-            "ignore_match": {
-                "html": [
-                    "<\\w+> proprietary attribute \"ng-",
-                    "<\\w+> proprietary attribute \"ui-",
-                    "trimming empty"
-                ],
-                "php": [
-                    "plain text isn't allowed in <head> elements"
-                ]
-            }
+            ]
         },
         "mypy": {
             "disable": true,
@@ -30,13 +22,9 @@
     "no_column_highlights_line": true,
     "paths": {
         "osx": [
-            "/Users/rgant/.rbenv/shims",
             "/Users/rgant/.pyenv/shims",
-            "/usr/local/bin",
-            "/usr/bin",
-            "/bin",
-            "/usr/sbin",
-            "/sbin"],
+            "/usr/local/bin"
+        ],
     },
     "show_panel_on_save": "view",
 }
