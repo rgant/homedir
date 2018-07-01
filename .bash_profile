@@ -15,7 +15,7 @@ txtpur=$(tput setaf 5)	# Purple
 txtrst=$(tput sgr0)		# Text reset
 
 source /usr/local/etc/bash_completion.d/git-prompt.sh
-PS1="\[$txtgrn$txtbld\]\h\[$txtrst\]:\[$txtblu$txtbld\]\w\[$txtpur\]\$(__git_ps1)\[$txtrst\]\$ "
+PS1="\\[$txtgrn$txtbld\\]\\h\\[$txtrst\\]:\\[$txtblu$txtbld\\]\\w\\[$txtpur\\]\$(__git_ps1)\\[$txtrst\\]\$ "
 
 # Use bash-completion, if available
 if [[ $PS1 && -f /usr/local/etc/bash_completion ]]; then
@@ -80,7 +80,7 @@ dl () {
 	if [ -n "$2" ]; then
 		# Download file into specified directory
 		if [ -d "$2" ]; then
-			cd "$2";
+			cd "$2" || exit;
 		# Download the file to specified name
 		elif [ ! -e "$2" ]; then
 			curl --output "$2" "$1";
@@ -92,7 +92,7 @@ dl () {
 	curl --location --remote-name "$1";
 
 	if [ -n "$2" ]; then
-		cd -;
+		cd - || exit;
 	fi;
 }
 
@@ -110,7 +110,7 @@ tabname () {
 	[ -n "$1" ] && terminal_tabname=$1
 	#echo -n -e "\033]0;$1\007";
 	#echo "#### $terminal_tabname"
-	[ -n "$terminal_tabname" ] && printf "\e]1;%s\a" "$terminal_tabname";
+	[ -n "$terminal_tabname" ] && printf "\\e]1;%s\\a" "$terminal_tabname";
 }
 tabname "$(hostname -s)"
 
@@ -181,12 +181,12 @@ sys_status () {
 	echo -e "${txtbld}Uptime${txtrst}";
 	w;
 
-	echo -e "\n${txtbld}Disk Usage${txtrst}";
-	df | grep "^Filesystem\|^/" | grep --color=always " \|9[0-9]%\|100%";
+	echo -e "\\n${txtbld}Disk Usage${txtrst}";
+	df | grep "^Filesystem\\|^/" | grep --color=always " \\|9[0-9]%\\|100%";
 
-	echo -e "\n${txtbld}Network${txtrst}";
+	echo -e "\\n${txtbld}Network${txtrst}";
 	hostname -f;
-	ifconfig | grep inet | grep -v "::1\| 127\." | cut -d" " -f2;
+	ifconfig | grep inet | grep -v "::1\\| 127\\." | cut -d" " -f2;
 
 	COLS=$(tput cols);
 	echo -ne "$txtbld";
@@ -207,7 +207,7 @@ test -t 0 && {
 }
 
 develop () {
-	cd "$1";
+	cd "$1" || exit;
 #	tmux new-session \; \
 #		send-keys '_develop' C-m \; \
 #		split-window -h;
