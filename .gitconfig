@@ -30,3 +30,5 @@
 	rebase = true
 [diff]
 	compactionHeuristic = true
+[pull]
+	rebase = true
