@@ -254,6 +254,17 @@ redent () {
 		-exec sh -c 'grep -q "^  [^ ]" $1 && unexpand -t 2 $1 | expand -t 4 > $1.tmp && mv $1.tmp $1' _ '{}' \;
 }
 
+# Find Windows Line Endings files in git repo, ignoring any gitignored files.
+fixwin () {
+	while IFS= read -r -d '' F; do
+		if file "$F" | grep -q 'ASCII text, with CRLF line terminators' && ! git check-ignore -q "$F"; then
+			echo -n "Converting $F from crlf to ";
+			sed -e $'s/\r$//' -i '' "$F";
+			echo 'lf';
+		fi
+	done <   <(find ./ -name '.git' -prune -o -name 'node_modules' -prune -o -name 'bower_components' -prune -o -type f -print0)
+}
+
 # This updates the path, but I think homebrew already has it covered
 # source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc';
 # pyenv and google cloud sdk from homebrew right now don't install completions correctly so don't do this:
