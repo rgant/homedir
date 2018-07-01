@@ -34,7 +34,7 @@ alias mv='mv -i'
 alias df='df -h'
 alias du='du -h'
 alias diff='diff --unified'
-alias movsync='rsync --archive --compress --delete --exclude=.DS_Store --progress rsync://media-center.home.robgant.com/rgant/Movies/ ~/Movies/'
+alias movsync='rsync --archive --compress --delete --exclude=.DS_Store --fuzzy --progress rsync://media-center.home.robgant.com/rgant/Movies/ ~/Movies/'
 alias newmusic='rsync --archive --compress --progress rsync://media-center.home.robgant.com/rgant/Music/new/ ./Music/new/'
 alias modem_tunnel='ssh home -L 2000:modem.home.robgant.com:80 -N'
 alias router_tunnel='ssh home -L 2000:router.home.robgant.com:80 -N'
@@ -44,6 +44,7 @@ alias funcs="grep -o '^[a-z0-9_]* () {' ~/.bash_profile | sed -e's/ () {//'"
 alias pygrep="find ./ -name '*.py' -print0 | xargs -0 grep"
 alias phpgrep="find ./ -name '*.php' -print0 | xargs -0 grep"
 alias htmlgrep="find ./ -name '*.html' -print0 | xargs -0 grep"
+alias headers='curl --verbose --silent 1> /dev/null'
 
 export CLICOLOR=1
 export EDITOR=nano
@@ -68,7 +69,7 @@ if [ -z "$TMUX" ]; then
 fi
 
 gpip () {
-	PIP_REQUIRE_VIRTUALENV="" sudo pip "$@";
+	PIP_REQUIRE_VIRTUALENV="" sudo -H pip "$@";
 }
 
 dl () {
@@ -251,3 +252,6 @@ redent () {
 # cd /usr/local/etc/bash_completion.d/
 # ln -s ../../Cellar/pyenv/*/completions/pyenv.bash
 # ln -s ../../Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc google-cloud-sdk
+
+# Personal Projects
+alias saas='develop ~/Programming/saas-api-boilerplate';
