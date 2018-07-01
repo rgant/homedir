@@ -18,8 +18,8 @@ source /usr/local/etc/bash_completion.d/git-prompt.sh
 PS1="\\[$txtgrn$txtbld\\]\\h\\[$txtrst\\]:\\[$txtblu$txtbld\\]\\w\\[$txtpur\\]\$(__git_ps1)\\[$txtrst\\]\$ "
 
 # Use bash-completion, if available
-if [[ $PS1 && -f /usr/local/etc/bash_completion ]]; then
-	source /usr/local/etc/bash_completion
+if [[ $PS1 && -f /usr/local/share/bash-completion/bash_completion ]]; then
+    source /usr/local/share/bash-completion/bash_completion
 fi
 
 HISTCONTROL=ignoreboth
