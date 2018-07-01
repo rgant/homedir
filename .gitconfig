@@ -18,7 +18,6 @@
 	undo = checkout -- # Throw away modification to a file
 	alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\\t => \\2/' | sort
 [core]
-	autocrlf = input
 	excludesfile = ~/.gitignore
 	pager = less -r
 	quotepath = false
