@@ -19,7 +19,7 @@ PS1="\\[$txtgrn$txtbld\\]\\h\\[$txtrst\\]:\\[$txtblu$txtbld\\]\\w\\[$txtpur\\]\$
 
 # Use bash-completion, if available
 if [[ $PS1 && -f /usr/local/share/bash-completion/bash_completion ]]; then
-    source /usr/local/share/bash-completion/bash_completion
+	source /usr/local/share/bash-completion/bash_completion
 fi
 
 HISTCONTROL=ignoreboth
