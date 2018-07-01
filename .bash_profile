@@ -23,8 +23,8 @@ if [[ $PS1 && -f /usr/local/share/bash-completion/bash_completion ]]; then
 fi
 
 HISTCONTROL=ignoreboth
-HISTSIZE=10000
-HISTFILESIZE=10000
+HISTSIZE=20000
+HISTFILESIZE=20000
 shopt -s histappend
 #export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
