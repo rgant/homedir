@@ -17,6 +17,11 @@
         },
         "sass": {
             "excludes": ["*.css"]
+        },
+        "shellcheck": {
+            "args": [
+                "--shell=SHELLNAME"
+            ]
         }
     },
     "no_column_highlights_line": true,
