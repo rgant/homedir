@@ -25,9 +25,7 @@
             "excludes": ["*.css"]
         },
         "shellcheck": {
-            "args": [
-                "--shell=SHELLNAME"
-            ]
+            "args": ["--shell=bash"]
         }
     },
     "no_column_highlights_line": true,
