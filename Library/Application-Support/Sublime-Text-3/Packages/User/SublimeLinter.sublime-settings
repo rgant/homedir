@@ -11,6 +11,12 @@
                 "yes"
             ]
         },
+        "markdownlint": {
+            "args": [
+                "--config",
+                "~/.markdownlint.json"
+            ]
+        },
         "mypy": {
             "disable": true,
             "args": ["--ignore-missing-imports"]
