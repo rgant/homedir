@@ -3,14 +3,6 @@
     "debug": true,
     "lint_mode": "save",
     "linters": {
-        "htmltidy": {
-            "args": [
-                "--show-body-only",
-                "yes",
-                "--input-xml",
-                "yes"
-            ]
-        },
         "markdownlint": {
             "args": [
                 "--config",
