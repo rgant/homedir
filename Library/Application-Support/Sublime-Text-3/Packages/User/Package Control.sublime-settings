@@ -6,6 +6,7 @@
 	"installed_packages":
 	[
 		"Babel",
+		"BracketHighlighter",
 		"EasyDiff",
 		"LESS",
 		"Package Control",
