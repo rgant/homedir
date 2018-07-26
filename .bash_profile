@@ -53,6 +53,8 @@ export GREP_OPTIONS='--color=auto --no-messages'
 #export DYLD_LIBRARY_PATH="$MAGICK_HOME/lib"
 export PYTHONSTARTUP="$HOME/.pythonrc.py"
 export PIP_REQUIRE_VIRTUALENV=true
+GPG_TTY=$(tty)
+export GPG_TTY
 
 #PATH="${PATH}:/usr/local/php5/bin:/usr/local/mysql/bin:$MAGICK_HOME/bin"
 export PATH="/Users/rgant/bin:${PATH}:."
