@@ -1,6 +1,7 @@
 [user]
 	name = J Rob Gant
 	email = rgant@alum.wpi.edu
+	signingkey = 72A92177D88C3014
 [alias]
 	a = add
 	ap = add --patch
@@ -8,7 +9,7 @@
 	ca = commit --amend
 	ch = checkout
 	cm = commit --message
-	count = "!f() { compareBranch=${1-master}; git rev-list --count HEAD ^$compareBranch; }; f"
+	count = "!f () { compareBranch=${1-master}; git rev-list --count HEAD "^$compareBranch"; }; f "$@""
 	d = diff
 	del = reset HEAD # Unstage a file (opposite of add)
 	l = log --graph --all --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset'
@@ -32,3 +33,5 @@
 	compactionHeuristic = true
 [pull]
 	rebase = true
+[commit]
+	gpgsign = true
