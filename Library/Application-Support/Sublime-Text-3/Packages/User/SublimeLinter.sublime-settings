@@ -1,6 +1,6 @@
 // SublimeLinter Settings - User
 {
-    "debug": true,
+    "debug": false,
     "lint_mode": "save",
     "linters": {
         "markdownlint": {
