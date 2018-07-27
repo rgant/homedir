@@ -5,8 +5,7 @@ try:
     from builtins import *  # pylint: disable=unused-wildcard-import,redefined-builtin,wildcard-import
 except ImportError:
     import sys
-    print("WARNING: Cannot Load builtins for py3 compatibility.",
-          file=sys.stderr)
+    print('WARNING: Cannot Load builtins for py3 compatibility.', file=sys.stderr)
 
 import logging
 
@@ -30,7 +29,7 @@ class RainbowLogFormatter(logging.Formatter):
         """ Adds the new colorlevelname to record and then calls the super. """
         record.colorlevelname = self.levelcolors[record.levelname]
         # Python2.6 has an old style class for the root logging.Formatter so cannot use super()
-        # return super(TervelaRainbowLogFormatter, self).format(record)
+        # return super(RainbowLogFormatter, self).format(record)
         return logging.Formatter.format(self, record)
 
 def init_logging():
@@ -58,13 +57,13 @@ def python_history():
         import readline
         import rlcompleter
     except ImportError:
-        print("Python shell enhancement modules not available.")
+        print('Python shell enhancement modules not available.')
     else:
-        histfile = os.path.join(os.environ["HOME"], histfilename)
+        histfile = os.path.join(os.environ['HOME'], histfilename)
         if 'libedit' in readline.__doc__:
-            readline.parse_and_bind("bind ^I rl_complete")
+            readline.parse_and_bind('bind ^I rl_complete')
         else:
-            readline.parse_and_bind("tab: complete")
+            readline.parse_and_bind('tab: complete')
         if os.path.isfile(histfile):
             try:
                 readline.read_history_file(histfile)
@@ -73,7 +72,7 @@ def python_history():
         atexit.register(readline.write_history_file, histfile)
         readline.set_history_length(1000)
         del atexit, os, readline, rlcompleter
-        print("Python shell history and tab completion are enabled.")
+        print('Python shell history and tab completion are enabled.')
 
 def set_prompt():
     """ Colorful prompt """
