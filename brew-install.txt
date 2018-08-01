@@ -1,1 +1,1 @@
-brew install bash-completion@2 git gnupg imagemagick mariadb nvm openssl@1.1 p7zip pipenv postgresql pyenv-virtualenv s3cmd shellcheck tidy-html5 unrar yarn
+brew install bash-completion@2 ghostscript git gnupg imagemagick mariadb nvm openssl@1.1 p7zip pipenv postgresql pyenv-virtualenv s3cmd shellcheck tidy-html5 unrar yarn 
