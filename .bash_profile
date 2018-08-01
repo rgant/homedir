@@ -120,10 +120,12 @@ servhttp () {
 
 # call with a value to set the name, call without value to set to previous name.
 tabname () {
-	[ -n "$1" ] && terminal_tabname=$1
-	#echo -n -e "\033]0;$1\007";
-	#echo "#### $terminal_tabname"
-	[ -n "$terminal_tabname" ] && printf "\\e]1;%s\\a" "$terminal_tabname";
+	if [ "$#" -ne 1 ]; then
+		echo "Usage: ${FUNCNAME[0]} name" >&2
+		return 1
+	fi
+
+	[ -n "$1" ] && printf "\\e]1;%s\\a" "$1"
 }
 tabname "$(hostname -s)"
 
