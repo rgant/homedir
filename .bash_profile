@@ -227,19 +227,24 @@ init_status () {
 test -t 0 && init_status
 
 develop () {
-	cd "$1" || exit;
+	if [ "$#" -ne 1 ]; then
+		echo "Usage: ${FUNCNAME[0]} /path/to/project" >&2
+		return 1
+	fi
+
+	cd "$1" || exit
 #	tmux new-session \; \
 #		send-keys '_develop' C-m \; \
 #		split-window -h
 #}
 #
 #_develop () {
-	tabname "$(basename "$PWD")";
-	if [[ -d node_modules/.bin/ ]]; then
-		export PATH="$1/node_modules/.bin:${PATH}";
+	tabname "$(basename "$PWD")"
+	if [ -d node_modules/.bin/ ]; then
+		export PATH="$PWD/node_modules/.bin:${PATH}"
 	fi
-	if [[ -d vendor/bin/ ]]; then
-		export PATH="$1/vendor/bin:${PATH}";
+	if [ -d vendor/bin/ ]; then
+		export PATH="$PWD/vendor/bin:${PATH}"
 	fi
 	if [ -f .nvmrc ]; then
 		nvm use
@@ -262,6 +267,7 @@ trap kill_jobs EXIT
 # Change the indentation of files with 2 space indentation to 4 spaces.
 redent () {
 	find "${1-'./'}" -path '*/.git/*' -prune \
+	  -o -path '*/node_modules/*' -prune \
 		-o -path '*/assets/*' -prune \
 		-o -name 'favicon.ico' -prune \
 		-o -type f \
@@ -277,6 +283,7 @@ fixwin () {
 			sed -e $'s/\r$//' -i '' "$thefile"
 			echo 'lf'
 		fi
+	# <() is command substitution when a pipe cannot be used.
 	done <   <(find ./ -name '.git' -prune -o -name 'node_modules' -prune -o -name 'bower_components' -prune -o -type f -print0)
 }
 
