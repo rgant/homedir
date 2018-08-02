@@ -118,14 +118,10 @@ servhttp () {
 	python -c $'import SimpleHTTPServer;\nmap = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map;\nmap[""] = "text/plain";\nfor key, value in map.items():\n\tmap[key] = value + ";charset=UTF-8";\nSimpleHTTPServer.test();' "$port"
 }
 
-# call with a value to set the name, call without value to set to previous name.
 tabname () {
-	if [ "$#" -ne 1 ]; then
-		echo "Usage: ${FUNCNAME[0]} name" >&2
-		return 1
-	fi
-
-	[ -n "$1" ] && printf "\\e]1;%s\\a" "$1"
+	# call with a value to set the name, call without value to set to previous name.
+	[ -n "$1" ] && terminal_tabname=$1
+	[ -n "$terminal_tabname" ] && printf "\\e]1;%s\\a" "$terminal_tabname";
 }
 tabname "$(hostname -s)"
 
