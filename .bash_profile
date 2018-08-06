@@ -317,7 +317,7 @@ EOF
 		return 1
 	fi
 
-	echo "grep -R --exclude-dir=node_modules --exclude-dir=.git" "${extraargs[@]}" "${pttrn}" "${searchpath[@]-./}"
+	grep -R --exclude-dir=node_modules --exclude-dir=.git "${extraargs[@]}" "${pttrn}" "${searchpath[@]-./}"
 }
 
 update_brew_install () {
