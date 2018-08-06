@@ -69,9 +69,6 @@ if command -v pyenv 1>/dev/null 2>&1; then
 	fi
 fi
 
-export NVM_DIR="$HOME/.nvm"
-source "/usr/local/opt/nvm/nvm.sh"
-
 # Don't run this in tmux
 if [ -z "$TMUX" ]; then
 	# Manually activate .launchd.conf
@@ -243,6 +240,8 @@ develop () {
 		export PATH="$PWD/vendor/bin:${PATH}"
 	fi
 	if [ -f .nvmrc ]; then
+		export NVM_DIR="$HOME/.nvm"
+		source "/usr/local/opt/nvm/nvm.sh"
 		nvm use
 	fi
 	# https://www.derekgourlay.com/blog/git-when-to-merge-vs-when-to-rebase/
