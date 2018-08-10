@@ -320,12 +320,12 @@ Recursive grep search of project folders that excludes .git and node_modules.
 See man grep for more details.
 
 Command template:
-grep -R --exclude-dir=node_modules --exclude-dir=.git "${extraargs[@]}" "${pttrn}" "${searchpath[@]-./}"
+grep -R --exclude-dir=.git --exclude-dir=build --exclude-dir=dist --exclude-dir=node_modules "${extraargs[@]}" "${pttrn}" "${searchpath[@]-./}"
 EOF
 		return 1
 	fi
 
-	grep -R --exclude-dir=node_modules --exclude-dir=.git "${extraargs[@]}" "${pttrn}" "${searchpath[@]-./}"
+	grep -R --exclude-dir=.git --exclude-dir=build --exclude-dir=dist --exclude-dir=node_modules "${extraargs[@]}" "${pttrn}" "${searchpath[@]-./}"
 }
 
 update_brew_install () {
