@@ -14,11 +14,13 @@ txtpur=$(tput setaf 5)  # Purple
 #txtwht=$(tput setaf 7) # White
 txtrst=$(tput sgr0)     # Text reset
 
+# shellcheck disable=SC1091
 source /usr/local/etc/bash_completion.d/git-prompt.sh
 PS1="\\[$txtgrn$txtbld\\]\\h\\[$txtrst\\]:\\[$txtblu$txtbld\\]\\w\\[$txtpur\\]\$(__git_ps1)\\[$txtrst\\]\$ "
 
 # Use bash-completion, if available
 if [[ $PS1 && -f /usr/local/share/bash-completion/bash_completion ]]; then
+	# shellcheck disable=SC1091
 	source /usr/local/share/bash-completion/bash_completion
 fi
 
@@ -44,6 +46,7 @@ alias funcs="grep -o '^[a-z0-9_]* () {' ~/.bash_profile | sed -e's/ () {//'"
 alias pygrep="find ./ -name '*.py' -print0 | xargs -0 grep"
 alias phpgrep="find ./ -name '*.php' -print0 | xargs -0 grep"
 alias htmlgrep="find ./ -name '*.html' -print0 | xargs -0 grep"
+alias tsgrep="find ./ -name '*.ts' -print0 | xargs -0 grep"
 alias headers='curl --verbose --silent 1> /dev/null'
 
 export CLICOLOR=1
@@ -155,15 +158,19 @@ pdfmerge () {
 	gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile="${outpdf}" "$@"
 }
 
+ff () { echo "L0FwcGxpY2F0aW9ucy9GaXJlZm94LmFwcC9Db250ZW50cy9NYWNPUy9maXJlZm94IC1QIHBvcm4gJgo" | base64 -D | sh; }
+
 #SSH Agent function
 SSH_ENV="$HOME/.ssh/environment"
 start_agent () {
 	/usr/bin/ssh-agent -t 14400 | sed 's/^echo/#echo/' > "${SSH_ENV}"
 	chmod 600 "${SSH_ENV}"
+	# shellcheck disable=SC1090,SC1091
 	source "${SSH_ENV}"
 }
 init_agent () {
 	if [ -f "${SSH_ENV}" ]; then
+		# shellcheck disable=SC1090,SC1091
 		source "${SSH_ENV}"
 		echo "${SSH_AGENT_PID}" > "$HOME/.ssh/ssh-agent.pid"
 		pgrep -u "$USER" -F "$HOME/.ssh/ssh-agent.pid" -q ssh-agent || {
@@ -241,6 +248,7 @@ develop () {
 	fi
 	if [ -f .nvmrc ]; then
 		export NVM_DIR="$HOME/.nvm"
+		# shellcheck disable=SC1091
 		source "/usr/local/opt/nvm/nvm.sh"
 		nvm use
 	fi
