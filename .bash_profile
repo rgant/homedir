@@ -120,7 +120,7 @@ servhttp () {
 
 tabname () {
 	# call with a value to set the name, call without value to set to previous name.
-	[ -n "$1" ] && terminal_tabname=$1
+	[ -n "$*" ] && terminal_tabname=$*
 	[ -n "$terminal_tabname" ] && printf "\\e]1;%s\\a" "$terminal_tabname";
 }
 tabname "$(hostname -s)"
