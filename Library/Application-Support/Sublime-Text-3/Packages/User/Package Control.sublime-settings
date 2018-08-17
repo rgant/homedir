@@ -25,6 +25,7 @@
 		"SublimeLinter-shellcheck",
 		"SublimeLinter-tslint",
 		"TypeScript",
+		"UnitTesting",
 		"Vue Syntax Highlight"
 	]
 }

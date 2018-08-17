@@ -10,8 +10,7 @@
             ]
         },
         "mypy": {
-            "disable": true,
-            "args": ["--ignore-missing-imports"]
+            "disable": true
         },
         "sass": {
             "excludes": ["*.css"]
@@ -21,11 +20,5 @@
         }
     },
     "no_column_highlights_line": true,
-    "paths": {
-        "osx": [
-            "/Users/rgant/.pyenv/shims",
-            "/usr/local/bin"
-        ],
-    },
-    "show_panel_on_save": "view",
+    "show_panel_on_save": "view"
 }
