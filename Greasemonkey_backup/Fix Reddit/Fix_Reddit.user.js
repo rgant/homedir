@@ -2,14 +2,20 @@
 // @name        Fix Reddit
 // @description Open articles and comments pages in new tabs
 // @namespace   name.robgant
-// @include     https://www.reddit.com/*
+// @include     https://np.reddit.com/*
 // @grant       GM.openInTab
 // ==/UserScript==
 
 Array.forEach(
+	document.querySelectorAll('a.choice[href="https://np.reddit.com/gilded/"]'),
+	function(el) {
+    el.href = "https://np.reddit.com/r/popular/gilded/";
+  });
+
+Array.forEach(
 	document.querySelectorAll('a.title,a.comments,a.bylink'),
   function(el) {
-	el.setAttribute('target', '_blank');
+		el.setAttribute('target', '_blank');
   }
 );
 
@@ -22,7 +28,20 @@ Array.forEach(
 		el.textContent.endsWith('vegan') ||
 		el.textContent.endsWith('sports') ||
 		el.textContent.endsWith('Patriots') ||
-		el.textContent.endsWith('bostonceltics')
+		el.textContent.endsWith('bostonceltics') ||
+    el.textContent.endsWith('NYGiants') ||
+    el.textContent.endsWith('fantasyfootball') ||
+    el.textContent.endsWith('nfl') ||
+    el.textContent.endsWith('soccer') ||
+    el.textContent.endsWith('CollegeBasketball') ||
+    el.textContent.endsWith('AskOuija') ||
+    el.textContent.endsWith('redsox') ||
+    el.textContent.endsWith('BostonBruins') ||
+    el.textContent.endsWith('polandball') ||
+    el.textContent.endsWith('natureismetal') ||
+    el.textContent.endsWith('Warts') ||
+    el.textContent.endsWith('baseball') ||
+    el.textContent.endsWith('nba')
 	   ) {
 	  var thing = el.parentNode;
 	  while (thing && !thing.classList.contains('thing')) {

@@ -10,23 +10,23 @@
 // ==/UserScript==
 
 if (window.history.length <= 1 && !window.location.hash) {
-    var tr_el = document.getElementById('newsContainer').getElementsByClassName('headlineRow').item(0);
-    if (tr_el) {
-        // The tag img is now a background on this span / cell
-        var icon_img = tr_el.cells.item(1).getElementsByTagName('a').item(0);
-        if (icon_img && icon_img.title != 'Photoshop') {
-            var lnk = tr_el.getElementsByTagName('a').item(0).href;
-            if (lnk && !lnk.match(/http:\/\/www\.fark\.co(\/cgi\/go\.pl\?i=\d+&l!|m\/goto\/\d+\/)www\.fark\.com\//)) {
-                window.location = lnk;
-            } else {
-                console.error("lnk not found");
-            }
-        } else {
-            console.error("img not found");
-        }
-    } else {
-        console.error("#newsContainer .headlineRow Not Found");
-    }
+	var tr_el = document.getElementById('newsContainer').getElementsByClassName('headlineRow').item(0);
+	if (tr_el) {
+		// The tag img is now a background on this span / cell
+		var icon_img = tr_el.cells.item(1).getElementsByTagName('a').item(0);
+		if (icon_img && icon_img.title != 'Photoshop') {
+			var lnk = tr_el.getElementsByTagName('a').item(0).href;
+			if (lnk && !lnk.match(/http:\/\/www\.fark\.co(\/cgi\/go\.pl\?i=\d+&l!|m\/goto\/\d+\/)www\.fark\.com\//)) {
+				window.location = lnk;
+			} else {
+				console.error("lnk not found");
+			}
+		} else {
+			console.error("img not found");
+		}
+	} else {
+		console.error("#newsContainer .headlineRow Not Found");
+	}
 }
 
 var entries = document.querySelectorAll('div#commentsArea > table.notctable, div#commentsArea > table.notctableTF'),
