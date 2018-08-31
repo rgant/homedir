@@ -1,5 +1,6 @@
 user_pref("browser.backspace_action", 2);
 user_pref("browser.bookmarks.max_backups", 2);
+user_pref("browser.gesture.tap", "");
 user_pref("browser.tabs.insertRelatedAfterCurrent", false);
 user_pref("browser.tabs.selectOwnerOnClose", false);
 user_pref("browser.urlbar.clickSelectsAll", false);
