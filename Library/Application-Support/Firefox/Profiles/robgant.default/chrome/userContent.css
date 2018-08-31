@@ -6,3 +6,6 @@ a[href^="javascript:"] { cursor: crosshair; }
 :link[target="_new"],	:visited[target="_new"] {
 	cursor: crosshair;
 }
+
+/* Make saved passwords in preferences fixed width for easier reading */
+#signonsTree treechildren { font-family: monospace; }

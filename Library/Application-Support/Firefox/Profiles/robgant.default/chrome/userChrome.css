@@ -4,13 +4,10 @@
 @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"); /* set default namespace to XUL */
 
 /* Give the Location (URL) Bar a fixed-width font */
-#urlbar { font-family: monospace !important; }
-
-/* Make saved passwords fixed width for easier reading */
-tree#signonsTree > treechildren { font-family: monospace } 
+#urlbar { font-family: monospace; }
 
 /* Always show reader button. */
 #reader-mode-button {
-    display: -moz-box !important;
-    visibility: visible !important;
+    display: -moz-box;
+    visibility: visible;
 }
