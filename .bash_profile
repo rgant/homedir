@@ -54,6 +54,7 @@ export EDITOR=nano
 export GREP_OPTIONS='--color=auto --no-messages'
 export PYTHONSTARTUP="$HOME/.pythonrc.py"
 export PIP_REQUIRE_VIRTUALENV=true
+export PIPENV_DONT_LOAD_ENV=false
 GPG_TTY=$(tty)
 export GPG_TTY
 
@@ -61,15 +62,6 @@ export PATH="/Users/rgant/bin:${PATH}:."
 
 if command -v pyenv 1>/dev/null 2>&1; then
 	eval "$(pyenv init -)"
-
-	if command -v pyenv-virtualenv-init > /dev/null; then
-		eval "$(pyenv virtualenv-init -)"
-		# Try to make pipenv work with pyenv-virtualenv so we get automatic activation.
-		# pipenv --completion > /usr/local/etc/bash_completion.d/pipenv.bash
-		export PIPENV_USE_SYSTEM=1
-		PYROOT=$(pyenv root)
-		export WORKON_HOME=$PYROOT/versions/
-	fi
 fi
 
 # Don't run this in tmux
