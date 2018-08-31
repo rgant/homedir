@@ -85,7 +85,7 @@ dl () {
 	if [ -n "$2" ]; then
 		# Download file into specified directory
 		if [ -d "$2" ]; then
-			cd "$2" || exit
+			cd "$2" || return 2
 		# Download the file to specified name
 		elif [ ! -e "$2" ]; then
 			curl --output "$2" "$1"
@@ -97,7 +97,7 @@ dl () {
 	curl --location --remote-name "$1"
 
 	if [ -n "$2" ]; then
-		cd - || exit
+		cd - || return 3
 	fi
 }
 
@@ -224,7 +224,7 @@ develop () {
 		return 1
 	fi
 
-	cd "$1" || exit
+	cd "$1" || return 2
 #	tmux new-session \; \
 #		send-keys '_develop' C-m \; \
 #		split-window -h
