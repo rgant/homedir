@@ -279,7 +279,7 @@ fixwin () {
 			echo 'lf'
 		fi
 	# <() is command substitution when a pipe cannot be used.
-	done <   <(find ./ -name '.git' -prune -o -name 'node_modules' -prune -o -name 'bower_components' -prune -o -type f -print0)
+	done <   <(find "${1-./}" -name '.git' -prune -o -name 'node_modules' -prune -o -name 'bower_components' -prune -o -type f -print0)
 }
 
 projgrep () {
