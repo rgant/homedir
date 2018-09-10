@@ -10,15 +10,17 @@ window.addEventListener('load', function() {
   var initWatcher = setInterval(function () {
     var select_el = document.querySelector('select.select-text[aria-labelledby="aria_sort-header"]');
     if (select_el) {
-      clearInterval(initWatcher);
+      // clearInterval(initWatcher);
       init(select_el);
     }
 	}, 100);
 });
 
 function init(select_el) {
-  select_el.options[0].selected = true;
-  var evt = document.createEvent('HTMLEvents');
-  evt.initEvent('change', false, true);
-  select_el.dispatchEvent(evt);
+  if (!select_el.options[0].selected) {
+    select_el.options[0].selected = true;
+    var evt = document.createEvent('HTMLEvents');
+    evt.initEvent('change', false, true);
+    select_el.dispatchEvent(evt);
+  }
 }
