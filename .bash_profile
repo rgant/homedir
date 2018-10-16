@@ -24,11 +24,11 @@ if [[ $PS1 && -f /usr/local/share/bash-completion/bash_completion ]]; then
 	source /usr/local/share/bash-completion/bash_completion
 fi
 
-HISTCONTROL=ignoreboth
+HISTCONTROL=ignoreboth:erasedups
 HISTSIZE=20000
 HISTFILESIZE=20000
 shopt -s histappend
-#export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+# export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 alias rm='rm -i'
 alias cp='cp -i'
