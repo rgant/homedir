@@ -16,6 +16,7 @@ Array.forEach(
 	document.querySelectorAll('a.title,a.comments,a.bylink'),
   function(el) {
 		el.setAttribute('target', '_blank');
+    el.href = el.href.replace('//www.reddit.com', '//np.reddit.com');
   }
 );
 
