@@ -6,7 +6,7 @@ user_pref("browser.tabs.selectOwnerOnClose", false);
 user_pref("browser.urlbar.clickSelectsAll", false);
 user_pref("browser.urlbar.trimURLs", false);
 user_pref("devtools.inspector.enabled", true);
-user_pref("devtools.inspector.showAllAnonymousContent", true);
+user_pref("devtools.inspector.showAllAnonymousContent", false);
 user_pref("devtools.styleinspector.enabled", true);
 user_pref("dom.popup_maximum", 4);
 user_pref("layout.spellcheckDefault", 2);
