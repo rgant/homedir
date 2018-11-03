@@ -1,3 +1,7 @@
 {
-    "word_wrap": false
+	"extensions":
+	[
+		"html"
+	],
+	"word_wrap": false
 }
