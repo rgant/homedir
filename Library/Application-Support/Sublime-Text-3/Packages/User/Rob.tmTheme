@@ -25,10 +25,9 @@
 				<string>#FFFF001D</string>
 				<key>selection</key>
 				<string>#FFFF0033</string>
-				<key>inactiveSelection</key>
-				<string>#FFFF0033</string>
-				<key>inactiveSelectionForeground</key>
-				<string>#FFFF0033</string>
+
+				<key>activeGuide</key>
+				<string>#9D550FB0</string>
 			</dict>
 		</dict>
 		<dict>
@@ -70,15 +69,35 @@
 		</dict>
 		<dict>
 			<key>name</key>
-			<string>Keyword</string>
+			<string>TypeScript Errors</string>
 			<key>scope</key>
 			<string>keyword</string>
 			<key>settings</key>
 			<dict>
-				<key>fontStyle</key>
-				<string />
 				<key>foreground</key>
-				<string>#E28964</string>
+				<string>#F92672</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Keyword</string>
+			<key>scope</key>
+			<string>keyword.control, keyword.operator, keyword.other</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#cc99cc</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Keyword</string>
+			<key>scope</key>
+			<string>keyword.control, keyword.operator</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#cc99cc</string>
 			</dict>
 		</dict>
 		<dict>
@@ -156,6 +175,17 @@
 				<key>foreground</key>
 				<string>#FD5FF1</string>
 			</dict>
+		</dict>
+		<dict>
+		    <key>name</key>
+		    <string>Constants</string>
+		    <key>scope</key>
+		    <string>constant</string>
+		    <key>settings</key>
+		    <dict>
+		        <key>foreground</key>
+		        <string>#f99157</string>
+		    </dict>
 		</dict>
 		<dict>
 			<key>name</key>
@@ -577,7 +607,7 @@
 			<key>name</key>
 			<string>Markup: Heading</string>
 			<key>scope</key>
-			<string>markup.heading, markup.heading entity</string>
+			<string>markup.heading, markup.heading entity, entity.name.section</string>
 			<key>settings</key>
 			<dict>
 				<key>background</key>
@@ -662,7 +692,7 @@
 				<string>#751012</string>
 			</dict>
 		</dict>
-	<dict>
+		<dict>
 			<key>name</key>
 			<string>SublimeLinter Warning</string>
 			<key>scope</key>
@@ -672,7 +702,8 @@
 				<key>foreground</key>
 				<string>#EDBA00</string>
 			</dict>
-		</dict><dict>
+		</dict>
+		<dict>
 			<key>name</key>
 			<string>SublimeLinter Error</string>
 			<key>scope</key>
@@ -682,7 +713,8 @@
 				<key>foreground</key>
 				<string>#DA2000</string>
 			</dict>
-		</dict><dict>
+		</dict>
+		<dict>
 			<key>name</key>
 			<string>SublimeLinter Gutter Mark</string>
 			<key>scope</key>
@@ -692,7 +724,8 @@
 				<key>foreground</key>
 				<string>#FFFFFF</string>
 			</dict>
-		</dict></array>
+		</dict>
+	</array>
 	<key>uuid</key>
 	<string>C8C58F9A-35FE-44A4-9BC2-2F3C343DC81D</string>
 </dict>
