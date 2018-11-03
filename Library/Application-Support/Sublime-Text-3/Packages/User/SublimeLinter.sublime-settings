@@ -3,6 +3,9 @@
     "debug": false,
     "lint_mode": "save",
     "linters": {
+        "csslint": {
+            "excludes": ["*.scss"]
+        },
         "markdownlint": {
             "args": [
                 "--config",
