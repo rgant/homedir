@@ -22,8 +22,8 @@
 	],
 	"indent_guide_options":
 	[
-	    "draw_normal",
-	    "draw_active"
+		"draw_normal",
+		"draw_active"
 	],
 	"match_brackets": false,
 	"match_brackets_angle": false,
