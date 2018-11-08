@@ -170,10 +170,8 @@
 			<string>invalid.illegal</string>
 			<key>settings</key>
 			<dict>
-				<key>background</key>
-				<string>#562D56BF</string>
 				<key>foreground</key>
-				<string>#FD5FF1</string>
+				<string>#F92672</string>
 			</dict>
 		</dict>
 		<dict>
