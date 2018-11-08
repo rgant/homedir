@@ -1,3 +1,8 @@
+/* Make saved passwords in preferences fixed width for easier reading */
+#signonsTree treechildren { font-family: monospace; }
+
+/* Styles to apply to webpages */
+
 /* Change cursor for JavaScript links */
 a[href^="javascript:"] { cursor: crosshair; }
 
@@ -7,5 +12,6 @@ a[href^="javascript:"] { cursor: crosshair; }
 	cursor: crosshair;
 }
 
-/* Make saved passwords in preferences fixed width for easier reading */
-#signonsTree treechildren { font-family: monospace; }
+@-moz-document domain(mail.google.com) {
+	.zA > .xY.bq4 { display: flex !important; }
+}
