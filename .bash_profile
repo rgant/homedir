@@ -322,7 +322,7 @@ EOF
 
 update_brew_install () {
 	local installed
-	installed=$(brew leaves | tr '\n' ' ')
+	installed=$(brew leaves | sed -e 's/^/  /' -e 's/$/ \\/' -e '$ s/ \\//' -e '1 s/^  //')
 	echo "brew install ${installed}" > "${HOME}/Programming/homedir/brew-install.txt"
 }
 

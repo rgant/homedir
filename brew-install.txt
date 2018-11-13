@@ -3,6 +3,7 @@ brew install bash-completion@2 \
   ghostscript \
   git \
   gnupg \
+  heroku/brew/heroku \
   imagemagick \
   mariadb \
   nvm \
@@ -10,7 +11,9 @@ brew install bash-completion@2 \
   pipenv \
   postgresql \
   pyenv \
+  rbenv \
   s3cmd \
   shellcheck \
   tidy-html5 \
-  unrar
+  unrar \
+  yarn
