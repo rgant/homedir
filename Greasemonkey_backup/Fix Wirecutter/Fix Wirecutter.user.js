@@ -4,10 +4,11 @@
 // @include  https://thewirecutter.com/*
 // @grant    none
 // ==/UserScript==
+'use strict';
 
-let head = document.getElementsByTagName('head')[0];
+const head = document.getElementsByTagName('head')[0];
 if (head) {
-  let style = document.createElement('style');
+  const style = document.createElement('style');
   style.setAttribute('type', 'text/css');
   style.textContent = '.sticky-header-active .site-header .desktop-header {position: static !important;}';
   head.appendChild(style);

@@ -5,13 +5,11 @@
 // @run-at document-idle
 // @grant    none
 // ==/UserScript==
+'use strict';
 
-var pw_fld = document.getElementById('user_password'),
-    frm_el = document.getElementById('new_user');
+const pwFld = document.getElementById('user_password');
+const frmEl = document.getElementById('new_user');
 
-if (pw_fld && frm_el && pw_fld.value) {
-  // console.log('SUBMITTING FORM');
-  frm_el.submit();
-//} else {
-//  console.log('FALSE', pw_fld, frm_el, pw_fld.value);
+if (pwFld && frmEl && pwFld.value) {
+  frmEl.submit();
 }

@@ -8,26 +8,24 @@
 // @include     https://slashdot.org/story/*
 // @grant       none
 // ==/UserScript==
+'use strict';
 
-let head = document.getElementsByTagName('head')[0];
+const head = document.getElementsByTagName('head')[0];
 if (head) {
-  let style = document.createElement('style');
+  const style = document.createElement('style');
   style.setAttribute('type', 'text/css');
-  style.textContent = '.main-content {margin-right: 0 !important;}.banner-wrapper, .view_mode, .adwrap {display: none !important;}';
+  style.textContent = '.main-content {margin-right: 0 !important;}'
+    + '.banner-wrapper, .view_mode, .adwrap {display: none !important;}';
   head.appendChild(style);
 }
 
-var an_el = document.getElementById('announcement'),
-    cm_el = document.getElementById('comments');
+const anEl = document.getElementById('announcement');
+const cmEl = document.getElementById('comments');
 
-if (an_el) {
-    an_el.parentNode.removeChild(an_el);
+if (anEl) {
+  anEl.parentNode.removeChild(anEl);
 }
 
-if (cm_el) {
-    cm_el.style.marginRight = '0';
-}
-
-if (sp_el) {
-    sp_el.style.display = 'none';
+if (cmEl) {
+  cmEl.style.marginRight = '0';
 }

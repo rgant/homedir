@@ -7,10 +7,11 @@
 // @run-at         document-start
 // @grant          none
 // ==/UserScript==
+'use strict';
 
-let head = document.getElementsByTagName('head')[0];
+const head = document.getElementsByTagName('head')[0];
 if (head) {
-  let style = document.createElement('style');
+  const style = document.createElement('style');
   style.setAttribute('type', 'text/css');
   style.textContent = 'body #global-header,body .header{position:static !important;}';
   head.appendChild(style);

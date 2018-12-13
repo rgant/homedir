@@ -8,6 +8,7 @@
 // @run-at      document-start
 // @grant       none
 // ==/UserScript==
+'use strict';
 
 const npUrl = window.location.href.replace(window.location.host, 'np.reddit.com');
 window.location.replace(npUrl);

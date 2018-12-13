@@ -1,0 +1,53 @@
+{
+    "extends": ["xo/esnext", "xo/browser"],
+    "env": {
+        "browser": true,
+        "es6": true,
+        "greasemonkey": true,
+        "jasmine": true,
+        "node": false,
+        "protractor": true
+    },
+    "rules": {
+        // Require trailing commas in multiline object literals (match eslint-config-airbnb-base)
+        "comma-dangle": ["error", {
+          "arrays": "always-multiline",
+          "objects": "always-multiline"
+        }],
+        "consistent-return": "error",
+        "func-names": "warn",
+        // Match indent config of eslint-config-airbnb-base
+        "indent": ["error", 2, {
+          "SwitchCase": 1,
+          "FunctionDeclaration": {
+            // Angular uses a bunch of parameters leading to a bunch of wrapping. Indent to first param
+            "parameters": "first"
+          },
+          "FunctionExpression": {
+            // Angular uses a bunch of parameters leading to a bunch of wrapping. Indent to first param
+            "parameters": "first"
+          },
+          // list derived from https://github.com/benjamn/ast-types/blob/HEAD/def/jsx.js
+          "ignoredNodes": ["JSXElement", "JSXElement > *", "JSXAttribute", "JSXIdentifier", "JSXNamespacedName", "JSXMemberExpression", "JSXSpreadAttribute", "JSXExpressionContainer", "JSXOpeningElement", "JSXClosingElement", "JSXText", "JSXEmptyExpression", "JSXSpreadChild"]
+        }],
+        "max-len": ["error", 100, 2, {
+          "ignoreUrls": true,
+          "ignoreComments": false,
+          "ignoreRegExpLiterals": true,
+          "ignoreStrings": true
+        }],
+        "no-extra-parens": ["error", "all", {
+            "nestedBinaryExpressions": false
+        }],
+        "object-curly-spacing": ["error", "always"],
+        "operator-linebreak": ["error", "before", { "overrides": { "=": "none" } }],
+        "require-jsdoc": "warn",
+        "sort-keys": ["warn", "asc", {"caseSensitive": false, "natural": true}],
+        "valid-jsdoc": ["error", {
+            "requireReturn": false,
+            "prefer": {
+                "returns": "return"
+            }
+        }]
+    }
+}

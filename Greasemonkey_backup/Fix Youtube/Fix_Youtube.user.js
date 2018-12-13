@@ -5,11 +5,12 @@
 // @include     https://www.youtube.com/*
 // @grant       none
 // ==/UserScript==
+'use strict';
 
 Array.forEach(
-  document.querySelectorAll('.pl-video .yt-uix-sessionlink')
-  , function(el) {
-    var url = el.href.replace('&list=WL', '').replace(/&index=\d+/, '');
+  document.querySelectorAll('.pl-video .yt-uix-sessionlink'),
+  el => {
+    const url = el.href.replace('&list=WL', '').replace(/&index=\d+/, '');
     el.href = url;
     el.setAttribute('target', '_blank');
   }
@@ -18,21 +19,16 @@ Array.forEach(
 document.body.className += ' appbar-hidden';
 document.getElementById('masthead-appbar').className = 'hid';
 
-// console.log('HERE');
-
-document.addEventListener('spfdone', function(e) {
-//   console.log('ThERE', e);
+document.addEventListener('spfdone', () => {
   document.body.className += ' appbar-hidden';
   document.getElementById('masthead-appbar').className = 'hid';
 
   Array.forEach(
-    document.querySelectorAll('.pl-video .yt-uix-sessionlink')
-    , function(el) {
-      var url = el.href.replace('&list=WL', '').replace(/&index=\d+/, '');
+    document.querySelectorAll('.pl-video .yt-uix-sessionlink'),
+    el => {
+      const url = el.href.replace('&list=WL', '').replace(/&index=\d+/, '');
       el.href = url;
       el.setAttribute('target', '_blank');
     }
   );
 });
-
-// console.log('WHERE');

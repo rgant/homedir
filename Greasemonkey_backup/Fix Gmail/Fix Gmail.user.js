@@ -5,10 +5,11 @@
 // @include    https://mail.google.com/mail/*
 // @grant      none
 // ==/UserScript==
+'use strict';
 
-let head = document.getElementsByTagName('head')[0];
+const head = document.getElementsByTagName('head')[0];
 if (head) {
-  let style = document.createElement('style');
+  const style = document.createElement('style');
   style.setAttribute('type', 'text/css');
   style.textContent = '.zA > .xY.bq4 { display: flex !important; }';
   head.appendChild(style);

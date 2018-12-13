@@ -7,48 +7,43 @@
 // @include     https://rss.wh0rd.org/index.php*
 // @grant       GM.openInTab
 // ==/UserScript==
+'use strict';
 
-document.addEventListener('keydown', function(evt){
-	if (evt.which == 59) {
-		var headlines_el = document.getElementById('headlines-frame');
-		if (headlines_el) {
-			var entry_el = headlines_el.getElementsByClassName('Selected').item(0);
-			if (entry_el) {
-				var lnk = entry_el.getElementsByClassName('title').item(0);
-				if (lnk) {
-					evt.stopPropagation();
-					evt.preventDefault();
-					var tab = GM.openInTab(lnk.href, true);
-					//console.log('openInTab', lnk.href);
-				}
-			}
-		}
-	} else if (evt.metaKey) {
-	   evt.stopPropagation();
-	}
+document.addEventListener('keydown', evt => {
+  if (evt.key === ';') {
+    const headlinesEl = document.getElementById('headlines-frame');
+    if (headlinesEl) {
+      const entryEl = headlinesEl.getElementsByClassName('active').item(0);
+      if (entryEl) {
+        const lnkEl = entryEl.getElementsByClassName('title').item(0);
+        if (lnkEl) {
+          evt.stopPropagation();
+          evt.preventDefault();
+          GM.openInTab(lnkEl.href, true);
+        }
+      }
+    }
+  } else if (evt.metaKey) {
+    evt.stopPropagation();
+  }
 }, true);
 
-(function(){
-	function patch_cdmExpandArticle(window) {
-		var orig = window.cdmExpandArticle;
-		window.cdmExpandArticle = function(){
-			//console.log('Monkey Patch');
-			result = orig.apply(this, arguments);
-			Array.forEach(
-				window.document.querySelectorAll('iframe[src^="https://www.youtube.com/embed/"]'),
-				function(el){
-					if (el.src && el.src.indexOf('showinfo=0') >= 0) {
-						el.src = el.src.replace('showinfo=0', 'showinfo=1');
-					}
-				}
-			);
-			return result;
-		};
-		//console.log('Monkey Patched cdmExpandArticle');
-	}
+(function () {
+  /**
+   * Don't change the scroll position for clicks in the body content.
+   * @param {Window} window - global browser window object
+   */
+  function patchCdmClicked(window) {
+    const orig = window.cdmClicked;
+    window.cdmClicked = function (event, id, inBody) {
+      if (inBody) {
+        return false;
+      }
+      return orig(event, id, inBody);
+    };
+  }
 
-	var scrpt = document.createElement('scr'+'ipt');
-	scrpt.appendChild(document.createTextNode('('+ patch_cdmExpandArticle +')(window);'));
-	(document.body || document.head || document.documentElement).appendChild(scrpt);
-	//console.log('Monkey Patching code injected.');
+  const scrpt = document.createElement('script');
+  scrpt.appendChild(document.createTextNode('(' + patchCdmClicked + ')(window);'));
+  (document.body || document.head || document.documentElement).appendChild(scrpt);
 })();

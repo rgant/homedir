@@ -5,9 +5,10 @@
 // @include     https://*.slack.com/messages/*/
 // @grant       none
 // ==/UserScript==
+'use strict';
 
-document.addEventListener('keydown', function(evt){
-	if (evt.metaKey) {
-	   evt.stopPropagation();
-	}
+document.addEventListener('keydown', evt => {
+  if (evt.metaKey) {
+    evt.stopPropagation();
+  }
 }, true);
