@@ -9,6 +9,7 @@ user_pref("devtools.inspector.enabled", true);
 user_pref("devtools.inspector.showAllAnonymousContent", false);
 user_pref("devtools.styleinspector.enabled", true);
 user_pref("dom.popup_maximum", 4);
+user_pref("dom.targetBlankNoOpener.enabled", true);
 user_pref("extensions.pocket.enabled", false);
 user_pref("layout.spellcheckDefault", 2);
 user_pref("layout.word_select.eat_space_to_next_word", true);
