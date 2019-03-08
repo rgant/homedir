@@ -40,8 +40,7 @@ alias movsync='rsync --archive --compress --delete --exclude=.DS_Store --fuzzy -
 alias newmusic='rsync --archive --compress --progress rsync://media-center.home.robgant.com/rgant/Music/new/ ./Music/new/'
 alias modem_tunnel='ssh home -L 2000:modem.home.robgant.com:80 -N'
 alias router_tunnel='ssh home -L 2000:router.home.robgant.com:80 -N'
-#alias deluge_tunnel='ssh home -L 2080:localhost:8080 -N deluge-web -p 8080'
-#alias vnc_tunnel='ssh home -L 5900:localhost:5900 -N'
+alias vnc_tunnel='ssh vnctunnel -N'
 alias funcs="grep -o '^[a-z0-9_]* () {' ~/.bash_profile | sed -e's/ () {//'"
 alias pygrep="find ./ -name '*.py' -print0 | xargs -0 grep"
 alias phpgrep="find ./ -name '*.php' -print0 | xargs -0 grep"
