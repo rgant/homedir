@@ -8,8 +8,8 @@ except ImportError:
     print('WARNING: Cannot Load builtins for py3 compatibility.', file=sys.stderr)
 
 import logging
-
-from pprint import pprint as pp  # pylint: disable=unused-import
+import os
+from pprint import pprint
 
 
 class RainbowLogFormatter(logging.Formatter):
@@ -32,6 +32,7 @@ class RainbowLogFormatter(logging.Formatter):
         # return super(RainbowLogFormatter, self).format(record)
         return logging.Formatter.format(self, record)
 
+
 def init_logging():
     """ Sets Colorful logging for root logger. """
     frmt = '%(colorlevelname)s:%(module)s:%(funcName)s:%(lineno)d:%(message)s'
@@ -41,6 +42,14 @@ def init_logging():
     root_logger = logging.getLogger()
     root_logger.addHandler(handler)
     root_logger.setLevel(logging.DEBUG)
+
+def pp(object, stream=None, indent=1, width=None, depth=None, compact=False):
+    """ Set the width automatically when pprint-ing. """
+    if width is None:
+        terminal_size = os.get_terminal_size()
+        width = terminal_size.columns - 5 if terminal_size.columns > 80 else terminal_size.columns
+
+    pprint(object, stream=stream, indent=indent, width=width, depth=depth, compact=compact)
 
 def python_history():
     """ Setup python cli history and auto complete """
