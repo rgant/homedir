@@ -20,6 +20,11 @@
 		"Makefile",
 		"Vintage"
 	],
+	"ignored_words":
+	[
+		"Aetna",
+		"Salesforce"
+	],
 	"indent_guide_options":
 	[
 		"draw_normal",
