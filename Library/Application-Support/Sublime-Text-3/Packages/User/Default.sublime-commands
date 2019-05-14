@@ -1,0 +1,27 @@
+[
+    {
+        "caption": "Clean Lessons",
+        "command": "reg_replace",
+        "args": {
+            "replacements": [
+                "encode_ellipsis",
+                "encode_half_fraction",
+                "encode_double_quotation",
+                "encode_single_quotation",
+                "move_punctuation_inside_quotes",
+                "move_punctuation_outside_quotes",
+                "encode_right_single_quote",
+                "remove_extra_spaces",
+                "remove_trailing_spaces",
+                "remove_json_dangling_commas"
+            ]
+        }
+    },
+    {
+        "caption": "Remove JSON Dangling Commas",
+        "command": "reg_replace",
+        "args": {
+            "replacements": ["remove_json_dangling_commas"]
+        }
+    }
+]
