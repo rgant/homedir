@@ -14,6 +14,8 @@ txtpur=$(tput setaf 5)  # Purple
 #txtwht=$(tput setaf 7) # White
 txtrst=$(tput sgr0)     # Text reset
 
+export GIT_PS1_SHOWDIRTYSTATE=1
+export GIT_PS1_SHOWSTASHSTATE=1
 # shellcheck disable=SC1091
 source /usr/local/etc/bash_completion.d/git-prompt.sh
 PS1="\\[$txtgrn$txtbld\\]\\h\\[$txtrst\\]:\\[$txtblu$txtbld\\]\\w\\[$txtpur\\]\$(__git_ps1)\\[$txtrst\\]\$ "
