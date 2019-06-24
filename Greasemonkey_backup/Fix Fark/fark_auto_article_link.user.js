@@ -17,7 +17,7 @@ if (window.history.length <= 1 && !window.location.hash) {
     const iconImg = trEl.cells.item(1).getElementsByTagName('a').item(0);
     if (iconImg && iconImg.title !== 'Photoshop') {
       const lnk = trEl.getElementsByTagName('a').item(0).href;
-      const farkUrlPttrn = /http:\/\/www\.fark\.co(\/cgi\/go\.pl\?i=\d+&l!|m\/goto\/\d+\/)www\.fark\.com\//;
+      const farkUrlPttrn = /https?:\/\/www\.fark\.co(\/cgi\/go\.pl\?i=\d+&l!|m\/goto\/\d+\/)www\.fark\.com\//;
       if (lnk && !lnk.match(farkUrlPttrn)) {
         window.location = lnk;
       } else {
@@ -32,8 +32,7 @@ if (window.history.length <= 1 && !window.location.hash) {
 }
 
 const entries = document.querySelectorAll('div#commentsArea > table.notctable,'
-    + 'div#commentsArea > table.notctableTF');
-
+    + ' div#commentsArea > table.notctableTF');
 let indx = -1;
 /**
  * Scroll comments using j and k keys
@@ -65,4 +64,5 @@ function pageNav(evt) {
     }
   }
 }
+
 document.addEventListener('keypress', pageNav, false);
