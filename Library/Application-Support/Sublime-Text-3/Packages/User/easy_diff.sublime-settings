@@ -1,0 +1,6 @@
+// Settings in here override those in "EasyDiff/easy_diff.sublime-settings",
+
+{
+    "use_clipboard": false,
+    "use_selections": false,
+}
