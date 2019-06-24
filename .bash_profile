@@ -49,6 +49,7 @@ alias phpgrep="find ./ -name '*.php' -print0 | xargs -0 grep"
 alias htmlgrep="find ./ -name '*.html' -print0 | xargs -0 grep"
 alias tsgrep="find ./ -name '*.ts' -print0 | xargs -0 grep"
 alias headers='curl --verbose --silent 1> /dev/null'
+alias bgc="osascript -e 'tell application \"Terminal\" to set background color of selected tab of the front window to {65535, 65232, 53533}'"
 
 export CLICOLOR=1
 export EDITOR=nano
