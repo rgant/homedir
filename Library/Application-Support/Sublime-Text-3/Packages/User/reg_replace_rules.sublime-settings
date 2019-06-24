@@ -107,7 +107,8 @@
             "replace": "\\1\\u201d"
         },
         "move_punctuation_outside_quotes": {
-            "find": "([!?:;)])\\\\u201d",
+            // ! and ? are sometimes part of the quote, and so inside, and sometimes outside
+            "find": "([:;)])\\\\u201d",
             "replace": "\\u201d\\1"
         },
         // find all non ascii chars
