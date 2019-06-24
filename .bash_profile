@@ -272,7 +272,7 @@ trap kill_jobs EXIT
 
 # Change the indentation of files with 2 space indentation to 4 spaces.
 redent () {
-	find "${1-'./'}" -path '*/.git/*' -prune \
+	find "${1-./}" -path '*/.git/*' -prune \
 	  -o -path '*/node_modules/*' -prune \
 		-o -path '*/assets/*' -prune \
 		-o -name 'favicon.ico' -prune \
