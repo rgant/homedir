@@ -124,6 +124,11 @@ tabname () {
 tabname "$(hostname -s)"
 
 man () {
+	if [ "$#" -lt 1 ]; then
+		echo "Usage: ${FUNCNAME[0]} [section number] command_name" >&2
+		return 1
+	fi
+
 	if [ $# -eq 1 ]; then
 		open "x-man-page://$1"
 	elif [ $# -eq 2 ]; then
