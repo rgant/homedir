@@ -11,7 +11,6 @@
 const head = document.getElementsByTagName('head')[0];
 if (head) {
   const style = document.createElement('style');
-  style.setAttribute('type', 'text/css');
   style.textContent = 'body #site_nav.glue{position:static !important;}';
   head.appendChild(style);
 }

@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name        Fix Most Pages
 // @namespace   robgant.name
-// @description Enable autocomplete, sanitize password inputs, disable _gaq links, disable video &
-//				audio autoplay, fix youtube embeds.
+// @description Enable autocomplete, sanitize password inputs, disable _gaq links, show video &
+//              audio controls, fix youtube embeds.
 // @include     *
 // @grant       none
 // ==/UserScript==
@@ -55,9 +55,7 @@ function sanitizePage() {
         'keyup',
         'paste',
       ];
-
       let i = evts.length - 1;
-
       let attr;
 
       // Loop through the list of events and remove any of them that are set to just return false
@@ -89,7 +87,7 @@ function sanitizePage() {
   // Show Info so I can add to Watch Later on YouTube Player
   Array.forEach(
     window.document.querySelectorAll('iframe[src^="https://www.youtube.com/embed/"],'
-      + 'iframe[src^="http://www.youtube.com/embed/"]'),
+      + ' iframe[src^="http://www.youtube.com/embed/"]'),
     el => {
       if (el.src && el.src.indexOf('showinfo=0') >= 0) {
         el.src = el.src.replace('showinfo=0', 'showinfo=1');

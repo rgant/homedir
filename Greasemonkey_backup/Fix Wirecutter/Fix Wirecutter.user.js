@@ -9,7 +9,6 @@
 const head = document.getElementsByTagName('head')[0];
 if (head) {
   const style = document.createElement('style');
-  style.setAttribute('type', 'text/css');
-  style.textContent = '.sticky-header-active .site-header .desktop-header {position: static !important;}';
+  style.textContent = '.d762f6d8, ._03c602da, ._657ba766, ._47c4da54 {display: none !important;}';
   head.appendChild(style);
 }
