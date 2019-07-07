@@ -37,6 +37,8 @@ user_pref("network.http.pipelining.ssl", true);
 user_pref("network.http.proxy.pipelining", true);
 user_pref("network.prefetch-next", false);
 user_pref("network.protocol-handler.expose.magnet", false);
+user_pref("network.trr.bootstrapAddress", "1.1.1.1");
+user_pref("network.trr.mode", 2);
 user_pref("plugins.click_to_play", true);
 user_pref("privacy.trackingprotection.enabled", true);
 user_pref("services.sync.prefs.sync.lightweightThemes.selectedThemeID", false);
