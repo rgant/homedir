@@ -20,6 +20,9 @@
         },
         "shellcheck": {
             "args": ["--shell=bash"]
+        },
+        "tslint": {
+            "args": ["--project", "${folder}"]
         }
     },
     "no_column_highlights_line": true,
