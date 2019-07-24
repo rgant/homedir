@@ -161,8 +161,6 @@ pdfmerge () {
 	gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile="${outpdf}" "$@"
 }
 
-ff () { echo "L0FwcGxpY2F0aW9ucy9GaXJlZm94LmFwcC9Db250ZW50cy9NYWNPUy9maXJlZm94IC1QIHBvcm4gJgo" | base64 -D | sh; }
-
 #SSH Agent function
 SSH_ENV="$HOME/.ssh/environment"
 start_agent () {

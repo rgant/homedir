@@ -24,8 +24,6 @@
 	quotepath = false
 [fetch]
 	prune = true
-[merge]
-	conflictStyle = diff3
 [branch "master"]
 	mergeoptions = --ff-only
 	rebase = true

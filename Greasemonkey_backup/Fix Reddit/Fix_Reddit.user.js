@@ -11,7 +11,7 @@ const head = document.getElementsByTagName('head')[0];
 if (head) {
   const style = document.createElement('style');
   style.textContent = '.listingsignupbar, .commentsignupbar, .organic-listing, .hover-bubble,'
-    + ' .read-next-container { display: none !important; }';
+    + ' .read-next-container, .promoted, .promotedlink { display: none !important; }';
   head.appendChild(style);
 }
 
@@ -45,13 +45,16 @@ const badSubreddts = [
   'BostonBruins',
   'bostonceltics',
   'CollegeBasketball',
+  'ComedyCemetery',
   'fantasyfootball',
+  'JordanPeterson',
   'natureismetal',
   'nba',
   'nfl',
   'nosleep',
   'NYGiants',
   'Patriots',
+  'PewdiepieSubmissions',
   'polandball',
   'redsox',
   'soccer',

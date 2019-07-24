@@ -6,6 +6,8 @@ brew install bash-completion@2 \
   heroku/brew/heroku \
   imagemagick \
   mariadb \
+  mkcert \
+  nss \
   nvm \
   p7zip \
   pipenv \
