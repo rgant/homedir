@@ -5,6 +5,9 @@ defaults write NSGlobalDomain AppleICUForce12HourTime -bool false
 defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
 # Possible values: `WhenScrolling`, `Automatic` and `Always`
 
+# Set highlight color to purple
+defaults write NSGlobalDomain AppleHighlightColor -string "0.968627 0.831373 1.000000"
+
 # Expand save panel by default
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
@@ -42,8 +45,16 @@ defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
 # Disable the warning when changing a file extension
 defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 
+# Use column view in all Finder windows by default
+# Four-letter codes for the view modes: `icnv`, `clmv`, `Flwv`, 'Nlsv'
+defaults write com.apple.finder FXPreferredViewStyle -string "clmv"
+
+# Turn off the Quick Actions Preview Pane
+defaults write com.apple.finder PreviewPaneSettings -dict "com.adobe.pdf" '{"showQuickActions"=0;}' "com.apple.application" '{"showQuickActions"=0;}' "public.archive" '{"showQuickActions"=0;}' "public.html" '{"showQuickActions"=0;}' "public.image" '{"showQuickActions"=0;}' "public.item" '{"showQuickActions"=0;}' "public.spreadsheet" '{"showQuickActions"=0;}'
+
 # Avoid creating .DS_Store files on network volumes
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 
 # Change minimize/maximize window effect
 defaults write com.apple.dock mineffect -string "scale"
@@ -61,11 +72,17 @@ defaults write com.apple.dock wvous-br-corner -int 5
 # Keep dock on main screen, hopefully (doesn't work)
 #defaults write com.apple.dock position-immutable -bool yes
 
+# Set the icon size of Dock items to 30 pixels
+defaults write com.apple.dock tilesize -int 30
+
 # Enable the Develop menu and the Web Inspector in Safari
 defaults write com.apple.Safari IncludeDevelopMenu -bool true
 defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
 defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true
 #defaults write com.apple.Safari IncludeInternalDebugMenu 1
+
+# Show the full URL in the address bar (note: this still hides the scheme)
+defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
 
 # Shorten display of the Notification Center Banner (Makes iTunes less annoying)
 defaults write com.apple.notificationcenterui bannerTime 1
