@@ -1,7 +1,11 @@
 {
 	"added_words":
 	[
-		"Gant"
+		"Gant",
+		"internet",
+		"Spotify",
+		"Netflix",
+		"online"
 	],
 	"auto_complete_commit_on_tab": true,
 	"auto_complete_cycle": true,
@@ -23,7 +27,11 @@
 	"ignored_words":
 	[
 		"Aetna",
-		"Salesforce"
+		"Salesforce",
+		"html",
+		"https",
+		"nav",
+		"stackoverflow"
 	],
 	"indent_guide_options":
 	[
