@@ -1,11 +1,16 @@
 {
 	"added_words":
 	[
+		"Firestore",
 		"Gant",
 		"internet",
-		"Spotify",
+		"localhost",
+		"minification",
 		"Netflix",
-		"online"
+		"online",
+		"Spotify",
+		"unbudgeted",
+		"unsubscribe"
 	],
 	"auto_complete_commit_on_tab": true,
 	"auto_complete_cycle": true,
@@ -27,11 +32,15 @@
 	"ignored_words":
 	[
 		"Aetna",
-		"Salesforce",
+		"app",
 		"html",
 		"https",
 		"nav",
-		"stackoverflow"
+		"rxjs",
+		"Salesforce",
+		"stackoverflow",
+		"tslint",
+		"uid"
 	],
 	"indent_guide_options":
 	[
