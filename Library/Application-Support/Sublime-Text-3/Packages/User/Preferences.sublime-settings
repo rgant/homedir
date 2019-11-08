@@ -3,6 +3,7 @@
 	[
 		"Firestore",
 		"Gant",
+		"indices",
 		"internet",
 		"localhost",
 		"minification",
@@ -33,14 +34,24 @@
 	[
 		"Aetna",
 		"app",
+		"baz",
+		"corge",
+		"foo",
+		"garply",
+		"grault",
 		"html",
 		"https",
+		"lux",
 		"nav",
+		"quux",
+		"quuz",
+		"qux",
 		"rxjs",
 		"Salesforce",
 		"stackoverflow",
 		"tslint",
-		"uid"
+		"uid",
+		"waldo"
 	],
 	"indent_guide_options":
 	[
