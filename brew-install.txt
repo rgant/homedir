@@ -3,7 +3,6 @@ brew install bash-completion@2 \
   ghostscript \
   git \
   gnupg \
-  heroku/brew/heroku \
   imagemagick \
   mariadb \
   mkcert \
@@ -17,5 +16,4 @@ brew install bash-completion@2 \
   s3cmd \
   shellcheck \
   tidy-html5 \
-  unrar \
-  yarn
+  unrar
