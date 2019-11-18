@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Fix Steam
-// @namespace   name.robgant
 // @description Removes JS from Links
+// @namespace   name.robgant
 // @include     https://steamcommunity.com/*
 // @grant       none
 // ==/UserScript==

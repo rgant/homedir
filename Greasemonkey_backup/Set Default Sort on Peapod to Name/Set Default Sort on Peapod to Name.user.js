@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name     Set Default Sort on Peapod to Name
-// @version  1
-// @include  https://www.peapod.com/*
-// @grant    none
+// @name     	Set Default Sort on Peapod to Name
+// @namespace robgant.name
+// @include  	https://www.peapod.com/*
+// @grant    	none
 // ==/UserScript==
 'use strict';
 

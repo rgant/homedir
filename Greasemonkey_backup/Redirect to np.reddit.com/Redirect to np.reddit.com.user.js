@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Redirect to np.reddit.com
-// @namespace   name.robgant
 // @description Redirect Reddit to np
+// @namespace   name.robgant
 // @include     https://old.reddit.com/*
 // @include     https://www.reddit.com/*
 // @version     1

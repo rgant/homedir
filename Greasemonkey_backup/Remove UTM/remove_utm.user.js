@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name           Remove UTM
-// @namespace      robgant.name
 // @description    Removes the UTM Tracking garbage from URLs
+// @namespace      robgant.name
 // @include        *
 // @run-at         document-start
 // @grant          none

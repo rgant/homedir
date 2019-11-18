@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name     Fix Wirecutter
-// @version  1
-// @include  https://thewirecutter.com/*
-// @grant    none
+// @name       Fix Wirecutter
+// @namespace  robgant.name
+// @include    https://thewirecutter.com/*
+// @grant      none
 // ==/UserScript==
 'use strict';
 

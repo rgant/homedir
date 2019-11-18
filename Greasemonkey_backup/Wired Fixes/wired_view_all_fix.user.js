@@ -2,8 +2,7 @@
 // @name           Wired Fixes
 // @namespace      robgant.name
 // @description    Displays articles on Wired unpaginated.
-// @include        https://www.wired.com/*/*/*/
-// @include        https://www.wired.com/story/*
+// @include        https://www.wired.com/*
 // @run-at         document-start
 // @grant          none
 // ==/UserScript==

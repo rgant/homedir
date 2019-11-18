@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        TTRSS Open Background Tab
-// @namespace   name.robgant.slashdot
 // @description Adds keyboard shortcut to open article in a new background tab
+// @namespace   name.robgant
 // @include     https://rss.wh0rd.org/
 // @include     https://rss.wh0rd.org/#f*
 // @include     https://rss.wh0rd.org/index.php*

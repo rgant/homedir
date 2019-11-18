@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name        Fix Slack
-// @namespace   name.robgant
 // @description Don't let Slack steal my keyboard shortcuts
-// @include     https://*.slack.com/messages/*/
+// @namespace   name.robgant
+// @include     https://*.slack.com/*
 // @grant       none
 // ==/UserScript==
 'use strict';

@@ -13,7 +13,6 @@
 const head = document.getElementsByTagName('head')[0];
 if (head) {
   const style = document.createElement('style');
-  style.setAttribute('type', 'text/css');
   style.textContent = '.main-content {margin-right: 0 !important;}'
     + '.banner-wrapper, .view_mode, .adwrap {display: none !important;}';
   head.appendChild(style);

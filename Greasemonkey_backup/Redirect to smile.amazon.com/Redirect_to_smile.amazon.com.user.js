@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Redirect to smile.amazon.com
-// @namespace   name.robgant
 // @description Redirect Amazon to Smile
+// @namespace   name.robgant
 // @include     https://www.amazon.com/*
 // @version     1
 // @run-at      document-start
