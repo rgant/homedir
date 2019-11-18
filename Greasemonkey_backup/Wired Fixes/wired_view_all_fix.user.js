@@ -12,6 +12,9 @@ const head = document.getElementsByTagName('head')[0];
 if (head) {
   const style = document.createElement('style');
   style.setAttribute('type', 'text/css');
-  style.textContent = 'body #global-header,body .header{position:static !important;}';
+  style.textContent = [
+    '.persistent-top { position:static !important; }',
+    '.responsive-asset--invisible { opacity: 1 !important; }',
+  ].join(' ');
   head.appendChild(style);
 }
