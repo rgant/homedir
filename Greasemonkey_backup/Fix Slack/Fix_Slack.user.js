@@ -12,3 +12,10 @@ document.addEventListener('keydown', evt => {
     evt.stopPropagation();
   }
 }, true);
+
+const head = document.getElementsByTagName('head')[0];
+if (head) {
+  const style = document.createElement('style');
+  style.textContent = '[lang] body, [lang] .c-texty_input {font-family: "PT Sans"}';
+  head.appendChild(style);
+}
