@@ -16,4 +16,3 @@ Array.forEach(
     }
   }
 );
-
