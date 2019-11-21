@@ -5,7 +5,8 @@ $1
 """
 import logging
 
-def main():
+def main() -> None:
+    """ $2 """
     pass
 
 if __name__ == '__main__':
