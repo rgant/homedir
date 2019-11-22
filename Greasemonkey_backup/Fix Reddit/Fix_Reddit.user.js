@@ -15,29 +15,20 @@ if (head) {
   head.appendChild(style);
 }
 
-Array.forEach(
-  document.querySelectorAll('a.choice[href="https://np.reddit.com/gilded/"]'),
-  el => {
-    el.href = 'https://np.reddit.com/r/popular/gilded/';
-  },
-);
+document.querySelectorAll('a.choice[href="https://np.reddit.com/gilded/"]').forEach(el => {
+  el.href = 'https://np.reddit.com/r/popular/gilded/';
+});
 
-Array.forEach(
-  document.querySelectorAll('a.title,a.comments,a.bylink'),
-  el => {
-    el.setAttribute('target', '_blank');
-    el.setAttribute('href', el.href.replace('//www.reddit.com', '//np.reddit.com'));
-    el.removeAttribute('data-href-url');
-    el.removeAttribute('data-outbound-url');
-  },
-);
+document.querySelectorAll('a.title,a.comments,a.bylink').forEach(el => {
+  el.setAttribute('target', '_blank');
+  el.setAttribute('href', el.href.replace('//www.reddit.com', '//np.reddit.com'));
+  el.removeAttribute('data-href-url');
+  el.removeAttribute('data-outbound-url');
+});
 
-Array.forEach(
-  document.querySelectorAll('.pinnable-content'),
-  el => {
-    el.dataset.pinCondition = () => false;
-  },
-);
+document.querySelectorAll('.pinnable-content').forEach(el => {
+  el.dataset.pinCondition = () => false;
+});
 
 const badSubreddts = [
   'AskOuija',
@@ -64,22 +55,19 @@ const badSubreddts = [
   'Warts',
   'WritingPrompts',
 ];
-Array.forEach(
-  document.querySelectorAll('.subreddit'),
-  el => {
-    for (const subr of badSubreddts) {
-      if (el.textContent.endsWith(subr)) {
-        let thing = el.parentNode;
-        while (thing && !thing.classList.contains('thing')) {
-          thing = thing.parentNode;
-        }
-
-        thing.parentNode.removeChild(thing);
-        break;
+document.querySelectorAll('.subreddit').forEach(el => {
+  for (const subr of badSubreddts) {
+    if (el.textContent.endsWith(subr)) {
+      let thing = el.parentNode;
+      while (thing && !thing.classList.contains('thing')) {
+        thing = thing.parentNode;
       }
+
+      thing.parentNode.removeChild(thing);
+      break;
     }
   }
-);
+});
 
 const searchEl = document.querySelector('input[name=restrict_sr]');
 if (searchEl) {

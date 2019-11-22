@@ -13,87 +13,67 @@
  */
 function sanitizePage() {
   // Enable Autocompletion where turned off
-  Array.forEach(
-    document.querySelectorAll('*[autocomplete=off]'),
-    el => {
-      if (el.id !== 'lst-ib') {
-        el.removeAttribute('autocomplete');
-      }
-    }
-  );
+  document.querySelectorAll('*[autocomplete=off]').forEach(el => {
+    el.removeAttribute('autocomplete');
+  });
 
   // Enable spell checking where turned off
-  Array.forEach(
-    document.querySelectorAll('*[spellcheck=false]'),
-    el => {
-      console.log('spellcheck', el);
-      el.removeAttribute('spellcheck');
-    }
-  );
+  document.querySelectorAll('*[spellcheck=false]').forEach(el => {
+    el.removeAttribute('spellcheck');
+  });
 
   // Make password inputs sane
-  const rtnflsPttrn = new RegExp('^ *(javascript: *)?return +false;? *$');
-  Array.forEach(
-    document.querySelectorAll('input[type=password]'),
-    el => {
-      // Remove the readonly attribute used by some banks GUI keyboards
-      if (el.getAttribute('readonly')) {
-        el.removeAttribute('readonly');
-      }
+  const rtnflsPttrn = /^ *(javascript: *)?return +false;? *$/;
+  document.querySelectorAll('input[type=password]').forEach(el => {
+    // Remove the readonly attribute used by some banks GUI keyboards
+    if (el.getAttribute('readonly')) {
+      el.removeAttribute('readonly');
+    }
 
-      const evts = [
-        'contextmenu',
-        'copy',
-        'cut',
-        'dragend',
-        'dragover',
-        'dragstart',
-        'drop',
-        'input',
-        'keydown',
-        'keypress',
-        'keyup',
-        'paste',
-      ];
-      let i = evts.length - 1;
-      let attr;
+    const evts = [
+      'contextmenu',
+      'copy',
+      'cut',
+      'dragend',
+      'dragover',
+      'dragstart',
+      'drop',
+      'input',
+      'keydown',
+      'keypress',
+      'keyup',
+      'paste',
+    ];
+    let i = evts.length - 1;
+    let attr;
 
-      // Loop through the list of events and remove any of them that are set to just return false
-      for (; i >= 0; i--) {
-        attr = 'on' + evts[i];
-        if (rtnflsPttrn.test(el.getAttribute(attr))) {
-          el.removeAttribute(attr);
-        }
+    // Loop through the list of events and remove any of them that are set to just return false
+    for (; i >= 0; i--) {
+      attr = 'on' + evts[i];
+      if (rtnflsPttrn.test(el.getAttribute(attr))) {
+        el.removeAttribute(attr);
       }
     }
-  );
+  });
 
   // Make _gaq click links work when GA isn't loaded.
-  Array.forEach(
-    document.querySelectorAll('a[onclick^=_gaq]'),
-    el => {
-      el.removeAttribute('onclick');
-    }
-  );
+  document.querySelectorAll('a[onclick^=_gaq]').forEach(el => {
+    el.removeAttribute('onclick');
+  });
 
   // Try to make HTML5 video and audio show controls
-  Array.forEach(
-    document.querySelectorAll('video, audio'),
-    el => {
-      el.setAttribute('controls', 'controls');
-    }
-  );
+  document.querySelectorAll('video, audio').forEach(el => {
+    el.setAttribute('controls', 'controls');
+  });
 
   // Show Info so I can add to Watch Later on YouTube Player
-  Array.forEach(
-    window.document.querySelectorAll('iframe[src^="https://www.youtube.com/embed/"],'
-      + ' iframe[src^="http://www.youtube.com/embed/"]'),
-    el => {
-      if (el.src && el.src.indexOf('showinfo=0') >= 0) {
-        el.src = el.src.replace('showinfo=0', 'showinfo=1');
-      }
+  document.querySelectorAll(
+    'iframe[src^="https://www.youtube.com/embed/"], iframe[src^="http://www.youtube.com/embed/"]'
+  ).forEach(el => {
+    if (el.src && el.src.indexOf('showinfo=0') >= 0) {
+      el.src = el.src.replace('showinfo=0', 'showinfo=1');
     }
-  );
+  });
 }
 
 sanitizePage();
