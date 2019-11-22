@@ -22,6 +22,7 @@ if (cookie_banner_el) {
 }
 */
 
+// Show lazy loaded images manually
 document.querySelectorAll('img[data-srcset]').forEach(el => {
   const srcs = el.getAttribute('data-srcset')
     .split(',')
@@ -29,5 +30,14 @@ document.querySelectorAll('img[data-srcset]').forEach(el => {
     .sort((a, b) => parseInt(b[1], 10) - parseInt(a[1], 10));
 
   el.src = srcs[0][0];
-  el.className = '';
+  // Remove the blur effects
+  el.style.opacity = 1;
+  el.style.filter = 'none';
+});
+
+document.querySelectorAll('img[data-src]:not([src])').forEach(el => {
+  el.src = el.getAttribute('data-src');
+  // Remove the blur effects
+  el.style.opacity = 1;
+  el.style.filter = 'none';
 });
