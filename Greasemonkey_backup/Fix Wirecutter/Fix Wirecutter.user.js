@@ -21,3 +21,13 @@ if (cookie_banner_el) {
   root_el.removeChild(cookie_banner_el.parentElement.parentElement);
 }
 */
+
+document.querySelectorAll('img[data-srcset]').forEach(el => {
+  const srcs = el.getAttribute('data-srcset')
+    .split(',')
+    .map(src => src.split(' '))
+    .sort((a, b) => parseInt(b[1], 10) - parseInt(a[1], 10));
+
+  el.src = srcs[0][0];
+  el.className = '';
+});
