@@ -14,6 +14,9 @@ txtpur=$(tput setaf 5)  # Purple
 #txtwht=$(tput setaf 7) # White
 txtrst=$(tput sgr0)     # Text reset
 
+# Automatically trim long paths in the prompt (requires Bash 4.x)
+PROMPT_DIRTRIM=2
+
 export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWSTASHSTATE=1
 # shellcheck disable=SC1091
@@ -80,6 +83,17 @@ fi
 
 gpip () {
 	PIP_REQUIRE_VIRTUALENV="" sudo -H pip "$@"
+}
+
+# Create a data URL from a file
+# From: https://github.com/mathiasbynens/dotfiles/blob/8cf8c1c8315a6349224eeb3ecc033d469456025f/.functions#L69
+dataurl () {
+	local mimeType;
+	mimeType=$(file -b --mime-type "$1");
+	if [[ $mimeType == text/* ]]; then
+		mimeType="${mimeType};charset=utf-8";
+	fi
+	echo "data:${mimeType};base64,$(openssl base64 -in "$1" | tr -d '\n')";
 }
 
 dl () {
@@ -321,7 +335,7 @@ Recursive grep search of project folders that excludes .git and node_modules.
 See man grep for more details.
 
 Command template:
-grep -R --exclude-dir=.git --exclude-dir=build --exclude-dir=dist --exclude-dir=node_modules "${extraargs[@]}" "${pttrn}" "${searchpath[@]-./}"
+grep -R --exclude-dir=.git --exclude-dir=build --exclude-dir=dist --exclude-dir=node_modules "GREP_FLAGS" "PTTRN" "PATH"
 EOF
 		return 1
 	fi
