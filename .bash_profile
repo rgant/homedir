@@ -35,6 +35,8 @@ HISTFILESIZE=20000
 shopt -s histappend
 # export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
+shopt -s globstar
+
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
