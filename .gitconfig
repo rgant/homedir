@@ -4,20 +4,23 @@
 	signingkey = 72A92177D88C3014
 [alias]
 	a = add
+	alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\\t => \\2/' | sort
 	ap = add --patch
+	br = branch
 	c = commit
 	ca = commit --amend
-	ch = checkout
+	ch = !echo "do not use checkout, use switch/restore"
 	cm = commit --message
 	count = "!f () { compareBranch=${1-master}; git rev-list --count HEAD "^$compareBranch"; }; f "$@""
 	d = diff
 	del = reset HEAD # Unstage a file (opposite of add)
 	l = log --graph --all --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset'
 	ll = log --stat --abbrev-commit
-	master = checkout master
+	master = switch master
 	s = status
-	undo = checkout -- # Throw away modification to a file
-	alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\\t => \\2/' | sort
+	stow = stash push --message
+	sw = switch
+	undo = restore -- # Throw away modification to a file
 [core]
 	excludesfile = ~/.gitignore
 	pager = less -r
@@ -29,6 +32,7 @@
 	rebase = true
 [diff]
 	compactionHeuristic = true
+	algorithm = histogram
 [pull]
 	rebase = true
 [commit]
