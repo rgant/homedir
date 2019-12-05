@@ -21,7 +21,7 @@ if (head) {
 document.addEventListener('keydown', evt => {
   if (evt.target.nodeName !== 'INPUT' && !evt.altKey && !evt.ctrlKey && !evt.metaKey && !evt.shiftKey) {
     // Don't do a browser find on key presses, except space bar for scrolling.
-    if (evt.key !== ' ') {
+    if (evt.key !== ' ' && evt.key !== 'Enter') {
       // evt.stopPropagation();
       evt.preventDefault();
     }
@@ -35,22 +35,29 @@ document.addEventListener('keydown', evt => {
       }
     }
 
-    // If there is no previous link, go backwards in history.
+    // Try navigating backwards in history first, and only then go to the prev link.
     const prevKeys = ['k', 'p', 'ArrowLeft'];
     if (prevKeys.includes(evt.key)) {
-      // Special case if there is no previous action.
-      if (!document.querySelector('.pagination-prev a')) {
-        evt.stopPropagation();
-        history.back();
-      }
+      evt.stopPropagation();
+      history.back();
+
+      setTimeout(() => {
+        // Special case if there is a prev action.
+        const prevLnk = document.querySelector('.pagination-prev a');
+        if (prevLnk) {
+          prevLnk.click();
+        }
+      }, 150);
     }
 
-    // Instead of using the default next article
+    // Try navigating forwards in history first, and only then go to the next link.
     const nextKeys = ['j', 'n', 'ArrowRight'];
     if (nextKeys.includes(evt.key)) {
       evt.stopPropagation();
       history.forward();
+
       setTimeout(() => {
+        // Special case if there is a next action.
         const nextLnk = document.querySelector('.pagination-next a');
         if (nextLnk) {
           nextLnk.click();
