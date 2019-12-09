@@ -351,6 +351,12 @@ update_brew_install () {
 	echo "brew install ${installed}" > "${HOME}/Programming/homedir/brew-install.txt"
 }
 
+update_npm_install () {
+	local installed
+	installed=$(npm list --global --depth=0 --parseable | sed -e '1d' -e 's|.*/||' -e 's/^/  /' -e 's/$/ \\/' -e '$ s/ \\//' -e '2 s/^  //')
+	echo "npm install --global ${installed}" > "${HOME}/Programming/homedir/npm-global-install.txt"
+}
+
 # This updates the path, but I think homebrew already has it covered
 # source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc'
 # pyenv and google cloud sdk from homebrew right now don't install completions correctly so don't do this:

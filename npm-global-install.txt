@@ -1,0 +1,6 @@
+npm install --global dockerfilelint \
+  eslint \
+  jshint \
+  markdownlint-cli \
+  npm \
+  stylelint
