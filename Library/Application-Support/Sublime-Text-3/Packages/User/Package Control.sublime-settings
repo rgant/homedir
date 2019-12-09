@@ -31,8 +31,6 @@
 		"SublimeLinter-shellcheck",
 		"SublimeLinter-stylelint",
 		"SublimeLinter-tslint",
-		"TypeScript",
-		"UnitTesting",
-		"Vue Syntax Highlight"
+		"TypeScript"
 	]
 }
