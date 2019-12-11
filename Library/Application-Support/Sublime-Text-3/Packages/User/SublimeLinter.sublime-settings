@@ -15,9 +15,6 @@
         "mypy": {
             "disable": true
         },
-        "sass": {
-            "excludes": ["*.css"]
-        },
         "shellcheck": {
             "args": ["--shell=bash"]
         },
