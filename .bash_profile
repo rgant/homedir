@@ -84,7 +84,7 @@ __kill_jobs () {
 __status_code () {
 	local status="$?";
 	if [ $status != 0 ]; then
-		echo "\\[$txtred\\]";
+		echo "$txtred";
 	fi
 }
 
@@ -315,7 +315,7 @@ tabname "$(hostname -s)"
 
 # shellcheck disable=SC1091
 source /usr/local/etc/bash_completion.d/git-prompt.sh
-PS1="\\[$txtgrn$txtbld\\]\\h\\[$txtrst\\]:\\[$txtblu$txtbld\\]\\w\\[$txtpur\\]\$(__git_ps1)\\[$txtrst\\]\$(__status_code)\$\\[$txtrst\\] "
+PS1="\\[$txtgrn$txtbld\\]\\h\\[$txtrst\\]:\\[$txtblu$txtbld\\]\\w\\[$txtpur\\]\$(__git_ps1)\\[$txtrst\\]\\[\$(__status_code)\\]\$\\[$txtrst\\] "
 
 # Use bash-completion, if available
 if [[ $PS1 && -f /usr/local/share/bash-completion/bash_completion ]]; then
