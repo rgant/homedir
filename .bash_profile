@@ -21,6 +21,7 @@ HISTFILESIZE=20000
 HISTSIZE=20000
 PROMPT_DIRTRIM=2 # Automatically trim long paths in the prompt (requires Bash 4.x)
 
+export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
 export CLICOLOR=1
 export EDITOR=nano
 export GIT_PS1_SHOWDIRTYSTATE=1
@@ -84,7 +85,7 @@ __kill_jobs () {
 __status_code () {
 	local status="$?";
 	if [ $status != 0 ]; then
-		echo "$txtred";
+		echo "$txtbld$txtred";
 	fi
 }
 
@@ -318,9 +319,9 @@ source /usr/local/etc/bash_completion.d/git-prompt.sh
 PS1="\\[$txtgrn$txtbld\\]\\h\\[$txtrst\\]:\\[$txtblu$txtbld\\]\\w\\[$txtpur\\]\$(__git_ps1)\\[$txtrst\\]\\[\$(__status_code)\\]\$\\[$txtrst\\] "
 
 # Use bash-completion, if available
-if [[ $PS1 && -f /usr/local/share/bash-completion/bash_completion ]]; then
+if [[ -r /usr/local/etc/profile.d/bash_completion.sh ]]; then
 	# shellcheck disable=SC1091
-	source /usr/local/share/bash-completion/bash_completion
+	source /usr/local/etc/profile.d/bash_completion.sh
 fi
 
 if command -v pyenv 1>/dev/null 2>&1; then
