@@ -33,6 +33,7 @@ export PIP_REQUIRE_VIRTUALENV=true
 export PIPENV_DONT_LOAD_ENV=false
 # export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 export PYTHONSTARTUP="$HOME/.pythonrc.py"
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 
 #### Functions
 
@@ -273,7 +274,7 @@ sys_status () {
 	w
 
 	echo -e "\\n${txtbld}Disk Usage${txtrst}"
-	df | grep "^Filesystem\\|^/" | grep --color=always " \\|9[0-9]%\\|100%"
+	df -h | grep "^Filesystem\\|^/" | grep --color=always " \\|9[0-9]%\\|100%"
 
 	echo -e "\\n${txtbld}Network${txtrst}"
 	hostname -f
