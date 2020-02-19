@@ -4,13 +4,14 @@
 		"Firebase",
 		"Firestore",
 		"Gant",
-		"Netflix",
-		"Spotify",
 		"indices",
 		"internet",
 		"localhost",
 		"minification",
+		"modals",
+		"Netflix",
 		"online",
+		"Spotify",
 		"unbudgeted",
 		"unsubscribe"
 	],
@@ -34,7 +35,6 @@
 	"ignored_words":
 	[
 		"Aetna",
-		"Salesforce",
 		"app",
 		"baz",
 		"corge",
@@ -49,6 +49,7 @@
 		"quuz",
 		"qux",
 		"rxjs",
+		"Salesforce",
 		"stackoverflow",
 		"tslint",
 		"uid",
