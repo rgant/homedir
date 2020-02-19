@@ -3,7 +3,7 @@
 	{ "keys": ["super+v"], "command": "paste_and_indent" },
 	{ "keys": ["super+shift+v"], "command": "paste" },
 	{ "keys": ["super+k", "super+t"], "command": "title_case" },
-		// Auto-pair backticks
+	// Auto-pair backticks
 	{ "keys": ["`"], "command": "insert_snippet", "args": {"contents": "`$0`"}, "context":
 		[
 			{ "key": "setting.auto_match_enabled", "operator": "equal", "operand": true },
@@ -33,5 +33,51 @@
 			{ "key": "preceding_text", "operator": "regex_contains", "operand": "`$", "match_all": true },
 			{ "key": "following_text", "operator": "regex_contains", "operand": "^`", "match_all": true }
 		]
-	}
+	},
+	// Layouts
+	{
+		"keys": ["super+1"],
+		"command": "set_layout",
+		"args":
+		{
+			"cols": [0.0, 1.0],
+			"rows": [0.0, 1.0],
+			"cells": [[0, 0, 1, 1]]
+		}
+	},
+	{
+		"keys": ["super+2"],
+		"command": "set_layout",
+		"args":
+		{
+			"cols": [0.0, 0.5, 1.0],
+			"rows": [0.0, 1.0],
+			"cells": [[0, 0, 1, 1], [1, 0, 2, 1]]
+		}
+	},
+	{
+		"keys": ["super+alt+2"],
+		"command": "set_layout",
+		"args":
+		{
+			"cols": [0.0, 1.0],
+			"rows": [0.0, 0.5, 1.0],
+			"cells": [[0, 0, 1, 1], [0, 1, 1, 2]]
+		}
+	},
+	{ "keys": ["super+alt+1"], "command": "unbound" },
+	{ "keys": ["super+alt+3"], "command": "unbound" },
+	{ "keys": ["super+alt+4"], "command": "unbound" },
+	{ "keys": ["super+alt+shift+1"], "command": "unbound" },
+	{ "keys": ["super+alt+shift+2"], "command": "unbound" },
+	{ "keys": ["super+alt+shift+3"], "command": "unbound" },
+	{ "keys": ["super+alt+5"], "command": "unbound" },
+	{ "keys": ["super+3"], "command": "unbound" },
+	{ "keys": ["super+4"], "command": "unbound" },
+	{ "keys": ["super+5"], "command": "unbound" },
+	{ "keys": ["super+6"], "command": "unbound" },
+	{ "keys": ["super+7"], "command": "unbound" },
+	{ "keys": ["super+8"], "command": "unbound" },
+	{ "keys": ["super+9"], "command": "unbound" },
+	{ "keys": ["super+0"], "command": "unbound" },
 ]
