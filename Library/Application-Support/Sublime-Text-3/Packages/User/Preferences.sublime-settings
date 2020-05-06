@@ -1,10 +1,13 @@
 {
 	"added_words":
 	[
+		"Blog",
+		"Facebook",
 		"Firebase",
 		"Firestore",
 		"Gant",
 		"indices",
+		"Instagram",
 		"internet",
 		"localhost",
 		"minification",
@@ -13,7 +16,8 @@
 		"online",
 		"Spotify",
 		"unbudgeted",
-		"unsubscribe"
+		"unsubscribe",
+		"Venmo"
 	],
 	"auto_complete_commit_on_tab": true,
 	"auto_complete_cycle": true,
