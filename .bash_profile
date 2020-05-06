@@ -278,7 +278,7 @@ sys_status () {
 
 	echo -e "\\n${txtbld}Network${txtrst}"
 	hostname -f
-	ifconfig | grep inet | grep -v "::1\\| 127\\." | cut -d" " -f2 | sort
+	ifconfig | grep inet | grep -v "::1\\| 127\\.\\| fe80:\\| detached\\| deprecated" | cut -d" " -f2 | sort;
 
 	local cols
 	cols=$(tput cols)
