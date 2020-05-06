@@ -15,6 +15,9 @@
         "mypy": {
             "disable": true
         },
+        "nglint": {
+            "disable": true
+        },
         "shellcheck": {
             "args": ["--shell=bash"]
         },
