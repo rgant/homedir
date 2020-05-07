@@ -1,6 +1,5 @@
 {
 	"bootstrapped": true,
-	"ignore_vcs_packages": true,
 	"in_process_packages":
 	[
 	],
@@ -9,9 +8,8 @@
 		"A File Icon",
 		"Babel",
 		"BracketHighlighter",
+		"Compare Side-By-Side",
 		"Dockerfile Syntax Highlighting",
-		"EasyDiff",
-		"LESS",
 		"MypyReveal",
 		"Ngx HTML",
 		"Package Control",
