@@ -51,6 +51,7 @@ const badSubreddts = [
   'soccer',
   'sports',
   'The_Donald',
+  'TwoSentenceHorror',
   'vegan',
   'Warts',
   'WritingPrompts',
