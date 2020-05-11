@@ -4,8 +4,8 @@
   "description": "OS X Home Directory Files",
   "dependencies": {},
   "devDependencies": {
-    "eslint": "^6.6.0",
-    "eslint-config-xo": "^0.27.2"
+    "eslint": "^7.0.0",
+    "eslint-config-xo": "^0.29.1"
   },
   "repository": {
     "type": "git",
