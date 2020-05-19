@@ -1,6 +1,5 @@
 brew install bash-completion@2 \
   firebase-cli \
-  ghostscript \
   git \
   gnupg \
   imagemagick \
