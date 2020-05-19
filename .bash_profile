@@ -16,9 +16,11 @@ txtpur=$(tput setaf 5)  # Purple
 txtrst=$(tput sgr0)     # Text reset
 
 GPG_TTY=$(tty)
-HISTCONTROL=ignoreboth:erasedups
-HISTFILESIZE=20000
-HISTSIZE=20000
+OPENSSL_PREFIX=$(brew --prefix openssl@1.1)
+# If I load a sub shell this prevents it from defaulting to 500 history items.
+export HISTCONTROL=ignoreboth:erasedups
+export HISTFILESIZE=20000
+export HISTSIZE=20000
 PROMPT_DIRTRIM=2 # Automatically trim long paths in the prompt (requires Bash 4.x)
 
 export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
@@ -33,7 +35,7 @@ export PIP_REQUIRE_VIRTUALENV=true
 export PIPENV_DONT_LOAD_ENV=false
 # export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 export PYTHONSTARTUP="$HOME/.pythonrc.py"
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=${OPENSSL_PREFIX}"
 
 #### Functions
 
@@ -122,6 +124,11 @@ develop () {
 		export PATH="$PWD/vendor/bin:${PATH}"
 	fi
 	if [ -f .nvmrc ]; then
+		# NVM Setup from homebrew is missing some steps:
+		# 1. mkdir ~/.nvm
+		# 2. cd ~/.nvm
+		# 3. ln -s $(brew --prefix nvm)/nvm.sh
+		# 4. ln -s $(brew --prefix nvm)/nvm-exec
 		export NVM_DIR="$HOME/.nvm"
 		# shellcheck disable=SC1091
 		source "/usr/local/opt/nvm/nvm.sh"
