@@ -14,6 +14,7 @@
 		"modals",
 		"Netflix",
 		"online",
+		"polyfill",
 		"Spotify",
 		"unbudgeted",
 		"unsubscribe",
@@ -39,6 +40,7 @@
 	"ignored_words":
 	[
 		"Aetna",
+		"Salesforce",
 		"app",
 		"baz",
 		"corge",
@@ -53,7 +55,6 @@
 		"quuz",
 		"qux",
 		"rxjs",
-		"Salesforce",
 		"stackoverflow",
 		"tslint",
 		"uid",
