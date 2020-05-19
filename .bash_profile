@@ -276,7 +276,9 @@ servhttp () {
 		shift
 	done
 
-	sleep 1 && open "http://localhost:${port}/" &
+	if [[ ! "${extraargs[*]}" =~ "-h" ]]; then
+		sleep 1 && open "http://localhost:${port}/" &
+	fi
 	python3 -m http.server "${extraargs[@]}" "$port"
 }
 
