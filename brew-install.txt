@@ -11,6 +11,7 @@ brew install bash-completion@2 \
   pipenv \
   postgresql \
   pyenv \
+  python \
   rbenv \
   s3cmd \
   shellcheck \
