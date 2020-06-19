@@ -13,7 +13,8 @@
 	cm = commit --message
 	count = "!f () { compareBranch=${1-master}; git rev-list --count HEAD "^$compareBranch"; }; f "$@""
 	d = diff
-	del = reset HEAD # Unstage a file (opposite of add)
+	del = restore --staged # Unstage a file (opposite of add)
+	ds = diff --staged
 	l = log --graph --all --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset'
 	ll = log --stat --abbrev-commit
 	master = switch master

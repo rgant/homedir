@@ -135,7 +135,7 @@ develop () {
 		nvm use
 	fi
 	# https://www.derekgourlay.com/blog/git-when-to-merge-vs-when-to-rebase/
-	git fetch
+	git fetch --all
 	git status
 }
 
