@@ -379,6 +379,7 @@ test -t 0 && __init_status
 
 alias bgc="osascript -e 'tell application \"Terminal\" to set background color of selected tab of the front window to {65535, 65232, 53533}'"
 alias cp='cp -i'
+alias cpu_temp='sudo powermetrics | grep "CPU die temperature"'
 alias df='df -h'
 alias diff='diff --unified'
 alias du='du -h'
