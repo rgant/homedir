@@ -221,6 +221,46 @@ pdfunprotect () {
 	fi
 }
 
+projfind () {
+	local extraargs=()
+	local searchpath=()
+
+		while test $# -gt 0; do
+			case $1 in
+				-*)
+					extraargs+=("$1")
+					;;
+				*)
+					if [ -e "$1" ]; then
+						searchpath+=(-f "$1" --)
+					else
+						extraargs+=("$1")
+					fi
+					;;
+			esac
+			shift
+		done
+
+		if [ -z "${extraargs[0]}" ]; then
+			cat >&2 <<EOF
+	Usage: ${FUNCNAME[0]} [path ...] [-find-flags]
+
+	Recursive find of project folders that excludes .git and node_modules.
+
+	See man find for more details.
+
+	Command template:
+	find "PATH" -path '*/.git/*' -prune -o -path '*/node_modules/*' -prune -o FIND FLAGS
+EOF
+			return 1
+		fi
+	# set -x
+	find "${searchpath[@]-./}" -path '*/.git/*' -prune \
+	  -o -path '*/node_modules/*' -prune \
+		-o "${extraargs[@]}";
+	# set +x
+}
+
 projgrep () {
 	local extraargs=()
 	local searchpath=()
