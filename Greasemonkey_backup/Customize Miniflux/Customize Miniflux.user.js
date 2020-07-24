@@ -24,32 +24,6 @@ if (head) {
 const prevLnk = document.querySelector('.pagination-prev a');
 const nextLnk = document.querySelector('.pagination-next a');
 
-const goToPrev = () => {
-  history.back();
-
-  // Special case if there is a prev action.
-  if (prevLnk) {
-    setTimeout(() => {
-      window.location = prevLnk.href;
-    }, 250);
-  }
-
-  return false;
-};
-
-const goToNext = () => {
-  history.forward();
-
-  // Special case if there is a next action.
-  if (nextLnk) {
-    setTimeout(() => {
-      window.location = nextLnk.href;
-    }, 250);
-  }
-
-  return false;
-};
-
 // Add fixed navigation
 const container = document.createElement('div');
 container.className = 'nav-container';
@@ -57,9 +31,7 @@ const pLnk = document.createElement('a');
 pLnk.className = 'nav-lnk';
 pLnk.style.gridColumn = 1;
 pLnk.textContent = '«';
-pLnk.click = goToPrev;
 if (prevLnk) {
-  prevLnk.click = goToPrev;
   pLnk.href = prevLnk.href;
 }
 
@@ -67,13 +39,11 @@ const nLnk = document.createElement('a');
 nLnk.className = 'nav-lnk';
 nLnk.style.gridColumn = 3;
 nLnk.textContent = '»';
-container.appendChild(pLnk);
-nLnk.click = goToNext;
 if (nextLnk) {
-  nextLnk.click = goToNext;
   nLnk.href = nextLnk.href;
 }
 
+container.appendChild(pLnk);
 container.appendChild(nLnk);
 document.body.appendChild(container);
 
@@ -103,20 +73,6 @@ document.addEventListener('keydown', evt => {
     if (evt.key === 'l') {
       // Ignore
       evt.stopPropagation();
-    }
-
-    // Try navigating backwards in history first, and only then go to the prev link.
-    const prevKeys = ['k', 'p', 'ArrowLeft'];
-    if (prevKeys.includes(evt.key)) {
-      evt.stopPropagation();
-      goToPrev();
-    }
-
-    // Try navigating forwards in history first, and only then go to the next link.
-    const nextKeys = ['j', 'n', 'ArrowRight'];
-    if (nextKeys.includes(evt.key)) {
-      evt.stopPropagation();
-      goToNext();
     }
   }
 }, true);
