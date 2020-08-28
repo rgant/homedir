@@ -151,7 +151,7 @@ dl () {
 			cd "$2" || return 2
 		# Download the file to specified name
 		elif [ ! -e "$2" ]; then
-			curl --output "$2" "$1"
+			curl --location --output "$2" "$1"
 			return
 		fi
 	fi
