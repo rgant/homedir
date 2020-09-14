@@ -32,7 +32,7 @@ export GPG_TTY
 export GREP_OPTIONS='--color=auto --no-messages'
 export PATH="/Users/rgant/bin:${PATH}:."
 export PIP_REQUIRE_VIRTUALENV=true
-export PIPENV_DONT_LOAD_ENV=false
+export PIPENV_PYTHON="$HOME/.pyenv/shims/python"
 # export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 export PYTHONSTARTUP="$HOME/.pythonrc.py"
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=${OPENSSL_PREFIX}"
