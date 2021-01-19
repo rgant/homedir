@@ -2,6 +2,7 @@
 // @name       Fix Wirecutter
 // @namespace  robgant.name
 // @include    https://thewirecutter.com/*
+// @include    https://www.nytimes.com/wirecutter/*
 // @grant      none
 // ==/UserScript==
 'use strict';
@@ -9,7 +10,7 @@
 const head = document.getElementsByTagName('head')[0];
 if (head) {
   const style = document.createElement('style');
-  style.textContent = 'header div {position: static !important;}';
+  style.textContent = 'body {margin-top: 0 !important;}#site_header_wrapper, header div {position: static !important;}';
   head.appendChild(style);
 }
 

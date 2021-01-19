@@ -1,25 +1,12 @@
 // ==UserScript==
 // @name        Customize Miniflux
-// @description Adds keyboard shortcut to open article in a new background tab. Fixes CSS
+// @description Adds keyboard shortcut to open article in a new background tab.
 // @namespace   name.robgant
 // @include     https://reader.miniflux.app/*/entry/*
 // @version     1
 // @grant       GM.openInTab
 // ==/UserScript==
 'use strict';
-
-const head = document.getElementsByTagName('head')[0];
-if (head) {
-  const style = document.createElement('style');
-  style.textContent = [
-    'body { max-width: 900px; }',
-    '.entry-content figcaption { text-transform: none !important; }',
-    '.nav-container { display: grid; position: fixed; top: 0; right: 0; bottom: 0; left: 0;',
-    ' grid-template-columns: 1fr 900px 1fr; z-index: -1; }',
-    '.nav-lnk { text-align: center; text-decoration: none; font-size: 25.5vw; }',
-  ].join(' ');
-  head.appendChild(style);
-}
 
 const prevLnk = document.querySelector('.pagination-prev a');
 const nextLnk = document.querySelector('.pagination-next a');

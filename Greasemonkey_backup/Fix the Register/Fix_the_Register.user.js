@@ -4,6 +4,7 @@
 // @namespace   name.robgant
 // @include     http://www.theregister.co.uk/*/*/*/*/
 // @include     https://www.theregister.co.uk/*/*/*/*/
+// @include     https://www.theregister.com/*/*/*/*/
 // @grant       none
 // ==/UserScript==
 'use strict';

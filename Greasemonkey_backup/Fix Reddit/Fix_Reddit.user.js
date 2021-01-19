@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        Fix Reddit
-// @description Open articles and comments pages in new tabs
+// @description Open articles and comments pages in new tabs. Hide unintersting subreddits.
 // @namespace   name.robgant
 // @include     https://np.reddit.com/*
 // @grant       GM.openInTab
@@ -11,7 +11,8 @@ const head = document.getElementsByTagName('head')[0];
 if (head) {
   const style = document.createElement('style');
   style.textContent = '.listingsignupbar, .commentsignupbar, .organic-listing, .hover-bubble,'
-    + ' .read-next-container, .promoted, .promotedlink, .happening-now-wrap { display: none !important; }';
+    + ' .read-next-container, .promoted, .promotedlink, .happening-now-wrap { display: none !important; }'
+    + '#header-img { max-height: 50px; max-width: 50px; }';
   head.appendChild(style);
 }
 
@@ -19,7 +20,7 @@ document.querySelectorAll('a.choice[href="https://np.reddit.com/gilded/"]').forE
   el.href = 'https://np.reddit.com/r/popular/gilded/';
 });
 
-document.querySelectorAll('a.title,a.comments,a.bylink').forEach(el => {
+document.querySelectorAll('a.title,a.comments,a.bylink,a.thumbnail').forEach(el => {
   el.setAttribute('target', '_blank');
   el.setAttribute('href', el.href.replace('//www.reddit.com', '//np.reddit.com'));
   el.removeAttribute('data-href-url');
@@ -31,6 +32,7 @@ document.querySelectorAll('.pinnable-content').forEach(el => {
 });
 
 const badSubreddts = [
+  '90DayFiance',
   'AskOuija',
   'baseball',
   'BostonBruins',
@@ -48,6 +50,7 @@ const badSubreddts = [
   'PewdiepieSubmissions',
   'polandball',
   'redsox',
+  'RoastMe',
   'soccer',
   'sports',
   'The_Donald',
