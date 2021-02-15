@@ -139,6 +139,10 @@ develop () {
 	git status
 }
 
+diff () {
+	/usr/bin/diff --unified "$@" | diff-so-fancy;
+}
+
 dl () {
 	if [ "$#" -lt 1 ]; then
 		echo "Usage: ${FUNCNAME[0]} URL_TO_DOWNLOAD [DIR_OR_NAME_TO_SAVE_AS]" >&2
@@ -421,7 +425,7 @@ alias bgc="osascript -e 'tell application \"Terminal\" to set background color o
 alias cp='cp -i'
 alias cpu_temp='sudo powermetrics | grep "CPU die temperature"'
 alias df='df -h'
-alias diff='diff --unified'
+# alias diff='diff --unified'
 alias du='du -h'
 alias funcs="compgen -A function"
 alias headers='curl --verbose --silent 1> /dev/null'
