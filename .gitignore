@@ -6,3 +6,5 @@
 # sublime text workspace
 *.sublime-workspace
 
+# For whatever reason this file just keeps getting blanked and recreated, so ignore.
+SBSCompareTheme.hidden-tmTheme

@@ -3,6 +3,10 @@
 shopt -s globstar
 shopt -s histappend
 
+# Set C-w to delete words based on unix filename rules
+stty werase undef
+bind '\C-w:unix-filename-rubout'
+
 #txtund=$(tput sgr 0 1) # Underline
 txtbld=$(tput bold)     # Bold
 #txtblk=$(tput setaf 0) # Black

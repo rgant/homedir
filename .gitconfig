@@ -24,7 +24,7 @@
 	undo = restore -- # Throw away modification to a file
 [core]
 	excludesfile = ~/.gitignore
-	pager = diff-so-fancy | less --tabs=4 --RAW-CONTROL-CHARS --quit-if-one-screen --quit-if-one-screen
+	pager = diff-so-fancy | less --tabs=4 -RFX
 	quotepath = false
 [fetch]
 	prune = true
@@ -46,3 +46,6 @@
 	ui = true
 [diff-so-fancy]
 	first-run = false
+	stripLeadingSymbols = false
+	changeHunkIndicators = false
+	markEmptyLines = false
