@@ -44,6 +44,11 @@
 	defaultBranch = main
 [color]
 	ui = true
+[color "diff-highlight"]
+	oldNormal = red
+	oldHighlight = red 224
+	newNormal = green
+	newHighlight = green 194
 [diff-so-fancy]
 	first-run = false
 	stripLeadingSymbols = false
