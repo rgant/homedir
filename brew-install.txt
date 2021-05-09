@@ -1,7 +1,13 @@
-brew install bash-completion@2 \
+brew install adns \
+  awscli \
+  bash-completion@2 \
+  diff-so-fancy \
   firebase-cli \
+  gawk \
   git \
   gnupg \
+  hashicorp/tap/terraform \
+  heroku/brew/heroku \
   imagemagick \
   mariadb \
   mkcert \
@@ -11,9 +17,9 @@ brew install bash-completion@2 \
   pipenv \
   postgresql \
   pyenv \
-  python \
   rbenv \
   s3cmd \
   shellcheck \
   tidy-html5 \
-  unrar
+  unrar \
+  yamllint
