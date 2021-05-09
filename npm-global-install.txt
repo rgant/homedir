@@ -3,4 +3,5 @@ npm install --global dockerfilelint \
   jshint \
   markdownlint-cli \
   npm \
+  prettier \
   stylelint
