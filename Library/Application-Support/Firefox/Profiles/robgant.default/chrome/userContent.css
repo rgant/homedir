@@ -15,3 +15,7 @@ a[href^="javascript:"] { cursor: crosshair; }
 @-moz-document domain(mail.google.com) {
 	.zA > .xY.bq4 { display: flex !important; }
 }
+
+@-moz-document domain(hangouts.google.com) {
+  .g-Ue-v0h5Oe { max-height: 60vh; }
+}
