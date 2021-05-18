@@ -232,6 +232,11 @@ pdfunprotect () {
 	fi
 }
 
+pretty () {
+	local ext="${1-ts}";
+	pbpaste | prettier --config ~/Programming/.prettierrc.json --stdin-filepath="tmp.$ext" | pbcopy;
+}
+
 projfind () {
 	local extraargs=()
 	local searchpath=()
