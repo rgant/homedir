@@ -1,5 +1,6 @@
 #### Settings
 
+shopt -s cmdhist
 shopt -s globstar
 shopt -s histappend
 
@@ -23,8 +24,8 @@ GPG_TTY=$(tty)
 OPENSSL_PREFIX=$(brew --prefix openssl@1.1)
 # If I load a sub shell this prevents it from defaulting to 500 history items.
 export HISTCONTROL=ignoreboth:erasedups
-export HISTFILESIZE=20000
-export HISTSIZE=20000
+export HISTFILESIZE=50000
+export HISTSIZE=50000
 PROMPT_DIRTRIM=2 # Automatically trim long paths in the prompt (requires Bash 4.x)
 
 export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
@@ -40,6 +41,8 @@ export PIPENV_PYTHON="$HOME/.pyenv/shims/python"
 # export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 export PYTHONSTARTUP="$HOME/.pythonrc.py"
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=${OPENSSL_PREFIX}"
+# Force per shell history files from /etc/bashrc_Apple_Terminal even though we have histappend enabled.
+export SHELL_SESSION_HISTORY=1
 
 #### Functions
 
@@ -377,8 +380,8 @@ update_npm_install () {
 }
 
 #### Implement configuration
-
-trap __kill_jobs EXIT
+# Only one trap is allowed, so must add the kill trap to the one from bashrc_Apple_Terminal
+trap '__kill_jobs;shell_session_update' EXIT
 
 # Reset Profile in case tab was opened from a different profile.
 osascript -e 'tell application "Terminal" to set current settings of selected tab of the front window to settings set "Basic"'
