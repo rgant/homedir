@@ -454,6 +454,7 @@ alias vnc_tunnel='ssh vnctunnel -N'
 
 # Personal Projects
 alias saas='develop ~/Programming/saas-api-boilerplate'
+alias ninja='develop ~/Programming/rob.gant.ninja'
 
 # Professional Projects are loaded from ~/.bash_profile.d/work.bash_profile
 
