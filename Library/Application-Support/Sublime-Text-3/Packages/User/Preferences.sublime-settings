@@ -25,7 +25,8 @@
 	],
 	"auto_complete_commit_on_tab": true,
 	"auto_complete_cycle": true,
-	"auto_complete_delay": 100,
+	"auto_complete_delay": 200,
+	"auto_find_in_selection": true,
 	"bold_folder_labels": true,
 	"color_scheme": "Packages/User/Rob.tmTheme",
 	"default_line_ending": "unix",
@@ -38,7 +39,7 @@
 	"highlight_modified_tabs": true,
 	"ignored_packages":
 	[
-		"Vintage"
+		"Vintage",
 	],
 	"ignored_words":
 	[
@@ -75,6 +76,7 @@
 	"match_brackets_square": false,
 	"match_tags": true,
 	"preview_on_click": false,
+	"remember_full_screen": true,
 	"rulers":
 	[
 		100,
@@ -82,8 +84,11 @@
 	],
 	"shift_tab_unindent": true,
 	"tab_size": 4,
-	"theme": "Adaptive.sublime-theme",
+	"theme": "Default Dark.sublime-theme",
 	"translate_tabs_to_spaces": true,
-	"trim_trailing_white_space_on_save": true,
-	"word_wrap": false
+	"trim_trailing_white_space_on_save": "all",
+	"trim_only_modified_white_space": false,
+	"word_wrap": false,
+	"dark_theme": "Adaptive.sublime-theme",
+	"light_theme": "Default Dark.sublime-theme",
 }

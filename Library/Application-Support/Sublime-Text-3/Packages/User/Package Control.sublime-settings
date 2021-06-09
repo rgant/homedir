@@ -7,19 +7,17 @@
 	[
 		"A File Icon",
 		"Awk",
-		"Babel",
 		"BracketHighlighter",
 		"Compare Side-By-Side",
 		"Discord Rich Presence",
 		"Dockerfile Syntax Highlighting",
-		"LSP",
-		"LSP-angular",
 		"MypyReveal",
 		"Ngx HTML",
 		"Package Control",
 		"PackageResourceViewer",
 		"PlainTasks",
 		"PostCSS Sorting",
+		"rainbow_csv",
 		"RegReplace",
 		"Sass",
 		"SublimeLinter",
@@ -37,6 +35,6 @@
 		"SublimeLinter-stylelint",
 		"SublimeLinter-tslint",
 		"Terraform",
-		"TypeScript"
-	]
+		"TypeScript",
+	],
 }
