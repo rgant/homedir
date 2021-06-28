@@ -403,6 +403,7 @@ if [[ -r /usr/local/etc/profile.d/bash_completion.sh ]]; then
 fi
 
 if command -v pyenv 1>/dev/null 2>&1; then
+	eval "$(pyenv init --path)"
 	eval "$(pyenv init -)"
 fi
 
