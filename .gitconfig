@@ -17,7 +17,8 @@
 	ds = diff --staged
 	l = log --graph --all --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset'
 	ll = log --stat --abbrev-commit
-	master = switch master
+	main = switch main
+	master = switch main
 	s = status
 	stow = stash push --message
 	sw = switch
@@ -54,3 +55,5 @@
 	stripLeadingSymbols = false
 	changeHunkIndicators = false
 	markEmptyLines = false
+[interactive]
+	diffFilter = diff-so-fancy --patch
