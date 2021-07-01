@@ -11,14 +11,14 @@
 	ca = commit --amend
 	ch = !echo "do not use checkout, use switch/restore"
 	cm = commit --message
-	count = "!f () { compareBranch=${1-master}; git rev-list --count HEAD "^$compareBranch"; }; f "$@""
+	count = "!f () { compareBranch="${1-main}"; git rev-list --count HEAD "^$compareBranch"; }; f \"$@\""
 	d = diff
 	del = restore --staged # Unstage a file (opposite of add)
 	ds = diff --staged
 	l = log --graph --all --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset'
 	ll = log --stat --abbrev-commit
 	main = switch main
-	master = switch main
+	master = switch master
 	s = status
 	stow = stash push --message
 	sw = switch
@@ -45,6 +45,8 @@
 	defaultBranch = main
 [color]
 	ui = true
+[color "diff"]
+	meta = "magenta"
 [color "diff-highlight"]
 	oldNormal = red
 	oldHighlight = red 224
