@@ -188,6 +188,26 @@ fixwin () {
 	done <   <(find "${1-./}" -name '.git' -prune -o -name 'node_modules' -prune -o -name 'bower_components' -prune -o -type f -print0)
 }
 
+gbranchgrep () {
+	local grepargs=();
+	local pathspecs=();
+
+	while test $# -gt 0; do
+		case $1 in
+			--)
+				shift;
+				pathspecs=("$@");
+				;;
+			*)
+				grepargs+=("$1");
+				;;
+		esac
+		shift
+	done
+
+	git for-each-ref --format='%(refname:short)' refs/heads/ | xargs -I '{}' git grep "${grepargs[@]}" '{}' -- "${pathspecs[@]}";
+};
+
 gpip () {
 	PIP_REQUIRE_VIRTUALENV="" sudo -H pip "$@"
 }
