@@ -1,5 +1,5 @@
 {
-    "extends": ["xo/esnext", "xo/browser"],
+    "extends": ["xo", "xo/browser"],
     "env": {
         "browser": true,
         "es6": true,

@@ -32,7 +32,7 @@ if (loc.indexOf('/amp/') !== -1 || loc.indexOf('//amp.') !== -1) {
 }
 
 if (gotAmp) {
-	window.location.replace(cleanUrl);
+  window.location.replace(cleanUrl);
 } else if (gotTracking) {
-  history.replaceState(null, '', cleanUrl);
+  window.history.replaceState(null, '', cleanUrl);
 }

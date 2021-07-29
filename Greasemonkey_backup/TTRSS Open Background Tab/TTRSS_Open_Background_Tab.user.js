@@ -39,6 +39,7 @@ document.addEventListener('keydown', evt => {
       if (inBody) {
         return false;
       }
+
       return orig(event, id, inBody);
     };
   }

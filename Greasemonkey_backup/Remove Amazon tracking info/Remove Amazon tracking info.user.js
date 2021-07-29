@@ -12,5 +12,5 @@
 const loc = window.location.toString();
 if (loc.indexOf('/ref=') !== -1 || loc.indexOf('?') !== -1) {
   const cleanUrl = loc.replace(/(?:\/ref=|\?).*/, '');
-  history.replaceState(null, '', cleanUrl);
+  window.history.replaceState(null, '', cleanUrl);
 }

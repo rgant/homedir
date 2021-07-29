@@ -20,44 +20,42 @@ document.querySelectorAll('a.choice[href="https://np.reddit.com/gilded/"]').forE
   el.href = 'https://np.reddit.com/r/popular/gilded/';
 });
 
-document.querySelectorAll('a.title,a.comments,a.bylink,a.thumbnail').forEach(el => {
-  el.setAttribute('target', '_blank');
-  el.setAttribute('href', el.href.replace('//www.reddit.com', '//np.reddit.com'));
-  el.removeAttribute('data-href-url');
-  el.removeAttribute('data-outbound-url');
-});
-
 document.querySelectorAll('.pinnable-content').forEach(el => {
   el.dataset.pinCondition = () => false;
 });
 
+document.querySelectorAll('.sponsored-indicator').forEach(el => {
+  let thing = el.parentNode;
+  while (thing && !thing.classList.contains('thing')) {
+    thing = thing.parentNode;
+  }
+
+  thing.parentNode.removeChild(thing);
+});
+
 const badSubreddts = [
-  '90DayFiance',
-  'AskOuija',
+  'amcstock',
   'baseball',
-  'BostonBruins',
-  'bostonceltics',
-  'CollegeBasketball',
-  'ComedyCemetery',
-  'fantasyfootball',
-  'JordanPeterson',
-  'natureismetal',
+  'Boxing',
+  'CFB',
+  'formuladank',
+  'golf',
+  'Gunners',
+  'hockey',
+  'ich_iel',
+  'Kanye',
+  'ksi',
+  'LivestreamFail',
+  'MMA',
   'nba',
-  'nfl',
-  'nosleep',
-  'NYGiants',
-  'Patriots',
-  'PewdiepieSubmissions',
   'polandball',
-  'redsox',
-  'RoastMe',
-  'soccer',
+  'reddevils',
+  'sixers',
   'sports',
-  'The_Donald',
-  'TwoSentenceHorror',
-  'vegan',
-  'Warts',
-  'WritingPrompts',
+  'Superstonk',
+  'tennis',
+  'wallstreetbets',
+  'WestSubEver',
 ];
 document.querySelectorAll('.subreddit').forEach(el => {
   for (const subr of badSubreddts) {
@@ -70,6 +68,35 @@ document.querySelectorAll('.subreddit').forEach(el => {
       thing.parentNode.removeChild(thing);
       break;
     }
+  }
+});
+
+document.querySelectorAll('a.title,a.comments,a.bylink,a.thumbnail').forEach(el => {
+  el.setAttribute('target', '_blank');
+
+  // Some weird bug where reddit image gallery links are broken for thumbnails and titles.
+  if (el.href === window.location.href) {
+    let thing = el.parentNode;
+    while (thing && !thing.classList.contains('thing')) {
+      thing = thing.parentNode;
+    }
+
+    // But the link to the comments is fine...
+    const cmtEl = thing.querySelector('a.comments');
+    if (cmtEl) {
+      el.href = cmtEl.href;
+    }
+  }
+
+  el.setAttribute('href', el.href.replace('//www.reddit.com', '//np.reddit.com'));
+  el.removeAttribute('data-href-url');
+  el.removeAttribute('data-outbound-url');
+});
+
+document.querySelectorAll('ul.flat-list.buttons').forEach(el => {
+  let child;
+  while ((child = el.children.item(1)) !== null) {
+    el.removeChild(child);
   }
 });
 

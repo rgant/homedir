@@ -34,9 +34,34 @@ container.appendChild(pLnk);
 container.appendChild(nLnk);
 document.body.appendChild(container);
 
+/* Preserved in case I lose the custom CSS on miniflux settings
+const customStyles = document.createElement('style');
+customStyles.setAttribute('type', 'text/css');
+customStyles.textContent = `
+body {
+  max-width: 900px;
+}
+
+.entry-content figcaption {
+  text-transform: none !important;
+}
+
+.nav-container {
+  display: grid;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  grid-template-columns: 1fr 900px 1fr;
+  z-index: -1;
+}`;
+document.head.appendChild(customStyles);
+*/
+
 // Fix encoded characters in article titles
 const lnk = document.querySelector('h1 a');
-if (lnk && lnk.innerHTML.match(/&amp;(?:\w+|#x?\d+);|&[lg]t;/)) {
+if (lnk && lnk.innerHTML.match(/&[lg]t;/)) {
   lnk.innerHTML = lnk.textContent;
 }
 
@@ -44,7 +69,7 @@ document.addEventListener('keydown', evt => {
   if (evt.target.nodeName !== 'INPUT' && !evt.altKey && !evt.ctrlKey && !evt.metaKey && !evt.shiftKey) {
     // Don't do a browser find on key presses, except space bar for scrolling.
     if (evt.key !== ' ' && evt.key !== 'Enter') {
-      // evt.stopPropagation();
+      // Not Needed: evt.stopPropagation();
       evt.preventDefault();
     }
 
