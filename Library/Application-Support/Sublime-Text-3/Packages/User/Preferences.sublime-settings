@@ -88,6 +88,7 @@
 	"translate_tabs_to_spaces": true,
 	"trim_trailing_white_space_on_save": "all",
 	"trim_only_modified_white_space": false,
+	"use_find_clipboard": false,
 	"word_wrap": false,
 	"dark_theme": "Adaptive.sublime-theme",
 	"light_theme": "Default Dark.sublime-theme",
