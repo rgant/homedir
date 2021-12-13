@@ -6,17 +6,13 @@ brew install awscli \
   git \
   gnupg \
   hashicorp/tap/terraform \
-  heroku/brew/heroku \
   imagemagick \
-  mariadb \
   mkcert \
   nss \
   nvm \
   p7zip \
   pipenv \
-  postgresql \
   pyenv \
-  rbenv \
   s3cmd \
   shellcheck \
   tidy-html5 \
