@@ -15,6 +15,7 @@
 	d = diff
 	del = restore --staged # Unstage a file (opposite of add)
 	ds = diff --staged
+	grepbrs = "!f () { where="${2-./}"; git for-each-ref --format='%(refname:short)' refs/heads/ | xargs -I '{}' git grep "$1" '{}' -- "$where"; }; f"
 	l = log --graph --all --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset'
 	ll = log --stat --abbrev-commit
 	main = switch main
