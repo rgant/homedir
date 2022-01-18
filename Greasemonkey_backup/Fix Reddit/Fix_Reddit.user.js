@@ -11,7 +11,7 @@ const head = document.getElementsByTagName('head')[0];
 if (head) {
   const style = document.createElement('style');
   style.textContent = '.listingsignupbar, .commentsignupbar, .organic-listing, .hover-bubble,'
-    + ' .read-next-container, .promoted, .promotedlink, .happening-now-wrap { display: none !important; }'
+    + ' .read-next-container, .promoted, .promotedlink, .happening-now-wrap, .midcol { display: none !important; }'
     + '#header-img { max-height: 50px; max-width: 50px; }';
   head.appendChild(style);
 }
@@ -34,32 +34,10 @@ document.querySelectorAll('.sponsored-indicator').forEach(el => {
 });
 
 const badSubreddts = [
-  'amcstock',
-  'baseball',
-  'Boxing',
-  'CFB',
-  'formuladank',
-  'golf',
-  'Gunners',
-  'hockey',
-  'ich_iel',
-  'Kanye',
-  'ksi',
-  'LivestreamFail',
-  'MMA',
-  'nba',
-  'polandball',
-  'reddevils',
-  'sixers',
-  'sports',
-  'Superstonk',
-  'tennis',
-  'wallstreetbets',
-  'WestSubEver',
 ];
 document.querySelectorAll('.subreddit').forEach(el => {
   for (const subr of badSubreddts) {
-    if (el.textContent.endsWith(subr)) {
+    if (el.textContent.startsWith('u/') || el.textContent.endsWith(subr)) {
       let thing = el.parentNode;
       while (thing && !thing.classList.contains('thing')) {
         thing = thing.parentNode;
@@ -71,11 +49,35 @@ document.querySelectorAll('.subreddit').forEach(el => {
   }
 });
 
+document.querySelectorAll('ul.flat-list.buttons').forEach(el => {
+  let child;
+  let indx = 0;
+
+  while ((child = el.children.item(indx)) !== null) {
+    if (child.textContent.includes('permalink')) {
+      const lnk = child.querySelector('a');
+      // console.log('LNK', lnk);
+      if (lnk && !lnk.href.includes('?context=3')) {
+        lnk.href += '?context=3';
+      }
+
+      // Keep this link
+      indx += 1;
+    } else if (child.textContent.includes('parent') || child.classList.contains('first') || child.textContent.includes('NSFW')) {
+      // console.log('CHILD', child);
+      // Keep these links
+      indx += 1;
+    } else {
+      el.removeChild(child);
+    }
+  }
+});
+
 document.querySelectorAll('a.title,a.comments,a.bylink,a.thumbnail').forEach(el => {
   el.setAttribute('target', '_blank');
 
   // Some weird bug where reddit image gallery links are broken for thumbnails and titles.
-  if (el.href === window.location.href) {
+  if (el.href === window.location.href || el.href.includes('/gallery/')) {
     let thing = el.parentNode;
     while (thing && !thing.classList.contains('thing')) {
       thing = thing.parentNode;
@@ -91,13 +93,6 @@ document.querySelectorAll('a.title,a.comments,a.bylink,a.thumbnail').forEach(el 
   el.setAttribute('href', el.href.replace('//www.reddit.com', '//np.reddit.com'));
   el.removeAttribute('data-href-url');
   el.removeAttribute('data-outbound-url');
-});
-
-document.querySelectorAll('ul.flat-list.buttons').forEach(el => {
-  let child;
-  while ((child = el.children.item(1)) !== null) {
-    el.removeChild(child);
-  }
 });
 
 const searchEl = document.querySelector('input[name=restrict_sr]');

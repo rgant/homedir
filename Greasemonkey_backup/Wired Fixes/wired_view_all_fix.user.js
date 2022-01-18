@@ -14,7 +14,7 @@ if (head) {
   style.setAttribute('type', 'text/css');
   style.textContent = [
     '#global-header, .persistent-top { position:static !important; }',
-    '.responsive-asset--invisible { opacity: 1 !important; }',
+    '.responsive-asset { opacity: 1 !important; }',
   ].join(' ');
   head.appendChild(style);
 }
