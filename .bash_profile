@@ -254,7 +254,16 @@ pdfunprotect () {
 
 pretty () {
 	local ext="${1-ts}";
-	pbpaste | prettier --config ~/Programming/.prettierrc.json --stdin-filepath="tmp.$ext" | pbcopy;
+	if [ "$ext" = "html" ]; then
+		# Stupidly prettierx doesn't do htmlVoidTags when using the angular parser. So run it twice to get both.
+		# We also MUST include --parser=html to have htmlVoidTags take effect.
+		pbpaste | \
+			prettierx --config ~/Programming/.prettierrc.json --parser=angular --stdin-filepath="tmp.$ext" | \
+			prettierx --config ~/Programming/.prettierrc.json --parser=html --stdin-filepath="tmp.$ext" | \
+			pbcopy;
+	else
+		pbpaste | prettierx --config ~/Programming/.prettierrc.json --stdin-filepath="tmp.$ext" | pbcopy;
+	fi
 }
 
 projfind () {
@@ -465,6 +474,7 @@ alias headers='curl --verbose --silent 1> /dev/null'
 alias htmlgrep="find ./ -name '*.html' -print0 | xargs -0 grep"
 alias modem_tunnel='ssh home -L 2000:modem.home.robgant.com:80 -N'
 alias mv='mv -i'
+alias myip='dig +short myip.opendns.com @resolver1.opendns.com'
 alias npmg="npm --global"
 alias phpgrep="find ./ -name '*.php' -print0 | xargs -0 grep"
 alias pygrep="find ./ -name '*.py' -print0 | xargs -0 grep"
