@@ -3,7 +3,7 @@
 #echo $(pwd);
 # Script runs from the root of the repo workspace.
 
-find ./ \( -name '.git' -o -name 'coverage' -o -name 'dist' -o -name 'documentation' -o -name 'node_modules' -o -name '*.sublime-workspace \) -prune -o -type f -print0 \
+find ./ \( -name '.git' -o -name 'coverage' -o -name 'dist' -o -name 'documentation' -o -name 'node_modules' -o -name '*.sublime-workspace' \) -prune -o -type f -print0 \
 	| xargs -0 grep --line-number --only-matching '\(TODO[: ]\|FIXME\).*' \
 	| awk 'BEGIN{print "# TODOs in this Project\n";IFS=":"}{gsub(/_/,"\\\\&", $1);print "*", $0;}' > TODO.md;
 

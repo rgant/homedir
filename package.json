@@ -1,5 +1,6 @@
 {
   "name": "homedir",
+  "version": "0.0.0",
   "private": true,
   "description": "OS X Home Directory Files",
   "homepage": "https://github.com/rgant/homedir#readme",

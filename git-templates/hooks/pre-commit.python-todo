@@ -3,7 +3,7 @@
 #echo $(pwd);
 # Script runs from the root of the repo workspace.
 
-find ./ -name '*.py' -print0 \
+find ./ \( -name '*.py' -o -name '*.pyi' \) -print0 \
 	| xargs -0 grep --line-number --only-matching 'TODO.*' \
 	| awk 'BEGIN{print "## TODOs in this Project";}{print " *", $0;}' > TODO.md;
 

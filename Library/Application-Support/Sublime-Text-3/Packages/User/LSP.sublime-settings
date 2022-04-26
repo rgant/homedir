@@ -1,0 +1,7 @@
+// Settings in here override those in "LSP/LSP.sublime-settings"
+{
+    "diagnostics_delay_ms": 10000,
+    "diagnostics_additional_delay_auto_complete_ms": 10000,
+    "show_code_actions": "bulb",
+    "show_code_actions_in_hover": false
+}
