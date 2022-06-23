@@ -70,9 +70,7 @@ if __name__ == "__main__":
     logging.basicConfig()
     try:
         main()
-    except (SystemExit, KeyboardInterrupt):
+    except KeyboardInterrupt:
         logging.info('Exiting')
-        raise
-    except:
-        logging.exception('Uncaught Exception')
-        raise
+        # Exit without a useless stack trace
+        sys.exit(130)  # Script terminated by Control-C. Control-C is fatal error signal is 130
