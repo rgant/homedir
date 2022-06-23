@@ -6,6 +6,9 @@
         "csslint": {
             "excludes": ["*.scss"]
         },
+        "json": {
+            "strict": false
+        },
         "markdownlint": {
             "args": [
                 "--config",
