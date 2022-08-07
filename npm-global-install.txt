@@ -1,7 +1,9 @@
 npm install --global dockerfilelint \
+  eslint_d \
   eslint \
   jshint \
   markdownlint-cli \
   npm \
   prettierx \
-  stylelint
+  stylelint \
+  upgrade
