@@ -1,7 +1,13 @@
 // Settings in here override those in "LSP/LSP.sublime-settings"
 {
-    "diagnostics_delay_ms": 10000,
-    "diagnostics_additional_delay_auto_complete_ms": 10000,
+    "clients": {
+        "typescript": {
+            "disabled_capabilities": {
+                "hoverProvider": true,
+            },
+        },
+    },
     "show_code_actions": "bulb",
-    "show_code_actions_in_hover": false
+    "show_code_actions_in_hover": false,
+    "show_diagnostics_panel_on_save": 4,
 }

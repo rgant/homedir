@@ -1,7 +1,7 @@
 // SublimeLinter Settings - User
 {
     "debug": false,
-    "lint_mode": "save",
+    "lint_mode": "load_save",
     "linters": {
         "csslint": {
             "excludes": ["*.scss"]
@@ -20,9 +20,6 @@
         },
         "shellcheck": {
             "args": ["--shell=bash"]
-        },
-        "tslint": {
-            "args": ["--project", "${folder}"]
         }
     },
     "no_column_highlights_line": true,

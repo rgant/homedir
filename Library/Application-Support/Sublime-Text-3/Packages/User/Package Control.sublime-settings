@@ -44,7 +44,6 @@
 		"SublimeLinter-pylint",
 		"SublimeLinter-shellcheck",
 		"SublimeLinter-stylelint",
-		"SublimeLinter-tslint",
 		"Terraform",
 		"TypeScript",
 	],
