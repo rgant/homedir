@@ -31,6 +31,8 @@ PROMPT_DIRTRIM=2 # Automatically trim long paths in the prompt (requires Bash 4.
 export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
 export CLICOLOR=1
 export EDITOR=nano
+export GIT_OPTIONAL_LOCKS=0
+export GIT_PROMPT_ONLY_IN_REPO=1
 export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWSTASHSTATE=1
 export GPG_TTY
@@ -124,12 +126,6 @@ develop () {
 #
 #_develop () {
 	tabname "$(basename "$PWD")"
-	if [ -d node_modules/.bin/ ]; then
-		export PATH="$PWD/node_modules/.bin:${PATH}"
-	fi
-	if [ -d vendor/bin/ ]; then
-		export PATH="$PWD/vendor/bin:${PATH}"
-	fi
 	if [ -f .nvmrc ]; then
 		# NVM Setup from homebrew is missing some steps:
 		# 1. mkdir ~/.nvm
@@ -141,13 +137,16 @@ develop () {
 		source "/usr/local/opt/nvm/nvm.sh"
 		nvm use
 	fi
+	if [ -d node_modules/.bin/ ]; then
+		export PATH="$PWD/node_modules/.bin:${PATH}"
+	fi
 	# https://www.derekgourlay.com/blog/git-when-to-merge-vs-when-to-rebase/
 	git fetch --all
 	git status
 }
 
 diff () {
-	/usr/bin/diff --unified "$@" | diff-so-fancy;
+	/usr/bin/diff --unified "$@" | colordiff | /usr/local/var/homebrew/linked/git/share/git-core/contrib/diff-highlight/diff-highlight;
 }
 
 dl () {
@@ -246,7 +245,7 @@ pdfunprotect () {
 
 	local tmppdf
 	tmppdf=$(mktemp -t "pdf")
-	gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile="${tmppdf}" -c .setpdfwrite -f "$1"
+	gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile="${tmppdf}" -f "$1"
 	if [ -s "${tmppdf}" ]; then
 		mv "${tmppdf}" "$1"
 	fi
@@ -449,14 +448,6 @@ fi
 # ln -s ../../Cellar/pyenv/*/completions/pyenv.bash
 # ln -s ../../Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc google-cloud-sdk
 
-# Don't run this in tmux
-if [ -z "$TMUX" ]; then
-	# Manually activate .launchd.conf
-	launchctl list | grep -q name.robgant || {
-		<"$HOME/.launchd.conf" xargs launchctl
-	}
-fi
-
 # Only init the agent if we are on a terminal
 #test -t 0 && __init_agent
 
@@ -475,8 +466,9 @@ alias htmlgrep="find ./ -name '*.html' -print0 | xargs -0 grep"
 alias modem_tunnel='ssh home -L 2000:modem.home.robgant.com:80 -N'
 alias mv='mv -i'
 alias myip='dig +short myip.opendns.com @resolver1.opendns.com'
-alias npmg="npm --global"
+alias npmg="npm --location=global"
 alias phpgrep="find ./ -name '*.php' -print0 | xargs -0 grep"
+alias pkgfix='npx sort-package-json && npx package-json-validator --warnings --recommendations'
 alias pygrep="find ./ -name '*.py' -print0 | xargs -0 grep"
 alias rm='rm -i'
 alias router_tunnel='ssh home -L 2000:router.home.robgant.com:80 -N'
