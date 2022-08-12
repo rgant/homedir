@@ -11,16 +11,19 @@
 	ca = commit --amend
 	ch = !echo "do not use checkout, use switch/restore"
 	cm = commit --message
-	count = "!f () { compareBranch="${1-main}"; git rev-list --count HEAD "^$compareBranch"; }; f \"$@\""
+	cq = "!f () { msg="${1?message required}"; git commit --message "squash! $msg"; }; f"
+	count = "!f () { compareBranch="${1-main}"; git rev-list --count HEAD "^$compareBranch"; }; f"
 	d = diff
 	del = restore --staged # Unstage a file (opposite of add)
 	ds = diff --staged
+	enforce = push --force-with-lease
 	grepbrs = "!f () { where="${2-./}"; git for-each-ref --format='%(refname:short)' refs/heads/ | xargs -I '{}' git grep "$1" '{}' -- "$where"; }; f"
 	l = log --graph --all --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset'
 	ll = log --stat --abbrev-commit
 	main = switch main
 	master = switch master
 	s = status
+	squash = "!f () { compareBranch="${1-main}"; git rebase -i $(git merge-base "$compareBranch" HEAD); }; f"
 	stow = stash push --message
 	sw = switch
 	undo = restore -- # Throw away modification to a file
@@ -60,3 +63,6 @@
 	markEmptyLines = false
 [interactive]
 	diffFilter = diff-so-fancy --patch
+[rebase]
+	autoStash = true
+	autosquash = true
