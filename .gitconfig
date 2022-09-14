@@ -1,7 +1,3 @@
-[user]
-	name = J Rob Gant
-	email = rgant@alum.wpi.edu
-	signingkey = 72A92177D88C3014
 [alias]
 	a = add
 	alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\\t => \\2/' | sort
@@ -11,9 +7,9 @@
 	ca = commit --amend
 	ch = !echo "do not use checkout, use switch/restore"
 	cm = commit --message
-	cq = "!f () { msg=\"${1?message required}\"; git commit --message \"squash! $msg\"; }; f"
 	count = "!f () { compareBranch=\"${1-main}\"; git rev-list --count HEAD \"^$compareBranch\"; }; f"
-	d = diff
+	cq = "!f () { msg=\"${1?message required}\"; git commit --message \"squash! $msg\"; }; f"
+	d = diff --ignore-space-change
 	del = restore --staged # Unstage a file (opposite of add)
 	ds = diff --staged
 	enforce = push --force-with-lease
@@ -27,42 +23,49 @@
 	stow = stash push --message
 	sw = switch
 	undo = restore -- # Throw away modification to a file
-[core]
-	excludesfile = ~/.gitignore
-	pager = diff-so-fancy | less --tabs=4 -RFX
-	quotepath = false
-[fetch]
-	prune = true
-[branch "master"]
+[branch "main"]
 	mergeoptions = --ff-only
 	rebase = true
-[diff]
-	compactionHeuristic = true
-	algorithm = histogram
-[pull]
-	rebase = true
-[commit]
-	gpgsign = true
-[protocol]
-	version = 2
-[init]
-	defaultBranch = main
 [color]
 	ui = true
 [color "diff"]
 	meta = "magenta"
 [color "diff-highlight"]
-	oldNormal = red
-	oldHighlight = red 224
-	newNormal = green
 	newHighlight = green 194
+	newNormal = green
+	oldHighlight = red 224
+	oldNormal = red
+[commit]
+	gpgsign = true
+[core]
+	excludesfile = ~/.gitignore
+	pager = diff-so-fancy | less --tabs=4 -RFX
+	quotepath = false
+[diff]
+	algorithm = histogram
+	colorMoved = zebra
+	compactionHeuristic = true
 [diff-so-fancy]
-	first-run = false
-	stripLeadingSymbols = false
 	changeHunkIndicators = false
+	first-run = false
 	markEmptyLines = false
+	stripLeadingSymbols = false
+[fetch]
+	prune = true
+[init]
+	defaultBranch = main
 [interactive]
 	diffFilter = diff-so-fancy --patch
+[protocol]
+	version = 2
+[pull]
+	rebase = true
+[push]
+	default = current
 [rebase]
+	autoSquash = true
 	autoStash = true
-	autosquash = true
+[user]
+	name = J Rob Gant
+	email = rgant@alum.wpi.edu
+	signingkey = 72A92177D88C3014

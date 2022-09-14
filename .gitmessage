@@ -1,0 +1,20 @@
+# <type>:(<ref number>) <short summary> 
+#   |           |               |
+#   |           |               +-> Summary in present tense
+#   |           +-> Refers to story/card/issue #
+#   +-> Type: feat|bug|chore|fix|refactor|style|test|docs
+# Commit subject line should not exceed 50 characters.
+# Remainder of gitmessage should wrap at 72 characters.
+# Use github-flavored markdown for formatting and links
+# (links should not be line-wrapped)
+
+__ISSUE:__
+# _<type>_ - *<issue name>*
+# \[[#<issue number](<issue url)\]
+
+__DESCRIPTION:__
+# Why do we need this commit?
+
+___STEPS TO TEST:__
+# Step-by-step instructions for practical testing
+
