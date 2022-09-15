@@ -10,6 +10,7 @@ brew install awscli \
   hashicorp/tap/terraform \
   imagemagick \
   mkcert \
+  nano \
   nss \
   nvm \
   p7zip \

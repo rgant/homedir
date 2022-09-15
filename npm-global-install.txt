@@ -5,5 +5,4 @@ npm install --global dockerfilelint \
   markdownlint-cli \
   npm \
   prettierx \
-  stylelint \
-  upgrade
+  stylelint
