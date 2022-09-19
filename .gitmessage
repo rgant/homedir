@@ -10,7 +10,7 @@
 
 __ISSUE:__
 _<type>_ - *<issue name>*
-\[[#<issue number>](<issue url>)\]
+\[[<issue number>](<issue url>)\]
 
 __DESCRIPTION:__
 # Why do we need this commit?
