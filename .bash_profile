@@ -48,29 +48,6 @@ export SHELL_SESSION_HISTORY=1
 
 #### Functions
 
-# Setup SSH Agent
-__init_agent () {
-	local SSH_ENV="$HOME/.ssh/environment";
-
-	__start_agent () {
-		/usr/bin/ssh-agent -t 14400 | sed 's/^echo/#echo/' > "${SSH_ENV}"
-		chmod 600 "${SSH_ENV}"
-		# shellcheck disable=SC1090,SC1091
-		source "${SSH_ENV}"
-	}
-
-	if [ -f "${SSH_ENV}" ]; then
-		# shellcheck disable=SC1090,SC1091
-		source "${SSH_ENV}"
-		echo "${SSH_AGENT_PID}" > "$HOME/.ssh/ssh-agent.pid"
-		pgrep -u "$USER" -F "$HOME/.ssh/ssh-agent.pid" -q ssh-agent || {
-			__start_agent
-		}
-	else
-		__start_agent
-	fi
-}
-
 # Check to see if it's time to display system status again. Don't display on multiple recent shells
 __init_status () {
 	local watchfile="$HOME/.hrly_info"
@@ -99,6 +76,18 @@ __status_code () {
 	if [ $status != 0 ]; then
 		echo "$txtbld$txtred";
 	fi
+}
+
+bgc () {
+	case $1 in
+		green)
+			COLOR='{57825, 65021, 56540}'
+		;;
+		yellow|*)
+			COLOR='{65535, 65232, 53533}';
+		;;
+	esac
+	osascript -e 'tell application "Terminal" to set background color of selected tab of the front window to '"${COLOR}";
 }
 
 # Create a data URL from a file
@@ -448,13 +437,9 @@ fi
 # ln -s ../../Cellar/pyenv/*/completions/pyenv.bash
 # ln -s ../../Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc google-cloud-sdk
 
-# Only init the agent if we are on a terminal
-#test -t 0 && __init_agent
-
 # Only display system status if we are on a terminal
 test -t 0 && __init_status
 
-alias bgc="osascript -e 'tell application \"Terminal\" to set background color of selected tab of the front window to {65535, 65232, 53533}'"
 alias cp='cp -i'
 alias cpu_temp='sudo powermetrics | grep "CPU die temperature"'
 alias df='df -h'
