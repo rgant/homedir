@@ -32,11 +32,13 @@ export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
 export CLICOLOR=1
 export EDITOR=nano
 export GIT_OPTIONAL_LOCKS=0
-export GIT_PROMPT_ONLY_IN_REPO=1
+export GIT_PS1_SHOWCOLORHINTS=1
 export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWSTASHSTATE=1
 export GPG_TTY
 export GREP_OPTIONS='--color=auto --no-messages'
+export NODE_OPTIONS='--max-old-space-size=8192'
+export NPM_CONFIG_SAVE=1
 export PATH="/Users/rgant/bin:${PATH}:."
 export PIP_REQUIRE_VIRTUALENV=true
 export PIPENV_PYTHON="$HOME/.pyenv/shims/python"
