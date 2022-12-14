@@ -39,9 +39,8 @@ export GPG_TTY
 export GREP_OPTIONS='--color=auto --no-messages'
 export NODE_OPTIONS='--max-old-space-size=8192'
 export NPM_CONFIG_SAVE=1
-export PATH="/Users/rgant/bin:${PATH}:."
+export PATH="/Users/rgant/bin:/Users/rgant/.local/bin:${PATH}:."
 export PIP_REQUIRE_VIRTUALENV=true
-export PIPENV_PYTHON="$HOME/.pyenv/shims/python"
 # export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 export PYTHONSTARTUP="$HOME/.pythonrc.py"
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=${OPENSSL_PREFIX}"
@@ -95,6 +94,11 @@ bgc () {
 # Create a data URL from a file
 # From: https://github.com/mathiasbynens/dotfiles/blob/8cf8c1c8315a6349224eeb3ecc033d469456025f/.functions#L69
 dataurl () {
+	if [ "$#" -ne 1 ]; then
+		echo "Usage: ${FUNCNAME[0]} /path/to/datafile" >&2
+		return 1
+	fi
+
 	local mimeType;
 	mimeType=$(file -b --mime-type "$1");
 	if [[ $mimeType == text/* ]]; then
@@ -199,7 +203,7 @@ gbranchgrep () {
 };
 
 gpip () {
-	PIP_REQUIRE_VIRTUALENV="" sudo -H pip "$@"
+	PIP_REQUIRE_VIRTUALENV=false pip "$@"
 }
 
 man () {
@@ -422,22 +426,12 @@ if [[ -r /usr/local/etc/profile.d/bash_completion.sh ]]; then
 fi
 
 if command -v pyenv 1>/dev/null 2>&1; then
-	eval "$(pyenv init --path)"
 	eval "$(pyenv init -)"
 fi
 
 if command -v rbenv 1>/dev/null 2>&1; then
 	eval "$(rbenv init -)"
 fi
-
-# This updates the path, but I think homebrew already has it covered
-# source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc'
-# pyenv and google cloud sdk from homebrew right now don't install completions correctly so don't do this:
-# source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc'
-# Instead:
-# cd /usr/local/etc/bash_completion.d/
-# ln -s ../../Cellar/pyenv/*/completions/pyenv.bash
-# ln -s ../../Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc google-cloud-sdk
 
 # Only display system status if we are on a terminal
 test -t 0 && __init_status
