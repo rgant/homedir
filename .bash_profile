@@ -31,6 +31,7 @@ PROMPT_DIRTRIM=2 # Automatically trim long paths in the prompt (requires Bash 4.
 export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
 export CLICOLOR=1
 export EDITOR=nano
+export ESLINT_D_LOCAL_ESLINT_ONLY=true
 export GIT_OPTIONAL_LOCKS=0
 export GIT_PS1_SHOWCOLORHINTS=1
 export GIT_PS1_SHOWDIRTYSTATE=1
@@ -51,23 +52,23 @@ export SHELL_SESSION_HISTORY=1
 
 # Check to see if it's time to display system status again. Don't display on multiple recent shells
 __init_status () {
-	local watchfile="$HOME/.hrly_info"
-	local hr
-	hr=$(date +"%F %H")
+	local watchfile="$HOME/.hrly_info";
+	local hr;
+	hr=$(date +"%F %H");
 	# shellcheck disable=SC2143
 	if [[ ! -f "$watchfile" || ! $(grep "$hr" "$watchfile") ]]; then
-		echo "$hr" > "$watchfile"
-		sys_status
+		echo "$hr" > "$watchfile";
+		sys_status;
 	fi
 }
 
 # Trap to kill pending jobs on exit shell with ^d
 __kill_jobs () {
-	local theid
+	local theid;
 	for theid in $(jobs -p); do
-		local gid
-		gid=$(ps -o pgid= -p "$theid")
-		pkill -g "$gid"
+		local gid;
+		gid=$(ps -o pgid= -p "$theid");
+		pkill -g "$gid";
 	done
 }
 
@@ -80,15 +81,16 @@ __status_code () {
 }
 
 bgc () {
+	local color;
 	case $1 in
 		green)
-			COLOR='{57825, 65021, 56540}'
+			color='{57825, 65021, 56540}'
 		;;
 		yellow|*)
-			COLOR='{65535, 65232, 53533}';
+			color='{65535, 65232, 53533}';
 		;;
 	esac
-	osascript -e 'tell application "Terminal" to set background color of selected tab of the front window to '"${COLOR}";
+	osascript -e 'tell application "Terminal" to set background color of selected tab of the front window to '"${color}";
 }
 
 # Create a data URL from a file
@@ -99,8 +101,7 @@ dataurl () {
 		return 1
 	fi
 
-	local mimeType;
-	mimeType=$(file -b --mime-type "$1");
+	local mimeType=$(file -b --mime-type "$1");
 	if [[ $mimeType == text/* ]]; then
 		mimeType="${mimeType};charset=utf-8";
 	fi
@@ -122,14 +123,6 @@ develop () {
 #_develop () {
 	tabname "$(basename "$PWD")"
 	if [ -f .nvmrc ]; then
-		# NVM Setup from homebrew is missing some steps:
-		# 1. mkdir ~/.nvm
-		# 2. cd ~/.nvm
-		# 3. ln -s $(brew --prefix nvm)/nvm.sh
-		# 4. ln -s $(brew --prefix nvm)/nvm-exec
-		export NVM_DIR="$HOME/.nvm"
-		# shellcheck disable=SC1091
-		source "/usr/local/opt/nvm/nvm.sh"
 		nvm use
 	fi
 	if [ -d node_modules/.bin/ ]; then
@@ -171,7 +164,7 @@ dl () {
 
 # Find Windows Line Endings files in git repo, ignoring any gitignored files.
 fixwin () {
-	local thefile
+	local thefile;
 	while IFS= read -r -d '' thefile; do
 		if file "$thefile" | grep -q 'ASCII text, with CRLF line terminators' && ! git check-ignore -q "$thefile"; then
 			echo -n "Converting $thefile from crlf to "
@@ -223,13 +216,13 @@ md5 () { /sbin/md5 "$@" | sed -e's/^MD5 (\(.*\)) = \([0-9a-f]*\)$/\2 \1/' | sort
 
 pdfmerge () {
 	if [ "$#" -lt 3 ]; then
-		echo "Usage: ${FUNCNAME[0]} output.pdf 1.pdf 2.pdf ... N.pdf" >&2
-		return 1
+		echo "Usage: ${FUNCNAME[0]} output.pdf 1.pdf 2.pdf ... N.pdf" >&2;
+		return 1;
 	fi
 
-	local outpdf="$1"
-	shift
-	gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile="${outpdf}" "$@"
+	local outpdf="$1";
+	shift;
+	gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile="${outpdf}" "$@";
 }
 
 pdfunprotect () {
@@ -238,8 +231,7 @@ pdfunprotect () {
 		return 1
 	fi
 
-	local tmppdf
-	tmppdf=$(mktemp -t "pdf")
+	local tmppdf=$(mktemp -t "pdf");
 	gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile="${tmppdf}" -f "$1"
 	if [ -s "${tmppdf}" ]; then
 		mv "${tmppdf}" "$1"
@@ -264,35 +256,36 @@ projfind () {
 	local extraargs=()
 	local searchpath=()
 
-		while test $# -gt 0; do
-			case $1 in
-				-*)
+	while test $# -gt 0; do
+		case $1 in
+			-*)
+				extraargs+=("$1")
+				;;
+			*)
+				if [ -e "$1" ]; then
+					searchpath+=(-f "$1" --)
+				else
 					extraargs+=("$1")
-					;;
-				*)
-					if [ -e "$1" ]; then
-						searchpath+=(-f "$1" --)
-					else
-						extraargs+=("$1")
-					fi
-					;;
-			esac
-			shift
-		done
+				fi
+				;;
+		esac
+		shift
+	done
 
-		if [ -z "${extraargs[0]}" ]; then
-			cat >&2 <<EOF
-	Usage: ${FUNCNAME[0]} [path ...] [-find-flags]
+	if [ -z "${extraargs[0]}" ]; then
+		cat >&2 <<EOF
+Usage: ${FUNCNAME[0]} [path ...] [-find-flags]
 
-	Recursive find of project folders that excludes .git and node_modules.
+Recursive find of project folders that excludes .git and node_modules.
 
-	See man find for more details.
+See man find for more details.
 
-	Command template:
-	find "PATH" -path '*/.git/*' -prune -o -path '*/node_modules/*' -prune -o FIND FLAGS
+Command template:
+find "PATH" -path '*/.git/*' -prune -o -path '*/node_modules/*' -prune -o FIND FLAGS
 EOF
-			return 1
-		fi
+		return 1
+	fi
+
 	# set -x
 	find "${searchpath[@]-./}" -path '*/.git/*' -prune \
 	  -o -path '*/node_modules/*' -prune \
@@ -301,9 +294,9 @@ EOF
 }
 
 projgrep () {
-	local extraargs=()
-	local searchpath=()
-	local pttrn
+	local extraargs=();
+	local searchpath=();
+	local pttrn;
 
 	while test $# -gt 0; do
 		case $1 in
@@ -419,10 +412,9 @@ tabname "$(hostname -s)"
 source /usr/local/etc/bash_completion.d/git-prompt.sh
 PS1="\\[$txtgrn$txtbld\\]\\h\\[$txtrst\\]:\\[$txtblu$txtbld\\]\\w\\[$txtpur\\]\$(__git_ps1)\\[$txtrst\\]\\[\$(__status_code)\\]\$\\[$txtrst\\] "
 
-# Use bash-completion, if available
-if [[ -r /usr/local/etc/profile.d/bash_completion.sh ]]; then
+if [ -s '/usr/local/opt/nvm/nvm.sh' ]; then
 	# shellcheck disable=SC1091
-	source /usr/local/etc/profile.d/bash_completion.sh
+	source '/usr/local/opt/nvm/nvm.sh';
 fi
 
 if command -v pyenv 1>/dev/null 2>&1; then
@@ -431,6 +423,12 @@ fi
 
 if command -v rbenv 1>/dev/null 2>&1; then
 	eval "$(rbenv init -)"
+fi
+
+# Use bash-completion, if available (after intializing the commands!)
+if [[ -r /usr/local/etc/profile.d/bash_completion.sh ]]; then
+	# shellcheck disable=SC1091
+	source /usr/local/etc/profile.d/bash_completion.sh
 fi
 
 # Only display system status if we are on a terminal
