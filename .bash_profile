@@ -409,8 +409,10 @@ osascript -e 'tell application "Terminal" to set current settings of selected ta
 tabname "$(hostname -s)"
 
 # shellcheck disable=SC1091
-source /usr/local/etc/bash_completion.d/git-prompt.sh
-PS1="\\[$txtgrn$txtbld\\]\\h\\[$txtrst\\]:\\[$txtblu$txtbld\\]\\w\\[$txtpur\\]\$(__git_ps1)\\[$txtrst\\]\\[\$(__status_code)\\]\$\\[$txtrst\\] "
+if [ -s '/usr/local/etc/bash_completion.d/git-prompt.sh' ]; then
+	source /usr/local/etc/bash_completion.d/git-prompt.sh;
+	PS1="\\[$txtgrn$txtbld\\]\\h\\[$txtrst\\]:\\[$txtblu$txtbld\\]\\w\\[$txtpur\\]\$(__git_ps1)\\[$txtrst\\]\\[\$(__status_code)\\]\$\\[$txtrst\\] "
+fi
 
 if [ -s '/usr/local/opt/nvm/nvm.sh' ]; then
 	# shellcheck disable=SC1091
