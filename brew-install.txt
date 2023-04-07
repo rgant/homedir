@@ -19,3 +19,4 @@ brew install awscli \
   shellcheck \
   tidy-html5 \
   yamllint
+brew install --cask google-cloud-sdk

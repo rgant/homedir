@@ -52,45 +52,45 @@ export SHELL_SESSION_HISTORY=1
 
 # Check to see if it's time to display system status again. Don't display on multiple recent shells
 __init_status () {
-	local watchfile="$HOME/.hrly_info";
-	local hr;
-	hr=$(date +"%F %H");
+	local watchfile="$HOME/.hrly_info"
+	local hr
+	hr=$(date +"%F %H")
 	# shellcheck disable=SC2143
 	if [[ ! -f "$watchfile" || ! $(grep "$hr" "$watchfile") ]]; then
-		echo "$hr" > "$watchfile";
-		sys_status;
+		echo "$hr" > "$watchfile"
+		sys_status
 	fi
 }
 
 # Trap to kill pending jobs on exit shell with ^d
 __kill_jobs () {
-	local theid;
+	local theid
 	for theid in $(jobs -p); do
-		local gid;
-		gid=$(ps -o pgid= -p "$theid");
-		pkill -g "$gid";
+		local gid
+		gid=$(ps -o pgid= -p "$theid")
+		pkill -g "$gid"
 	done
 }
 
 # Change prompt to red when last command errored
 __status_code () {
-	local status="$?";
+	local status="$?"
 	if [ $status != 0 ]; then
-		echo "$txtbld$txtred";
+		echo "$txtbld$txtred"
 	fi
 }
 
 bgc () {
-	local color;
+	local color
 	case $1 in
 		green)
 			color='{57825, 65021, 56540}'
 		;;
 		yellow|*)
-			color='{65535, 65232, 53533}';
+			color='{65535, 65232, 53533}'
 		;;
 	esac
-	osascript -e 'tell application "Terminal" to set background color of selected tab of the front window to '"${color}";
+	osascript -e 'tell application "Terminal" to set background color of selected tab of the front window to '"${color}"
 }
 
 # Create a data URL from a file
@@ -101,11 +101,12 @@ dataurl () {
 		return 1
 	fi
 
-	local mimeType=$(file -b --mime-type "$1");
+	local mimeType
+	mimeType=$(file -b --mime-type "$1")
 	if [[ $mimeType == text/* ]]; then
-		mimeType="${mimeType};charset=utf-8";
+		mimeType="${mimeType};charset=utf-8"
 	fi
-	echo "data:${mimeType};base64,$(openssl base64 -in "$1" | tr -d '\n')";
+	echo "data:${mimeType};base64,$(openssl base64 -in "$1" | tr -d '\n')"
 }
 
 develop () {
@@ -134,7 +135,7 @@ develop () {
 }
 
 diff () {
-	/usr/bin/diff --unified "$@" | colordiff | /usr/local/var/homebrew/linked/git/share/git-core/contrib/diff-highlight/diff-highlight;
+	/usr/bin/diff --unified "$@" | colordiff | /usr/local/var/homebrew/linked/git/share/git-core/contrib/diff-highlight/diff-highlight
 }
 
 dl () {
@@ -164,7 +165,7 @@ dl () {
 
 # Find Windows Line Endings files in git repo, ignoring any gitignored files.
 fixwin () {
-	local thefile;
+	local thefile
 	while IFS= read -r -d '' thefile; do
 		if file "$thefile" | grep -q 'ASCII text, with CRLF line terminators' && ! git check-ignore -q "$thefile"; then
 			echo -n "Converting $thefile from crlf to "
@@ -176,24 +177,24 @@ fixwin () {
 }
 
 gbranchgrep () {
-	local grepargs=();
-	local pathspecs=();
+	local grepargs=()
+	local pathspecs=()
 
 	while test $# -gt 0; do
 		case $1 in
 			--)
-				shift;
-				pathspecs=("$@");
+				shift
+				pathspecs=("$@")
 				;;
 			*)
-				grepargs+=("$1");
+				grepargs+=("$1")
 				;;
 		esac
 		shift
 	done
 
-	git for-each-ref --format='%(refname:short)' refs/heads/ | xargs -I '{}' git grep "${grepargs[@]}" '{}' -- "${pathspecs[@]}";
-};
+	git for-each-ref --format='%(refname:short)' refs/heads/ | xargs -I '{}' git grep "${grepargs[@]}" '{}' -- "${pathspecs[@]}"
+}
 
 gpip () {
 	PIP_REQUIRE_VIRTUALENV=false pip "$@"
@@ -216,13 +217,13 @@ md5 () { /sbin/md5 "$@" | sed -e's/^MD5 (\(.*\)) = \([0-9a-f]*\)$/\2 \1/' | sort
 
 pdfmerge () {
 	if [ "$#" -lt 3 ]; then
-		echo "Usage: ${FUNCNAME[0]} output.pdf 1.pdf 2.pdf ... N.pdf" >&2;
-		return 1;
+		echo "Usage: ${FUNCNAME[0]} output.pdf 1.pdf 2.pdf ... N.pdf" >&2
+		return 1
 	fi
 
-	local outpdf="$1";
-	shift;
-	gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile="${outpdf}" "$@";
+	local outpdf="$1"
+	shift
+	gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile="${outpdf}" "$@"
 }
 
 pdfunprotect () {
@@ -231,7 +232,8 @@ pdfunprotect () {
 		return 1
 	fi
 
-	local tmppdf=$(mktemp -t "pdf");
+	local tmppdf
+	tmppdf=$(mktemp -t "pdf")
 	gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile="${tmppdf}" -f "$1"
 	if [ -s "${tmppdf}" ]; then
 		mv "${tmppdf}" "$1"
@@ -239,16 +241,16 @@ pdfunprotect () {
 }
 
 pretty () {
-	local ext="${1-ts}";
+	local ext="${1-ts}"
 	if [ "$ext" = "html" ]; then
 		# Stupidly prettierx doesn't do htmlVoidTags when using the angular parser. So run it twice to get both.
 		# We also MUST include --parser=html to have htmlVoidTags take effect.
 		pbpaste | \
 			prettierx --config ~/Programming/.prettierrc.json --parser=angular --stdin-filepath="tmp.$ext" | \
 			prettierx --config ~/Programming/.prettierrc.json --parser=html --stdin-filepath="tmp.$ext" | \
-			pbcopy;
+			pbcopy
 	else
-		pbpaste | prettierx --config ~/Programming/.prettierrc.json --stdin-filepath="tmp.$ext" | pbcopy;
+		pbpaste | prettierx --config ~/Programming/.prettierrc.json --stdin-filepath="tmp.$ext" | pbcopy
 	fi
 }
 
@@ -289,14 +291,14 @@ EOF
 	# set -x
 	find "${searchpath[@]-./}" -path '*/.git/*' -prune \
 	  -o -path '*/node_modules/*' -prune \
-		-o "${extraargs[@]}";
+		-o "${extraargs[@]}"
 	# set +x
 }
 
 projgrep () {
-	local extraargs=();
-	local searchpath=();
-	local pttrn;
+	local extraargs=()
+	local searchpath=()
+	local pttrn
 
 	while test $# -gt 0; do
 		case $1 in
@@ -371,7 +373,7 @@ sys_status () {
 
 	echo -e "\\n${txtbld}Network${txtrst}"
 	hostname -f
-	ifconfig | grep inet | grep -v "::1\\| 127\\.\\| fe80:\\| detached\\| deprecated" | cut -d" " -f2 | sort;
+	ifconfig | grep inet | grep -v "::1\\| 127\\.\\| fe80:\\| detached\\| deprecated" | cut -d" " -f2 | sort
 
 	local cols
 	cols=$(tput cols)
@@ -385,13 +387,16 @@ sys_status () {
 tabname () {
 	# call with a value to set the name, call without value to set to previous name.
 	[ -n "$*" ] && terminal_tabname=$*
-	[ -n "$terminal_tabname" ] && printf "\\e]1;%s\\a" "$terminal_tabname";
+	[ -n "$terminal_tabname" ] && printf "\\e]1;%s\\a" "$terminal_tabname"
 }
 
 update_brew_install () {
 	local installed
 	installed=$(brew leaves | sed -e 's/^/  /' -e 's/$/ \\/' -e '$ s/ \\//' -e '1 s/^  //')
 	echo "brew install ${installed}" > "${HOME}/Programming/homedir/brew-install.txt"
+	local cask_installs
+	cask_installs=$(brew list --cask | sed -e 's/^/  /' -e 's/$/ \\/' -e '$ s/ \\//' -e '1 s/^  //')
+	echo "brew install --cask ${cask_installs}" >> "${HOME}/Programming/homedir/brew-install.txt"
 }
 
 update_npm_install () {
@@ -408,15 +413,15 @@ trap '__kill_jobs;shell_session_update' EXIT
 osascript -e 'tell application "Terminal" to set current settings of selected tab of the front window to settings set "Basic"'
 tabname "$(hostname -s)"
 
-# shellcheck disable=SC1091
 if [ -s '/usr/local/etc/bash_completion.d/git-prompt.sh' ]; then
-	source /usr/local/etc/bash_completion.d/git-prompt.sh;
+	# shellcheck disable=SC1091
+	source /usr/local/etc/bash_completion.d/git-prompt.sh
 	PS1="\\[$txtgrn$txtbld\\]\\h\\[$txtrst\\]:\\[$txtblu$txtbld\\]\\w\\[$txtpur\\]\$(__git_ps1)\\[$txtrst\\]\\[\$(__status_code)\\]\$\\[$txtrst\\] "
 fi
 
 if [ -s '/usr/local/opt/nvm/nvm.sh' ]; then
 	# shellcheck disable=SC1091
-	source '/usr/local/opt/nvm/nvm.sh';
+	source '/usr/local/opt/nvm/nvm.sh'
 fi
 
 if command -v pyenv 1>/dev/null 2>&1; then
@@ -425,6 +430,11 @@ fi
 
 if command -v rbenv 1>/dev/null 2>&1; then
 	eval "$(rbenv init -)"
+fi
+
+if [ -s '/usr/local/share/google-cloud-sdk/path.bash.inc' ]; then
+	# shellcheck disable=SC1091
+	source '/usr/local/share/google-cloud-sdk/path.bash.inc'
 fi
 
 # Use bash-completion, if available (after intializing the commands!)
