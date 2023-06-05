@@ -15,7 +15,7 @@ txtred=$(tput setaf 1)  # Red
 txtgrn=$(tput setaf 2)  # Green
 #txtylw=$(tput setaf 3) # Yellow
 txtblu=$(tput setaf 4)  # Blue
-txtpur=$(tput setaf 5)  # Purple
+#txtpur=$(tput setaf 5) # Purple
 #txtcyn=$(tput setaf 6) # Cyan
 #txtwht=$(tput setaf 7) # White
 txtrst=$(tput sgr0)     # Text reset
@@ -414,9 +414,10 @@ osascript -e 'tell application "Terminal" to set current settings of selected ta
 tabname "$(hostname -s)"
 
 if [ -s '/usr/local/etc/bash_completion.d/git-prompt.sh' ]; then
-	# shellcheck disable=SC1091
-	source /usr/local/etc/bash_completion.d/git-prompt.sh
-	PS1="\\[$txtgrn$txtbld\\]\\h\\[$txtrst\\]:\\[$txtblu$txtbld\\]\\w\\[$txtpur\\]\$(__git_ps1)\\[$txtrst\\]\\[\$(__status_code)\\]\$\\[$txtrst\\] "
+	# shellcheck disable=SC1090,SC1091,SC2086
+	source ~/bin/git-prompt.sh
+	PS1="\\[$txtgrn$txtbld\\]\\h\\[$txtrst\\]:\\[$txtblu$txtbld\\]\\w\\[$txtrst\\]\$(__git_ps1)\\[\$(__status_code)\\]\$\\[$txtrst\\] "
+	/usr/bin/diff --brief /usr/local/etc/bash_completion.d/git-prompt.sh ~/bin/git-prompt.sh
 fi
 
 if [ -s '/usr/local/opt/nvm/nvm.sh' ]; then

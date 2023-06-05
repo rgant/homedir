@@ -1,0 +1,57 @@
+#!/bin/bash
+
+set -e
+
+usage () {
+	SCRIPT=$(basename "$0");
+	if ( ! which "$SCRIPT" > /dev/null ); then
+		SCRIPT="$0";
+	fi
+
+	cat >&2 <<EOF
+Remote pbcopy Server
+
+Usage: $SCRIPT PORT
+
+Netcats text on PORT to pbcopy.
+PORT should be in the range 1025 - 65535.
+Using 58827 was randomly selected from the range using random.org.
+EOF
+
+	exit "$1";
+}
+
+if [ $# != 1 ]; then
+	echo "Missing PORT" >&2;
+	usage 2;
+fi
+
+PORT="$1";
+if ! [[ "$PORT" =~ ^[0-9]+$ ]]; then
+	echo "Bad Port Value: '$PORT'. Must be an int." >&2;
+	usage 3;
+fi
+
+if [ "$PORT" -lt 1025 ] || [ "$PORT" -gt 65535 ]; then
+	echo "Bad Port Value: '$PORT'. Not in range." >&2;
+	usage 4;
+fi
+
+# Do this after validating all of the parameters.
+
+# Requires brew install liblockfile.
+LOCK="$(basename "$0" '.sh').lock";
+dotlockfile -p -l -r 0 "$TMPDIR/$LOCK" || {
+	echo "$0 already running, cannot obtain lock." >&2;
+	exit 5;
+}
+#echo "Created Lockfile: $TMPDIR/$LOCK";
+
+finish () {
+	dotlockfile -p -u "$TMPDIR/$LOCK";
+}
+trap finish EXIT;
+
+while (true); do 
+	nc -l "$PORT" | pbcopy; 
+done

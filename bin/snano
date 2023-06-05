@@ -1,0 +1,102 @@
+#!/bin/bash
+
+set -e;
+
+real_path() {
+	if ( which realpath > /dev/null ); then
+		REAL_PATH=$(realpath "$1");
+	else
+		TARGET_FILE=$(basename "$1");
+		TARGET_DIR=$(dirname "$1");
+		cd "$TARGET_DIR";
+		REAL_DIR=$(pwd -P);
+		REAL_PATH="$REAL_DIR/$TARGET_FILE";		
+		cd "$OLDPWD";
+	fi
+
+	echo "$REAL_PATH";
+}
+
+KEEP_ORIG=true;
+
+usage() {
+	SCRIPT=$(basename "$0");
+	if ( ! which "$SCRIPT" > /dev/null ); then
+		SCRIPT="$0";
+	fi
+
+	cat >&2 <<EOF
+Usage: $SCRIPT [-ho] FILENAME
+
+Edits FILENAME as root using sudo nano FILENAME.
+Creates a backup folder structure based on the realpath to FILENAME in "~/backups".
+Original "before" file is copied if not currently backed up or with -o option.
+Copy of "after" file along with a "diff" file is made after edits.
+
+OPTIONS:
+	-h	Show this help text
+	-o	Overwrite Original backup of FILENAME
+EOF
+	exit "$1";
+}
+
+while getopts ":ho" OPT; do
+	case $OPT in
+		h)
+			usage 0;
+		;;
+		o)
+			echo "Replacing Original Before File" >&2;
+			KEEP_ORIG=false;
+			shift;
+		;;
+		\?)
+			echo "Invalid option: -$OPTARG" >&2;
+			usage 3;
+		;;
+	esac
+done
+
+# Check for required parameters
+if [ $# != 1 ]; then
+	echo "Missing Filename" >&2;
+	usage 2;
+fi
+
+if [ ! -f "$1" ]; then
+	# If the file doesn't exist, create directory structure & empty file
+	DIR=$(dirname "$1");
+	sudo mkdir -p "$DIR";
+	sudo touch "$1";
+fi
+
+WRKFILE=$(real_path "$1");
+BACKUPDIR="$HOME/backups$WRKFILE";
+
+mkdir -p "$BACKUPDIR";
+
+if ( $KEEP_ORIG ); then
+	if [ ! -f "$BACKUPDIR/before" ]; then
+		sudo cp -a "$WRKFILE" "$BACKUPDIR/before";
+	fi
+else
+	sudo rm -f "$BACKUPDIR/before";
+	sudo cp -a "$WRKFILE" "$BACKUPDIR/before";
+fi
+
+sudo nano "$WRKFILE";
+
+sudo rm -f "$BACKUPDIR/after";
+sudo cp -a "$WRKFILE" "$BACKUPDIR/after";
+
+GID=$(id -g);
+sudo chown "$UID:$GID" "$BACKUPDIR"/*;
+
+# Cleanup .nano_history ownership
+if [ -f "$HOME/.nano_history" -a ! -O "$HOME/.nano_history" ]; then
+	sudo chown "$UID:$GID" "$HOME/.nano_history";
+fi
+
+diff --unified "$BACKUPDIR/before" "$BACKUPDIR/after" > "$BACKUPDIR/diff";
+
+echo "Backups Stored: '$BACKUPDIR'" >&2;
