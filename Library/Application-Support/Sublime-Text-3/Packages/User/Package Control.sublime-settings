@@ -48,4 +48,8 @@
 		"Terraform",
 		"TypeScript",
 	],
+	"install_prereleases":
+	[
+		"Package Control",
+	],
 }
