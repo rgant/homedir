@@ -2,6 +2,7 @@ brew install awscli \
   bash-completion@2 \
   colordiff \
   diff-so-fancy \
+  dprint \
   enchant \
   firebase-cli \
   gawk \

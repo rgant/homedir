@@ -107,4 +107,5 @@
 	"word_wrap": false,
 	"dark_theme": "Adaptive.sublime-theme",
 	"light_theme": "Default Dark.sublime-theme",
+	"index_files": true,
 }
