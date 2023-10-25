@@ -1,13 +1,9 @@
 [
     {
-        "caption": "Clean Lessons",
+        "caption": "RegReplace: Clean Lessons",
         "command": "reg_replace",
         "args": {
             "replacements": [
-                "encode_ellipsis",
-                "encode_half_fraction",
-                "encode_double_quotation",
-                "encode_single_quotation",
                 "move_punctuation_inside_quotes",
                 "move_punctuation_outside_quotes",
                 "encode_right_single_quote",
@@ -18,10 +14,21 @@
         }
     },
     {
-        "caption": "Remove JSON Dangling Commas",
+        "caption": "RegReplace: Remove JSON Dangling Commas",
         "command": "reg_replace",
         "args": {
             "replacements": ["remove_json_dangling_commas"]
         }
-    }
+    },
+    {
+        "caption": "RegReplace: Clean Plaid Types",
+        "command": "reg_replace",
+        "args": {
+            "replacements": [
+                "remove_jsdoc_hints",
+                "remove_extra_spaces",
+                "unescape_apostrophes"
+            ]
+        }
+    },
 ]

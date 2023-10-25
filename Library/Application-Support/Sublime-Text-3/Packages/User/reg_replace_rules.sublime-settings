@@ -73,26 +73,6 @@
     // Example replacements
     "format": "3.0",
     "replacements": {
-        "encode_ellipsis": {
-            "find": "\\.\\.\\.+|…",
-            "replace": "\\u2026"
-        },
-        "encode_half_fraction": {
-            "find": " ?½",
-            "replace": "\\u00bd"
-        },
-        "encode_right_single_quote": {
-            "find": "'|’",
-            "replace": "\\u2019"
-        },
-        "encode_double_quotation": {
-            "find": "“(.*?)”",
-            "replace": "\\u201c\\1\\u201d"
-        },
-        "encode_single_quotation": {
-            "find": "‘(.*?)’",
-            "replace": "\\u201c\\1\\u201d"
-        },
         "find_long_lines": {
             "find": "^ *(\"\\w+\": )?+\".{143,}"
         },
@@ -115,6 +95,10 @@
         "non_ascii_chars": {
             "find": "[[:^ascii:]]+"
         },
+        "remove_jsdoc_hints": {
+            "find": "^ +\\* @\\w+.*\\n",
+            "replace": "",
+        },
         // remove_json_dangling_commas
         "remove_json_dangling_commas": {
             "find": ",([\\r\\n\\s]*)(\\]|\\})",
@@ -123,12 +107,16 @@
             "scope_filter": ["-string", "-comment"]
         },
         "remove_extra_spaces": {
-            "find": "(^ +\" *\\S.*? ) +",
-            "replace": "\\1"
+            "find": "(\\S)  +(\\S)",
+            "replace": "\\1 \\2"
         },
         "remove_trailing_spaces": {
             "find": "(^ +\" *\\S.*?) +</",
             "replace": "\\1</"
+        },
+        "unescape_apostrophes": {
+            "find": "\\\\(['\"])",
+            "replace": "\\1"
         },
     }
 }
