@@ -16,7 +16,6 @@ brew install awscli \
   nss \
   nvm \
   p7zip \
-  pipenv \
   pyenv \
   s3cmd \
   shellcheck \
