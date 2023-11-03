@@ -11,3 +11,7 @@
     display: -moz-box;
     visibility: visible;
 }
+
+.tab-icon-overlay {
+    z-index: -1;
+}
