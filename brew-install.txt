@@ -20,5 +20,6 @@ brew install awscli \
   s3cmd \
   shellcheck \
   tidy-html5 \
+  wakeonlan \
   yamllint
 brew install --cask google-cloud-sdk

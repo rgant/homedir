@@ -466,6 +466,7 @@ alias rm='rm -i'
 alias router_tunnel='ssh home -L 2000:router.home.robgant.com:80 -N'
 alias tsgrep="find ./ -name '*.ts' -print0 | xargs -0 grep"
 alias vnc_tunnel='ssh vnctunnel -N'
+alias wake_media_center='wakeonlan F0:18:98:EC:7C:70'
 
 # Personal Projects
 alias saas='develop ~/Programming/saas-api-boilerplate'
