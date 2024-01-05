@@ -9,7 +9,6 @@ user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false);
 user_pref("browser.newtabpage.activity-stream.showSponsored", false);
 user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false);
 user_pref("browser.newtabpage.enhanced", false);
-user_pref("browser.newtabpage.pinned", '[{"url":"https://old.reddit.com/","label":"old.reddit"},{"url":"https://digg.com/","label":"digg"},{"url":"https://tildes.net/","label":"tildes"},{"url":"https://news.ycombinator.com/best","label":"news.ycombinator"},{"url":"https://www.grubhub.com/"},{"url":"https://amazon.com","label":"amazon"},{"url":"https://www.usaa.com/"},{"url":"https://www.youtube.com/","label":"youtube"}]');
 user_pref("browser.search.openintab", true);
 user_pref("browser.search.widget.inNavBar", true);
 user_pref("browser.tabs.insertRelatedAfterCurrent", false);
