@@ -1,4 +1,6 @@
-npm install --global dockerfilelint \
+npm install --global prettier-plugin-void-html \
+  dockerfilelint \
   markdownlint-cli \
   npm \
+  prettier \
   prettierx
