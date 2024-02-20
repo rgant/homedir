@@ -1,4 +1,7 @@
 {
+    "code-block-style":  {
+        "style": "fenced"
+    },
     "line-length": {
         "code_blocks": false
     }

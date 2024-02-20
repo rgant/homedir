@@ -1,5 +1,4 @@
 #### Settings
-
 shopt -s cmdhist
 shopt -s globstar
 shopt -s histappend
@@ -176,7 +175,7 @@ fixwin () {
 	done <   <(find "${1-./}" -name '.git' -prune -o -name 'node_modules' -prune -o -name 'bower_components' -prune -o -type f -print0)
 }
 
-gbranchgrep () {
+gitbranchgrep () {
 	local grepargs=()
 	local pathspecs=()
 

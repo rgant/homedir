@@ -22,7 +22,7 @@
 	s = status
 	squash = "!f () { compareBranch=\"${1-main}\"; git rebase -i $(git merge-base \"$compareBranch\" HEAD); }; f"
 	stow = stash push --message
-	sw = switch
+	sw = "!f () { git switch \"$1\" || git switch --create \"$1\"; }; f"
 	toss = restore --source=HEAD --staged --worktree --
 	undo = restore # Throw away modification to a file
 [branch "main"]
