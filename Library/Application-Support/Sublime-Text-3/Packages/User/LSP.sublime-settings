@@ -1,13 +1,4 @@
 // Settings in here override those in "LSP/LSP.sublime-settings"
 {
-    "clients": {
-        "typescript": {
-            "disabled_capabilities": {
-                "hoverProvider": true,
-            },
-        },
-    },
-    "show_code_actions": "bulb",
-    "show_code_actions_in_hover": false,
     "show_diagnostics_panel_on_save": 4,
 }
