@@ -64,6 +64,7 @@
 [pull]
 	rebase = true
 [push]
+	autoSetupRemote = true
 	default = current
 [rebase]
 	autoSquash = true
@@ -72,3 +73,5 @@
 	name = J Rob Gant
 	email = rgant@alum.wpi.edu
 	signingkey = 72A92177D88C3014
+[log]
+	date = iso
