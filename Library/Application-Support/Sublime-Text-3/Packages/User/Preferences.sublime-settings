@@ -53,7 +53,7 @@
 	"highlight_modified_tabs": true,
 	"ignored_packages":
 	[
-		"Vintage",
+		"Vintage", // Don't enable "COMMAND MODE"
 	],
 	"ignored_words":
 	[
