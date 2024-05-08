@@ -59,6 +59,8 @@
 	defaultBranch = main
 [interactive]
 	diffFilter = diff-so-fancy --patch
+[log]
+	date = iso
 [protocol]
 	version = 2
 [pull]
@@ -73,5 +75,3 @@
 	name = J Rob Gant
 	email = rgant@alum.wpi.edu
 	signingkey = 72A92177D88C3014
-[log]
-	date = iso
