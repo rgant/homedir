@@ -20,14 +20,12 @@ txtblu=$(tput setaf 4)  # Blue
 txtrst=$(tput sgr0)     # Text reset
 
 GPG_TTY=$(tty)
-OPENSSL_PREFIX=$(brew --prefix openssl@1.1)
 # If I load a sub shell this prevents it from defaulting to 500 history items.
 export HISTCONTROL=ignoreboth:erasedups
 export HISTFILESIZE=50000
 export HISTSIZE=50000
 PROMPT_DIRTRIM=2 # Automatically trim long paths in the prompt (requires Bash 4.x)
 
-export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
 export CLICOLOR=1
 export EDITOR=nano
 export ESLINT_D_LOCAL_ESLINT_ONLY=true
@@ -53,7 +51,7 @@ export SHELL_SESSION_HISTORY=1
 __init_status () {
 	local watchfile="$HOME/.hrly_info"
 	local hr
-	hr=$(date +"%F %H")
+	hr=$(date +'%F %H')
 	# shellcheck disable=SC2143
 	if [[ ! -f "$watchfile" || ! $(grep "$hr" "$watchfile") ]]; then
 		echo "$hr" > "$watchfile"
@@ -134,7 +132,7 @@ develop () {
 }
 
 diff () {
-	/usr/bin/diff --unified "$@" | colordiff | /usr/local/var/homebrew/linked/git/share/git-core/contrib/diff-highlight/diff-highlight
+	/usr/bin/diff --unified "$@" | colordiff | "${HOMEBREW_PREFIX}/share/git-core/contrib/diff-highlight/diff-highlight"
 }
 
 dl () {
@@ -232,24 +230,10 @@ pdfunprotect () {
 	fi
 
 	local tmppdf
-	tmppdf=$(mktemp -t "pdf")
+	tmppdf=$(mktemp -t 'pdf')
 	gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile="${tmppdf}" -f "$1"
 	if [ -s "${tmppdf}" ]; then
 		mv "${tmppdf}" "$1"
-	fi
-}
-
-pretty () {
-	local ext="${1-ts}"
-	if [ "$ext" = "html" ]; then
-		# Stupidly prettierx doesn't do htmlVoidTags when using the angular parser. So run it twice to get both.
-		# We also MUST include --parser=html to have htmlVoidTags take effect.
-		pbpaste | \
-			prettierx --config ~/Programming/.prettierrc.json --parser=angular --stdin-filepath="tmp.$ext" | \
-			prettierx --config ~/Programming/.prettierrc.json --parser=html --stdin-filepath="tmp.$ext" | \
-			pbcopy
-	else
-		pbpaste | prettierx --config ~/Programming/.prettierrc.json --stdin-filepath="tmp.$ext" | pbcopy
 	fi
 }
 
@@ -335,7 +319,7 @@ EOF
 # Start an HTTP server from a directory, optionally specifying the port
 servhttp () {
 	local extraargs=()
-	local port="8000"
+	local port='8000'
 
 	while test $# -gt 0; do
 		case $1 in
@@ -349,7 +333,7 @@ servhttp () {
 		shift
 	done
 
-	if [[ ! "${extraargs[*]}" =~ "-h" ]]; then
+	if [[ ! "${extraargs[*]}" =~ '-h' ]]; then
 		sleep 1 && open "http://localhost:${port}/" &
 	fi
 	python3 -m http.server "${extraargs[@]}" "$port"
@@ -368,11 +352,11 @@ sys_status () {
 	w
 
 	echo -e "\\n${txtbld}Disk Usage${txtrst}"
-	df -h | grep "^Filesystem\\|^/" | grep --color=always " \\|9[0-9]%\\|100%"
+	df -h | grep '^Filesystem\|^/' | grep --color=always ' \|9[0-9]%\|100%'
 
 	echo -e "\\n${txtbld}Network${txtrst}"
 	hostname -f
-	ifconfig | grep inet | grep -v "::1\\| 127\\.\\| fe80:\\| detached\\| deprecated" | cut -d" " -f2 | sort
+	ifconfig | grep inet | grep -v '::1\| 127\.\| fe80:\| detached\| deprecated' | cut -d' ' -f2 | sort
 
 	local cols
 	cols=$(tput cols)
@@ -386,7 +370,7 @@ sys_status () {
 tabname () {
 	# call with a value to set the name, call without value to set to previous name.
 	[ -n "$*" ] && terminal_tabname=$*
-	[ -n "$terminal_tabname" ] && printf "\\e]1;%s\\a" "$terminal_tabname"
+	[ -n "$terminal_tabname" ] && printf '\e]1;%s\a' "$terminal_tabname"
 }
 
 update_brew_install () {
@@ -412,16 +396,21 @@ trap '__kill_jobs;shell_session_update' EXIT
 osascript -e 'tell application "Terminal" to set current settings of selected tab of the front window to settings set "Basic"'
 tabname "$(hostname -s)"
 
-if [ -s '/usr/local/etc/bash_completion.d/git-prompt.sh' ]; then
+# Homebrew
+if [[ -f /opt/homebrew/bin/brew ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+if [ -s "${HOMEBREW_PREFIX}/etc/bash_completion.d/git-prompt.sh" ]; then
 	# shellcheck disable=SC1090,SC1091,SC2086
 	source ~/bin/git-prompt.sh
 	PS1="\\[$txtgrn$txtbld\\]\\h\\[$txtrst\\]:\\[$txtblu$txtbld\\]\\w\\[$txtrst\\]\$(__git_ps1)\\[\$(__status_code)\\]\$\\[$txtrst\\] "
-	/usr/bin/diff --brief /usr/local/etc/bash_completion.d/git-prompt.sh ~/bin/git-prompt.sh
+	/usr/bin/diff --brief "${HOMEBREW_PREFIX}/etc/bash_completion.d/git-prompt.sh" ~/bin/git-prompt.sh
 fi
 
-if [ -s '/usr/local/opt/nvm/nvm.sh' ]; then
+if [ -s "${HOMEBREW_PREFIX}/opt/nvm/nvm.sh" ]; then
 	# shellcheck disable=SC1091
-	source '/usr/local/opt/nvm/nvm.sh'
+	source "${HOMEBREW_PREFIX}/opt/nvm/nvm.sh"
 fi
 
 if command -v pyenv 1>/dev/null 2>&1; then
@@ -432,15 +421,16 @@ if command -v rbenv 1>/dev/null 2>&1; then
 	eval "$(rbenv init -)"
 fi
 
-if [ -s '/usr/local/share/google-cloud-sdk/path.bash.inc' ]; then
+if [ -s "${HOMEBREW_PREFIX}/share/google-cloud-sdk/path.bash.inc" ]; then
 	# shellcheck disable=SC1091
-	source '/usr/local/share/google-cloud-sdk/path.bash.inc'
+	source "${HOMEBREW_PREFIX}/share/google-cloud-sdk/path.bash.inc"
 fi
 
 # Use bash-completion, if available (after intializing the commands!)
-if [[ -r /usr/local/etc/profile.d/bash_completion.sh ]]; then
+if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
+	export BASH_COMPLETION_COMPAT_DIR="${HOMEBREW_PREFIX}/etc/bash_completion.d"
 	# shellcheck disable=SC1091
-	source /usr/local/etc/profile.d/bash_completion.sh
+	source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
 fi
 
 # Only display system status if we are on a terminal
@@ -451,13 +441,13 @@ alias cpu_temp='sudo powermetrics | grep "CPU die temperature"'
 alias df='df -h'
 # alias diff='diff --unified'
 alias du='du -h'
-alias funcs="compgen -A function"
+alias funcs='compgen -A function'
 alias headers='curl --verbose --silent 1> /dev/null'
 alias htmlgrep="find ./ -name '*.html' -print0 | xargs -0 grep"
 alias modem_tunnel='ssh home -L 2000:modem.home.robgant.com:80 -N'
 alias mv='mv -i'
 alias myip='dig +short myip.opendns.com @resolver1.opendns.com'
-alias npmg="npm --location=global"
+alias npmg='npm --location=global'
 alias phpgrep="find ./ -name '*.php' -print0 | xargs -0 grep"
 alias pkgfix='npx sort-package-json && npx package-json-validator --warnings --recommendations'
 alias pygrep="find ./ -name '*.py' -print0 | xargs -0 grep"
