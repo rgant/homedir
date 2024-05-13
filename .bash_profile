@@ -384,7 +384,7 @@ update_brew_install () {
 
 update_npm_install () {
 	local installed
-	installed=$(npm list --global --depth=0 --parseable | sed -e '1d' -e 's|.*/||' -e 's/^/  /' -e 's/$/ \\/' -e '$ s/ \\//' -e '2 s/^  //')
+	installed=$(npm list --global --depth=0 --parseable | sed -e '1d' -e 's|.*/node_modules/||' -e 's/^/  /' -e 's/$/ \\/' -e '$ s/ \\//' -e '2 s/^  //')
 	echo "npm install --global ${installed}" > "${HOME}/Programming/homedir/npm-global-install.txt"
 }
 

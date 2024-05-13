@@ -1,4 +1,4 @@
-npm install --global prettier-plugin-void-html \
+npm install --global @awmottaz/prettier-plugin-void-html \
   dockerfilelint \
   markdownlint-cli \
   npm \
