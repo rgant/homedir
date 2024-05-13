@@ -2,5 +2,6 @@ npm install --global @awmottaz/prettier-plugin-void-html \
   dockerfilelint \
   markdownlint-cli \
   npm \
+  prettier-plugin-multiline-arrays \
   prettier-plugin-sh \
   prettier
