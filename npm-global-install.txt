@@ -2,4 +2,5 @@ npm install --global @awmottaz/prettier-plugin-void-html \
   dockerfilelint \
   markdownlint-cli \
   npm \
+  prettier-plugin-sh \
   prettier

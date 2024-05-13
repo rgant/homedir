@@ -8,16 +8,16 @@ stty werase undef
 bind '\C-w:unix-filename-rubout'
 
 #txtund=$(tput sgr 0 1) # Underline
-txtbld=$(tput bold)     # Bold
+txtbld=$(tput bold) # Bold
 #txtblk=$(tput setaf 0) # Black
-txtred=$(tput setaf 1)  # Red
-txtgrn=$(tput setaf 2)  # Green
+txtred=$(tput setaf 1) # Red
+txtgrn=$(tput setaf 2) # Green
 #txtylw=$(tput setaf 3) # Yellow
-txtblu=$(tput setaf 4)  # Blue
+txtblu=$(tput setaf 4) # Blue
 #txtpur=$(tput setaf 5) # Purple
 #txtcyn=$(tput setaf 6) # Cyan
 #txtwht=$(tput setaf 7) # White
-txtrst=$(tput sgr0)     # Text reset
+txtrst=$(tput sgr0) # Text reset
 
 GPG_TTY=$(tty)
 # If I load a sub shell this prevents it from defaulting to 500 history items.
@@ -48,7 +48,7 @@ export SHELL_SESSION_HISTORY=1
 #### Functions
 
 # Check to see if it's time to display system status again. Don't display on multiple recent shells
-__init_status () {
+__init_status() {
 	local watchfile="$HOME/.hrly_info"
 	local hr
 	hr=$(date +'%F %H')
@@ -60,7 +60,7 @@ __init_status () {
 }
 
 # Trap to kill pending jobs on exit shell with ^d
-__kill_jobs () {
+__kill_jobs() {
 	local theid
 	for theid in $(jobs -p); do
 		local gid
@@ -70,29 +70,29 @@ __kill_jobs () {
 }
 
 # Change prompt to red when last command errored
-__status_code () {
+__status_code() {
 	local status="$?"
 	if [ $status != 0 ]; then
 		echo "$txtbld$txtred"
 	fi
 }
 
-bgc () {
+bgc() {
 	local color
 	case $1 in
 		green)
 			color='{57825, 65021, 56540}'
-		;;
-		yellow|*)
+			;;
+		yellow | *)
 			color='{65535, 65232, 53533}'
-		;;
+			;;
 	esac
 	osascript -e 'tell application "Terminal" to set background color of selected tab of the front window to '"${color}"
 }
 
 # Create a data URL from a file
 # From: https://github.com/mathiasbynens/dotfiles/blob/8cf8c1c8315a6349224eeb3ecc033d469456025f/.functions#L69
-dataurl () {
+dataurl() {
 	if [ "$#" -ne 1 ]; then
 		echo "Usage: ${FUNCNAME[0]} /path/to/datafile" >&2
 		return 1
@@ -106,19 +106,13 @@ dataurl () {
 	echo "data:${mimeType};base64,$(openssl base64 -in "$1" | tr -d '\n')"
 }
 
-develop () {
+develop() {
 	if [ "$#" -ne 1 ]; then
 		echo "Usage: ${FUNCNAME[0]} /path/to/project" >&2
 		return 1
 	fi
 
 	cd "$1" || return 2
-#	tmux new-session \; \
-#		send-keys '_develop' C-m \; \
-#		split-window -h
-#}
-#
-#_develop () {
 	tabname "$(basename "$PWD")"
 	if [ -f .nvmrc ]; then
 		nvm use
@@ -131,11 +125,11 @@ develop () {
 	git status
 }
 
-diff () {
+diff() {
 	/usr/bin/diff --unified "$@" | colordiff | "${HOMEBREW_PREFIX}/share/git-core/contrib/diff-highlight/diff-highlight"
 }
 
-dl () {
+dl() {
 	if [ "$#" -lt 1 ]; then
 		echo "Usage: ${FUNCNAME[0]} URL_TO_DOWNLOAD [DIR_OR_NAME_TO_SAVE_AS]" >&2
 		return 1
@@ -161,7 +155,7 @@ dl () {
 }
 
 # Find Windows Line Endings files in git repo, ignoring any gitignored files.
-fixwin () {
+fixwin() {
 	local thefile
 	while IFS= read -r -d '' thefile; do
 		if file "$thefile" | grep -q 'ASCII text, with CRLF line terminators' && ! git check-ignore -q "$thefile"; then
@@ -169,11 +163,11 @@ fixwin () {
 			sed -e $'s/\r$//' -i '' "$thefile"
 			echo 'lf'
 		fi
-	# <() is command substitution when a pipe cannot be used.
-	done <   <(find "${1-./}" -name '.git' -prune -o -name 'node_modules' -prune -o -name 'bower_components' -prune -o -type f -print0)
+		# <() is command substitution when a pipe cannot be used.
+	done < <(find "${1-./}" -name '.git' -prune -o -name 'node_modules' -prune -o -name 'bower_components' -prune -o -type f -print0)
 }
 
-gitbranchgrep () {
+gitbranchgrep() {
 	local grepargs=()
 	local pathspecs=()
 
@@ -193,11 +187,11 @@ gitbranchgrep () {
 	git for-each-ref --format='%(refname:short)' refs/heads/ | xargs -I '{}' git grep "${grepargs[@]}" '{}' -- "${pathspecs[@]}"
 }
 
-gpip () {
+gpip() {
 	PIP_REQUIRE_VIRTUALENV=false pip "$@"
 }
 
-man () {
+man() {
 	if [ "$#" -lt 1 ]; then
 		echo "Usage: ${FUNCNAME[0]} [section number] command_name" >&2
 		return 1
@@ -210,9 +204,9 @@ man () {
 	fi
 }
 
-md5 () { /sbin/md5 "$@" | sed -e's/^MD5 (\(.*\)) = \([0-9a-f]*\)$/\2 \1/' | sort; }
+md5() { /sbin/md5 "$@" | sed -e's/^MD5 (\(.*\)) = \([0-9a-f]*\)$/\2 \1/' | sort; }
 
-pdfmerge () {
+pdfmerge() {
 	if [ "$#" -lt 3 ]; then
 		echo "Usage: ${FUNCNAME[0]} output.pdf 1.pdf 2.pdf ... N.pdf" >&2
 		return 1
@@ -223,7 +217,7 @@ pdfmerge () {
 	gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile="${outpdf}" "$@"
 }
 
-pdfunprotect () {
+pdfunprotect() {
 	if [ "$#" -ne 1 ]; then
 		echo "Usage: ${FUNCNAME[0]} tounlock.pdf" >&2
 		return 1
@@ -237,7 +231,7 @@ pdfunprotect () {
 	fi
 }
 
-projfind () {
+projfind() {
 	local extraargs=()
 	local searchpath=()
 
@@ -258,7 +252,7 @@ projfind () {
 	done
 
 	if [ -z "${extraargs[0]}" ]; then
-		cat >&2 <<EOF
+		cat >&2 << EOF
 Usage: ${FUNCNAME[0]} [path ...] [-find-flags]
 
 Recursive find of project folders that excludes .git and node_modules.
@@ -273,12 +267,12 @@ EOF
 
 	# set -x
 	find "${searchpath[@]-./}" -path '*/.git/*' -prune \
-	  -o -path '*/node_modules/*' -prune \
+		-o -path '*/node_modules/*' -prune \
 		-o "${extraargs[@]}"
 	# set +x
 }
 
-projgrep () {
+projgrep() {
 	local extraargs=()
 	local searchpath=()
 	local pttrn
@@ -300,7 +294,7 @@ projgrep () {
 	done
 
 	if [ -z "${pttrn}" ]; then
-		cat >&2 <<EOF
+		cat >&2 << EOF
 Usage: ${FUNCNAME[0]} [-grep --flags] [pattern] [path ...]
 
 Recursive grep search of project folders that excludes .git and node_modules.
@@ -317,7 +311,7 @@ EOF
 }
 
 # Start an HTTP server from a directory, optionally specifying the port
-servhttp () {
+servhttp() {
 	local extraargs=()
 	local port='8000'
 
@@ -339,14 +333,14 @@ servhttp () {
 	python3 -m http.server "${extraargs[@]}" "$port"
 }
 
-ssh () {
+ssh() {
 	osascript -e 'tell application "Terminal" to set current settings of selected tab of the front window to settings set "SSH"'
 	/usr/bin/ssh "$@"
 	tabname
 	osascript -e 'tell application "Terminal" to set current settings of selected tab of the front window to settings set "Basic"'
 }
 
-sys_status () {
+sys_status() {
 	### System Status
 	echo -e "${txtbld}Uptime${txtrst}"
 	w
@@ -367,13 +361,13 @@ sys_status () {
 }
 
 # Set MacOS Terminal.app tab name
-tabname () {
+tabname() {
 	# call with a value to set the name, call without value to set to previous name.
 	[ -n "$*" ] && terminal_tabname=$*
 	[ -n "$terminal_tabname" ] && printf '\e]1;%s\a' "$terminal_tabname"
 }
 
-update_brew_install () {
+update_brew_install() {
 	local installed
 	installed=$(brew leaves | sed -e 's/^/  /' -e 's/$/ \\/' -e '$ s/ \\//' -e '1 s/^  //')
 	echo "brew install ${installed}" > "${HOME}/Programming/homedir/brew-install.txt"
@@ -382,7 +376,7 @@ update_brew_install () {
 	echo "brew install --cask ${cask_installs}" >> "${HOME}/Programming/homedir/brew-install.txt"
 }
 
-update_npm_install () {
+update_npm_install() {
 	local installed
 	installed=$(npm list --global --depth=0 --parseable | sed -e '1d' -e 's|.*/node_modules/||' -e 's/^/  /' -e 's/$/ \\/' -e '$ s/ \\//' -e '2 s/^  //')
 	echo "npm install --global ${installed}" > "${HOME}/Programming/homedir/npm-global-install.txt"
@@ -398,7 +392,7 @@ tabname "$(hostname -s)"
 
 # Homebrew
 if [[ -f /opt/homebrew/bin/brew ]]; then
-  eval "$(/opt/homebrew/bin/brew shellenv)"
+	eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
 if [ -s "${HOMEBREW_PREFIX}/etc/bash_completion.d/git-prompt.sh" ]; then
@@ -413,11 +407,11 @@ if [ -s "${HOMEBREW_PREFIX}/opt/nvm/nvm.sh" ]; then
 	source "${HOMEBREW_PREFIX}/opt/nvm/nvm.sh"
 fi
 
-if command -v pyenv 1>/dev/null 2>&1; then
+if command -v pyenv 1> /dev/null 2>&1; then
 	eval "$(pyenv init -)"
 fi
 
-if command -v rbenv 1>/dev/null 2>&1; then
+if command -v rbenv 1> /dev/null 2>&1; then
 	eval "$(rbenv init -)"
 fi
 
