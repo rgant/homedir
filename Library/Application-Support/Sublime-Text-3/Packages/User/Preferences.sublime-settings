@@ -42,6 +42,7 @@
 	"auto_complete_delay": 200,
 	"auto_find_in_selection": false,
 	"bold_folder_labels": true,
+	"caret_style": "phase",
 	"color_scheme": "Packages/User/Rob.tmTheme",
 	"default_line_ending": "unix",
 	"ensure_newline_at_eof_on_save": true,
@@ -90,6 +91,7 @@
 	"match_brackets_square": false,
 	"match_tags": true,
 	"mdpopups.disable": true,
+	"native_tabs": "preferred",
 	"preview_on_click": false,
 	"remember_full_screen": true,
 	"rulers":
@@ -107,5 +109,5 @@
 	"word_wrap": false,
 	"dark_theme": "Adaptive.sublime-theme",
 	"light_theme": "Default Dark.sublime-theme",
-	"index_files": true,
+	"index_files": false,
 }

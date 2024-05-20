@@ -45,7 +45,6 @@
 		"SublimeLinter-shellcheck",
 		"SublimeLinter-stylelint",
 		"Terraform",
-		"TypeScript",
 		"Wrap Plus",
 	],
 	"install_prereleases":

@@ -3,5 +3,7 @@ npm install --global @awmottaz/prettier-plugin-void-html \
   markdownlint-cli \
   npm \
   prettier-plugin-multiline-arrays \
+  prettier-plugin-organize-attributes \
   prettier-plugin-sh \
-  prettier
+  prettier \
+  yarn
