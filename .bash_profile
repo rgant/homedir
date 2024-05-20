@@ -432,8 +432,10 @@ test -t 0 && __init_status
 
 alias cp='cp -i'
 alias cpu_temp='sudo powermetrics | grep "CPU die temperature"'
+alias dc='cd ~/Documents'
 alias df='df -h'
 # alias diff='diff --unified'
+alias dl='cd ~/Downloads'
 alias du='du -h'
 alias funcs='compgen -A function'
 alias headers='curl --verbose --silent 1> /dev/null'
@@ -442,6 +444,7 @@ alias modem_tunnel='ssh home -L 2000:modem.home.robgant.com:80 -N'
 alias mv='mv -i'
 alias myip='dig +short myip.opendns.com @resolver1.opendns.com'
 alias npmg='npm --location=global'
+alias path='echo -e ${PATH//:/\\n}'
 alias phpgrep="find ./ -name '*.php' -print0 | xargs -0 grep"
 alias pkgfix='npx sort-package-json && npx package-json-validator --warnings --recommendations'
 alias pygrep="find ./ -name '*.py' -print0 | xargs -0 grep"
@@ -450,6 +453,8 @@ alias router_tunnel='ssh home -L 2000:router.home.robgant.com:80 -N'
 alias tsgrep="find ./ -name '*.ts' -print0 | xargs -0 grep"
 alias vnc_tunnel='ssh vnctunnel -N'
 alias wake_media_center='wakeonlan F0:18:98:EC:7C:70'
+alias urldecode='python3 -c "import sys,urllib.parse;print(urllib.parse.unquote(sys.argv[1]))"'
+alias urlencode='python3 -c "import sys,urllib.parse;print(urllib.parse.quote_plus(sys.argv[1]))"'
 
 # Personal Projects
 alias saas='develop ~/Programming/saas-api-boilerplate'

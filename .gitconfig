@@ -1,6 +1,6 @@
 [alias]
 	a = add
-	alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\\t => \\2/' | sort
+	alias = !git config --get-regexp alias | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\\t => \\2/' | sort
 	ap = add --patch
 	br = branch
 	c = commit
@@ -8,28 +8,34 @@
 	ch = checkout
 	cm = commit --message
 	count = "!f () { compareBranch=\"${1-main}\"; git rev-list --count HEAD \"^$compareBranch\"; }; f"
-	cq = "!f () { msg=\"${1?message required}\"; git commit --message \"squash! $msg\"; }; f"
 	d = diff --ignore-space-change
 	del = restore --staged # Unstage a file (opposite of add)
 	ds = diff --staged
 	enforce = push --force-with-lease
+	go = "!f () { git switch \"$1\" || git switch --create \"$1\"; }; f"
 	gone = "!git br -vv | grep 'gone'"
 	grepbrs = "!f () { where=\"${2-./}\"; git for-each-ref --format='%(refname:short)' refs/heads/ | xargs -I '{}' git grep \"$1\" '{}' -- \"$where\"; }; f"
 	l = log --graph --all --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset'
 	ll = log --stat --abbrev-commit
 	main = switch main
 	master = switch master
+	remotes = remote --verbose
 	s = status
-	squash = "!f () { compareBranch=\"${1-main}\"; git rebase -i $(git merge-base \"$compareBranch\" HEAD); }; f"
 	stow = stash push --message
-	sw = "!f () { git switch \"$1\" || git switch --create \"$1\"; }; f"
+	sw = switch
 	toss = restore --source=HEAD --staged --worktree --
 	undo = restore # Throw away modification to a file
+[apply]
+	whitespace = fix # Detect whitespace errors when applying a patch.
 [branch "main"]
 	mergeoptions = --ff-only
 	rebase = true
 [color]
 	ui = true
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
 [color "diff"]
 	meta = "magenta"
 [color "diff-highlight"]
@@ -41,9 +47,14 @@
 	gpgsign = true
 	template = ~/.gitmessage
 [core]
+	attributesfile = ~/.gitattributes
 	excludesfile = ~/.gitignore
 	pager = diff-so-fancy | less --tabs=4 -RFX
 	quotepath = false
+	# Treat spaces before tabs and all kinds of trailing whitespace as an error.
+	# [default] trailing-space: looks for spaces at the end of a line
+	# [default] space-before-tab: looks for spaces before tabs at the beginning of a line
+	whitespace = space-before-tab,-indent-with-non-tab,trailing-space
 [diff]
 	algorithm = histogram
 	colorMoved = zebra
