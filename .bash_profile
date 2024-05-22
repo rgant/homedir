@@ -433,6 +433,8 @@ fi
 test -t 0 && __init_status
 
 # check that my corrected script is still corrected
+# https://gist.github.com/rgant/2bd867c05c534a44524c59a6da7bb29b
+# https://apple.stackexchange.com/a/314363/55422
 echo -n "$txtbld$txtred$(/usr/bin/diff --brief /etc/bashrc_Apple_Terminal backups/private/etc/bashrc_Apple_Terminal/after)$txtrst"
 
 alias cp='cp -i'
