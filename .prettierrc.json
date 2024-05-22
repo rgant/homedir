@@ -9,11 +9,22 @@
   ],
   "bracketSameLine": false,
   "bracketSpacing": true,
+  "dataTypeCase": "lower",
+  "denseOperators": false,
   "embeddedLanguageFormatting": "auto",
   "endOfLine": "lf",
+  "expressionWidth": 50,
+  "functionCase": "preserve",
   "htmlWhitespaceSensitivity": "css",
+  "identifierCase": "preserve",
+  "indentStyle": "standard",
   "jsxSingleQuote": false,
+  "keywordCase": "upper",
+  "language": "postgresql",
+  "linesBetweenQueries": 1,
+  "logicalOperatorNewline": "before",
   "multilineArraysWrapThreshold": 3,
+  "newlineBeforeSemicolon": false,
   "overrides": [
     {
       "files": [
@@ -30,9 +41,11 @@
   ],
   "plugins": [
     "/opt/homebrew/lib/node_modules/@awmottaz/prettier-plugin-void-html/prettier-plugin-void-html.js",
+    "/opt/homebrew/lib/node_modules/prettier-plugin-embed/dist/index.js",
     "/opt/homebrew/lib/node_modules/prettier-plugin-multiline-arrays/dist/index.js",
     "/opt/homebrew/lib/node_modules/prettier-plugin-organize-attributes/lib/index.js",
-    "/opt/homebrew/lib/node_modules/prettier-plugin-sh/lib/index.js"
+    "/opt/homebrew/lib/node_modules/prettier-plugin-sh/lib/index.js",
+    "/opt/homebrew/lib/node_modules/prettier-plugin-sql/lib/index.js"
   ],
   "printWidth": 140,
   "proseWrap": "always",

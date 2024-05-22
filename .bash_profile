@@ -40,6 +40,7 @@ export NPM_CONFIG_SAVE=1
 export PATH="/Users/rgant/bin:/Users/rgant/.local/bin:${PATH}:."
 export PIP_REQUIRE_VIRTUALENV=true
 # export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+export PYENCHANT_LIBRARY_PATH=/opt/homebrew/lib/libenchant-2.2.dylib
 export PYTHONSTARTUP="$HOME/.pythonrc.py"
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=${OPENSSL_PREFIX}"
 # Force per shell history files from /etc/bashrc_Apple_Terminal even though we have histappend enabled.
@@ -447,14 +448,15 @@ alias npmg='npm --location=global'
 alias path='echo -e ${PATH//:/\\n}'
 alias phpgrep="find ./ -name '*.php' -print0 | xargs -0 grep"
 alias pkgfix='npx sort-package-json && npx package-json-validator --warnings --recommendations'
+alias prettier='prettier --ignore-path='' --config ~/Programming/.prettierrc.json'
 alias pygrep="find ./ -name '*.py' -print0 | xargs -0 grep"
 alias rm='rm -i'
 alias router_tunnel='ssh home -L 2000:router.home.robgant.com:80 -N'
 alias tsgrep="find ./ -name '*.ts' -print0 | xargs -0 grep"
-alias vnc_tunnel='ssh vnctunnel -N'
-alias wake_media_center='wakeonlan F0:18:98:EC:7C:70'
 alias urldecode='python3 -c "import sys,urllib.parse;print(urllib.parse.unquote(sys.argv[1]))"'
 alias urlencode='python3 -c "import sys,urllib.parse;print(urllib.parse.quote_plus(sys.argv[1]))"'
+alias vnc_tunnel='ssh vnctunnel -N'
+alias wake_media_center='wakeonlan F0:18:98:EC:7C:70'
 
 # Personal Projects
 alias saas='develop ~/Programming/saas-api-boilerplate'
