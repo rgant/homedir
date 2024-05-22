@@ -1,7 +1,7 @@
 #### Settings
 shopt -s cmdhist
 shopt -s globstar
-shopt -s histappend
+# shopt -s histappend # Fancy bashrc_Apple_Terminal already handles this.
 
 # Set C-w to delete words based on unix filename rules
 stty werase undef
@@ -25,6 +25,7 @@ export HISTCONTROL=ignoreboth:erasedups
 export HISTFILESIZE=50000
 export HISTSIZE=50000
 PROMPT_DIRTRIM=2 # Automatically trim long paths in the prompt (requires Bash 4.x)
+PROMPT_COMMAND=('history -a' "${PROMPT_COMMAND[@]}") # Fancy bashrc_Apple_Terminal makes this safe for multiple Terminals
 
 export CLICOLOR=1
 export EDITOR=nano
@@ -39,7 +40,6 @@ export NODE_OPTIONS='--max-old-space-size=8192'
 export NPM_CONFIG_SAVE=1
 export PATH="/Users/rgant/bin:/Users/rgant/.local/bin:${PATH}:."
 export PIP_REQUIRE_VIRTUALENV=true
-# export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 export PYENCHANT_LIBRARY_PATH=/opt/homebrew/lib/libenchant-2.2.dylib
 export PYTHONSTARTUP="$HOME/.pythonrc.py"
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=${OPENSSL_PREFIX}"
