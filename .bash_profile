@@ -397,10 +397,11 @@ if [[ -f /opt/homebrew/bin/brew ]]; then
 fi
 
 if [ -s "${HOMEBREW_PREFIX}/etc/bash_completion.d/git-prompt.sh" ]; then
+	# Something else is already sourcing "${HOMEBREW_PREFIX}/etc/bash_completion.d/git-prompt.sh" so this does nothing
 	# shellcheck disable=SC1090,SC1091,SC2086
-	source ~/bin/git-prompt.sh
+	# source ~/bin/git-prompt.sh
 	PS1="\\[$txtgrn$txtbld\\]\\h\\[$txtrst\\]:\\[$txtblu$txtbld\\]\\w\\[$txtrst\\]\$(__git_ps1)\\[\$(__status_code)\\]\$\\[$txtrst\\] "
-	/usr/bin/diff --brief "${HOMEBREW_PREFIX}/etc/bash_completion.d/git-prompt.sh" ~/bin/git-prompt.sh
+	echo -n "$txtbld$txtred$(/usr/bin/diff --brief "${HOMEBREW_PREFIX}/etc/bash_completion.d/git-prompt.sh" ~/bin/git-prompt.sh)$txtrst"
 fi
 
 if [ -s "${HOMEBREW_PREFIX}/opt/nvm/nvm.sh" ]; then
@@ -430,6 +431,9 @@ fi
 
 # Only display system status if we are on a terminal
 test -t 0 && __init_status
+
+# check that my corrected script is still corrected
+echo -n "$txtbld$txtred$(/usr/bin/diff --brief /etc/bashrc_Apple_Terminal backups/private/etc/bashrc_Apple_Terminal/after)$txtrst"
 
 alias cp='cp -i'
 alias cpu_temp='sudo powermetrics | grep "CPU die temperature"'
