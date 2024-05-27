@@ -1,6 +1,6 @@
 [alias]
 	a = add
-	alias = !git config --get-regexp alias | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\\t => \\2/' | sort
+	alias = !git config --get-regexp alias | sed -E 's/alias\\.([a-z]+)/\\1\\t=>/' | sort
 	ap = add --patch
 	br = branch
 	c = commit
