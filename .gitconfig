@@ -86,3 +86,5 @@
 	name = J Rob Gant
 	email = rgant@alum.wpi.edu
 	signingkey = 72A92177D88C3014
+[includeIf "gitdir:~/Programming/PathFinderStudios/"]
+    path = .pathfinder.gitconfig

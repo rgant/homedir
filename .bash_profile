@@ -401,7 +401,7 @@ if [ -s "${HOMEBREW_PREFIX}/etc/bash_completion.d/git-prompt.sh" ]; then
 	# shellcheck disable=SC1090,SC1091,SC2086
 	# source ~/bin/git-prompt.sh
 	PS1="\\[$txtgrn$txtbld\\]\\h\\[$txtrst\\]:\\[$txtblu$txtbld\\]\\w\\[$txtrst\\]\$(__git_ps1)\\[\$(__status_code)\\]\$\\[$txtrst\\] "
-	echo -n "$txtbld$txtred$(/usr/bin/diff --brief "${HOMEBREW_PREFIX}/etc/bash_completion.d/git-prompt.sh" ~/bin/git-prompt.sh)$txtrst"
+	echo -n "$txtbld$txtred$(/usr/bin/diff --brief "${HOMEBREW_PREFIX}/etc/bash_completion.d/git-prompt.sh" ~/bin/git-prompt.sh)$txtrst\n"
 fi
 
 if [ -s "${HOMEBREW_PREFIX}/opt/nvm/nvm.sh" ]; then
@@ -435,7 +435,7 @@ test -t 0 && __init_status
 # check that my corrected script is still corrected
 # https://gist.github.com/rgant/2bd867c05c534a44524c59a6da7bb29b
 # https://apple.stackexchange.com/a/314363/55422
-echo -n "$txtbld$txtred$(/usr/bin/diff --brief /etc/bashrc_Apple_Terminal backups/private/etc/bashrc_Apple_Terminal/after)$txtrst"
+echo -n "$txtbld$txtred$(/usr/bin/diff --brief /etc/bashrc_Apple_Terminal backups/private/etc/bashrc_Apple_Terminal/after)$txtrst\n"
 
 alias cp='cp -i'
 alias cpu_temp='sudo powermetrics | grep "CPU die temperature"'
