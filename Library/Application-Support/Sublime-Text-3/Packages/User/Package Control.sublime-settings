@@ -6,12 +6,14 @@
 	"installed_packages":
 	[
 		"A File Icon",
+		"Astro",
 		"Awk",
 		"BracketHighlighter",
 		"Compare Side-By-Side",
 		"Dockerfile Syntax Highlighting",
 		"LSP",
 		"LSP-angular",
+		"LSP-astro",
 		"LSP-bash",
 		"LSP-css",
 		"LSP-dockerfile",

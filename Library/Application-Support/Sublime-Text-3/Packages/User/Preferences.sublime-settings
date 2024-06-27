@@ -55,7 +55,8 @@
 	"highlight_modified_tabs": true,
 	"ignored_packages":
 	[
-		"Vintage", // Don't enable "COMMAND MODE"
+		// Don't enable "COMMAND MODE"
+		"Vintage",
 	],
 	"ignored_words":
 	[
