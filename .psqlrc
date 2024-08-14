@@ -4,6 +4,4 @@
 \setenv PG_COLOR auto
 \set COMP_KEYWORD_CASE upper
 \set HISTSIZE 50000
-\set PROMPT1 '%001%[%033[1;32m%]%002%/%R%x%001%[%033[0m%]%002%# '
-\set PROMPT2 '%001%[%033[1;32m%]%002%/%R%x%001%[%033[0m%]%002%# '
 \set VERBOSITY verbose
