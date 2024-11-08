@@ -17,6 +17,7 @@
 		"LSP-bash",
 		"LSP-css",
 		"LSP-dockerfile",
+		"LSP-gopls",
 		"LSP-html",
 		"LSP-json",
 		"LSP-pyright",

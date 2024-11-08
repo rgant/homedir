@@ -1,4 +1,5 @@
 npm install --global @awmottaz/prettier-plugin-void-html \
+  corepack \
   dockerfilelint \
   markdownlint-cli \
   npm \
@@ -7,4 +8,5 @@ npm install --global @awmottaz/prettier-plugin-void-html \
   prettier-plugin-organize-attributes \
   prettier-plugin-sh \
   prettier-plugin-sql \
-  prettier
+  prettier \
+  yarn

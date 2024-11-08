@@ -7,9 +7,13 @@ brew install awscli \
   firebase-cli \
   gawk \
   git \
+  git-absorb \
+  git-machete \
   gnupg \
+  go \
   hadolint \
   hashicorp/tap/terraform \
+  heroku/brew/heroku \
   imagemagick \
   libpq \
   mkcert \
@@ -17,6 +21,7 @@ brew install awscli \
   nss \
   nvm \
   p7zip \
+  postgresql@14 \
   pyenv \
   s3cmd \
   shellcheck \
