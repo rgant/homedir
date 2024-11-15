@@ -38,7 +38,7 @@ export GPG_TTY
 export GREP_OPTIONS='--color=auto --no-messages'
 export NODE_OPTIONS='--max-old-space-size=8192'
 export NPM_CONFIG_SAVE=1
-export PATH="/Users/rgant/bin:/Users/rgant/.local/bin:${PATH}:."
+export PATH="/Users/rgant/bin:/Users/rgant/.local/bin:/opt/homebrew/opt/libpq/bin:/Users/rgant/go/bin:${PATH}:."
 export PIP_REQUIRE_VIRTUALENV=true
 export PYENCHANT_LIBRARY_PATH=/opt/homebrew/lib/libenchant-2.2.dylib
 export PYTHONSTARTUP="$HOME/.pythonrc.py"
@@ -461,6 +461,7 @@ alias router_tunnel='ssh home -L 2000:router.home.robgant.com:80 -N'
 alias tsgrep="find ./ -name '*.ts' -print0 | xargs -0 grep"
 alias urldecode='python3 -c "import sys,urllib.parse;print(urllib.parse.unquote(sys.argv[1]))"'
 alias urlencode='python3 -c "import sys,urllib.parse;print(urllib.parse.quote_plus(sys.argv[1]))"'
+alias uuid='uuidgen | tr "[:upper:]" "[:lower:]"'
 alias vnc_tunnel='ssh vnctunnel -N'
 alias wake_media_center='wakeonlan F0:18:98:EC:7C:70'
 

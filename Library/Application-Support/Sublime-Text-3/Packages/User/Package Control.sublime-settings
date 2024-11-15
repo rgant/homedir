@@ -11,6 +11,7 @@
 		"BracketHighlighter",
 		"Compare Side-By-Side",
 		"Dockerfile Syntax Highlighting",
+		"Less",
 		"LSP",
 		"LSP-angular",
 		"LSP-astro",
