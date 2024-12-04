@@ -118,6 +118,10 @@ develop() {
 	if [ -f .nvmrc ]; then
 		nvm use
 	fi
+	if [ -f .venv/bin/activate ]; then
+		# shellcheck disable=SC1091
+		source .venv/bin/activate
+	fi
 	if [ -d node_modules/.bin/ ]; then
 		export PATH="$PWD/node_modules/.bin:${PATH}"
 	fi
@@ -401,7 +405,7 @@ if [ -s "${HOMEBREW_PREFIX}/etc/bash_completion.d/git-prompt.sh" ]; then
 	# shellcheck disable=SC1090,SC1091,SC2086
 	# source ~/bin/git-prompt.sh
 	PS1="\\[$txtgrn$txtbld\\]\\h\\[$txtrst\\]:\\[$txtblu$txtbld\\]\\w\\[$txtrst\\]\$(__git_ps1)\\[\$(__status_code)\\]\$\\[$txtrst\\] "
-	echo -n "$txtbld$txtred$(/usr/bin/diff --brief "${HOMEBREW_PREFIX}/etc/bash_completion.d/git-prompt.sh" ~/bin/git-prompt.sh | sed -e 's/$/\n/')$txtrst"
+	echo -n "$txtbld$txtred$(/usr/bin/diff --brief "${HOMEBREW_PREFIX}/etc/bash_completion.d/git-prompt.sh" ~/backups/opt/homebrew/Cellar/git/2.47.1/etc/bash_completion.d/git-prompt.sh/after | sed -e 's/$/\n/')$txtrst"
 fi
 
 if [ -s "${HOMEBREW_PREFIX}/opt/nvm/nvm.sh" ]; then
@@ -438,11 +442,11 @@ test -t 0 && __init_status
 echo -n "$txtbld$txtred$(/usr/bin/diff --brief /etc/bashrc_Apple_Terminal backups/private/etc/bashrc_Apple_Terminal/after | sed -e 's/$/\n/')$txtrst"
 
 alias cp='cp -i'
-alias cpu_temp='sudo powermetrics | grep "CPU die temperature"'
-alias dc='cd ~/Documents'
+#alias cpu_temp='sudo powermetrics | grep "CPU die temperature"'
+#alias dc='cd ~/Documents'
 alias df='df -h'
 # alias diff='diff --unified'
-alias dl='cd ~/Downloads'
+#alias dl='cd ~/Downloads'
 alias du='du -h'
 alias funcs='compgen -A function'
 alias headers='curl --verbose --silent 1> /dev/null'

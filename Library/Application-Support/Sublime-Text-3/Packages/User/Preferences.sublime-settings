@@ -94,7 +94,7 @@
 	"match_brackets_content": false,
 	"match_brackets_square": false,
 	"match_tags": true,
-	"mdpopups.disable": true,
+	"mdpopups.disable": false,
 	"native_tabs": "preferred",
 	"preview_on_click": false,
 	"remember_full_screen": true,

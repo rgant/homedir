@@ -1,5 +1,4 @@
 // These settings override both User and Default settings for the TypeScript syntax
 {
-    "error_color": "region.redish", // https://github.com/microsoft/TypeScript-Sublime-Plugin/issues/731
     "tab_size": 2
 }

@@ -1,7 +1,10 @@
 {
 	"extensions":
 	[
-		"html"
+		"html",
+		"block",
+		"list",
+		"item",
 	],
-	"word_wrap": false
+	"word_wrap": false,
 }
