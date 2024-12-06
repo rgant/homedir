@@ -378,7 +378,9 @@ update_brew_install() {
 	echo "brew install ${installed}" > "${HOME}/Programming/homedir/brew-install.txt"
 	local cask_installs
 	cask_installs=$(brew list --cask | sed -e 's/^/  /' -e 's/$/ \\/' -e '$ s/ \\//' -e '1 s/^  //')
-	echo "brew install --cask ${cask_installs}" >> "${HOME}/Programming/homedir/brew-install.txt"
+	if [[ -n $cask_installs ]]; then
+		echo "brew install --cask ${cask_installs}" >> "${HOME}/Programming/homedir/brew-install.txt"
+	fi
 }
 
 update_npm_install() {

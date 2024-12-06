@@ -4,7 +4,6 @@ brew install awscli \
   diff-so-fancy \
   dprint \
   enchant \
-  firebase-cli \
   gawk \
   git \
   git-absorb \
@@ -13,7 +12,6 @@ brew install awscli \
   go \
   hadolint \
   hashicorp/tap/terraform \
-  heroku/brew/heroku \
   imagemagick \
   libpq \
   mkcert \
@@ -28,4 +26,3 @@ brew install awscli \
   tidy-html5 \
   wakeonlan \
   yamllint
-brew install --cask google-cloud-sdk
