@@ -1,30 +1,12 @@
 {
+  "$schema": "http://json.schemastore.org/prettierrc",
   "arrowParens": "always",
-  "attributeGroups": [
-    "$ANGULAR_STRUCTURAL_DIRECTIVE",
-    "$ANGULAR_INPUT",
-    "$ANGULAR_TWO_WAY_BINDING",
-    "$ANGULAR_OUTPUT",
-    "$CODE_GUIDE"
-  ],
   "bracketSameLine": false,
   "bracketSpacing": true,
-  "dataTypeCase": "lower",
-  "denseOperators": false,
   "embeddedLanguageFormatting": "auto",
   "endOfLine": "lf",
-  "expressionWidth": 50,
-  "functionCase": "preserve",
   "htmlWhitespaceSensitivity": "css",
-  "identifierCase": "preserve",
-  "indentStyle": "standard",
   "jsxSingleQuote": false,
-  "keywordCase": "upper",
-  "language": "postgresql",
-  "linesBetweenQueries": 1,
-  "logicalOperatorNewline": "before",
-  "multilineArraysWrapThreshold": 3,
-  "newlineBeforeSemicolon": false,
   "overrides": [
     {
       "files": [
@@ -55,5 +37,27 @@
   "singleQuote": true,
   "tabWidth": 2,
   "trailingComma": "all",
-  "useTabs": false
+  "useTabs": false,
+
+  "multilineArraysWrapThreshold": 3,
+
+  "attributeGroups": [
+    "$ANGULAR_STRUCTURAL_DIRECTIVE",
+    "$ANGULAR_INPUT",
+    "$ANGULAR_TWO_WAY_BINDING",
+    "$ANGULAR_OUTPUT",
+    "$CODE_GUIDE"
+  ],
+
+  "dataTypeCase": "lower",
+  "denseOperators": false,
+  "expressionWidth": 50,
+  "functionCase": "preserve",
+  "identifierCase": "preserve",
+  "indentStyle": "standard",
+  "keywordCase": "upper",
+  "language": "postgresql",
+  "linesBetweenQueries": 1,
+  "logicalOperatorNewline": "before",
+  "newlineBeforeSemicolon": false
 }
