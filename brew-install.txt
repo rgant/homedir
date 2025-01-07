@@ -23,6 +23,7 @@ brew install awscli \
   pyenv \
   s3cmd \
   shellcheck \
+  tflint \
   tidy-html5 \
   wakeonlan \
   yamllint

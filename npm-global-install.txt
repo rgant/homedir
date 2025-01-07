@@ -7,5 +7,5 @@ npm install --global @awmottaz/prettier-plugin-void-html \
   prettier-plugin-multiline-arrays \
   prettier-plugin-organize-attributes \
   prettier-plugin-sh \
-  prettier-plugin-sql \
+  prettier-plugin-sql-cst \
   prettier
