@@ -2,6 +2,8 @@
 # Automatically detect text files and convert to unix line endings
 * text=auto eol=lf
 
+*.md text diff=markdown
+
 # Disble diff for minified files
 *.min.* -diff
 

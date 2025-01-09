@@ -460,7 +460,7 @@ alias npmg='npm --location=global'
 alias path='echo -e ${PATH//:/\\n}'
 alias phpgrep="find ./ -name '*.php' -print0 | xargs -0 grep"
 alias pkgfix='npx sort-package-json && npx package-json-validator --warnings --recommendations'
-alias prettier='prettier --ignore-path='' --config ~/Programming/.prettierrc.json'
+alias prettier='nvm exec default prettier --ignore-path='' --config ~/Programming/.prettierrc.json'
 alias pygrep="find ./ -name '*.py' -print0 | xargs -0 grep"
 alias rm='rm -i'
 alias router_tunnel='ssh home -L 2000:router.home.robgant.com:80 -N'
@@ -474,6 +474,7 @@ alias wake_media_center='wakeonlan F0:18:98:EC:7C:70'
 # Personal Projects
 alias saas='develop ~/Programming/saas-api-boilerplate'
 alias ninja='develop ~/Programming/rob.gant.ninja'
+alias brain='develop ~/Programming/brainfry'
 
 # Professional Projects are loaded from ~/.bash_profile.d/work.bash_profile
 

@@ -40,11 +40,9 @@
 		"SublimeLinter-contrib-hadolint",
 		"SublimeLinter-contrib-markdownlint",
 		"SublimeLinter-contrib-terraform",
-		"SublimeLinter-contrib-tflint",
 		"SublimeLinter-contrib-yamllint",
 		"SublimeLinter-eslint",
 		"SublimeLinter-html-tidy",
-		"SublimeLinter-jshint",
 		"SublimeLinter-json",
 		"SublimeLinter-mypy",
 		"SublimeLinter-pylint",
@@ -59,6 +57,5 @@
 	],
 	"repositories":
 	[
-		"https://github.com/mcw0933/SublimeLinter-contrib-tflint"
 	],
 }

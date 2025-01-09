@@ -23,6 +23,7 @@ brew install awscli \
   pyenv \
   s3cmd \
   shellcheck \
+  terraform-docs \
   tflint \
   tidy-html5 \
   wakeonlan \
