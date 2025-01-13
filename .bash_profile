@@ -322,11 +322,13 @@ servhttp() {
 
 	while test $# -gt 0; do
 		case $1 in
-			-*)
-				extraargs+=("$1")
-				;;
-			*)
+			# Treat an argument that is all digits as the port
+			[0-9]*)
 				port="$1"
+				;;
+			# Everything else pass directly
+			*)
+				extraargs+=("$1")
 				;;
 		esac
 		shift

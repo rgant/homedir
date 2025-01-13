@@ -20,6 +20,9 @@
         },
         "shellcheck": {
             "args": ["--shell=bash"]
+        },
+        "stylelint": {
+            "args": ["--quiet-deprecation-warnings"]
         }
     },
     "no_column_highlights_line": true,
