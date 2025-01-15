@@ -321,16 +321,13 @@ servhttp() {
 	local port='8000'
 
 	while test $# -gt 0; do
-		case $1 in
+		if [[ $1 =~ ^[0-9]+$ ]]; then
 			# Treat an argument that is all digits as the port
-			[0-9]*)
-				port="$1"
-				;;
+			port="$1"
+		else
 			# Everything else pass directly
-			*)
-				extraargs+=("$1")
-				;;
-		esac
+			extraargs+=("$1")
+		fi
 		shift
 	done
 
@@ -462,7 +459,7 @@ alias npmg='npm --location=global'
 alias path='echo -e ${PATH//:/\\n}'
 alias phpgrep="find ./ -name '*.php' -print0 | xargs -0 grep"
 alias pkgfix='npx sort-package-json && npx package-json-validator --warnings --recommendations'
-alias prettier='nvm exec default prettier --ignore-path='' --config ~/Programming/.prettierrc.json'
+alias prettier='nvm exec default -- prettier --ignore-path='' --config ~/Programming/.prettierrc.json'
 alias pygrep="find ./ -name '*.py' -print0 | xargs -0 grep"
 alias rm='rm -i'
 alias router_tunnel='ssh home -L 2000:router.home.robgant.com:80 -N'
