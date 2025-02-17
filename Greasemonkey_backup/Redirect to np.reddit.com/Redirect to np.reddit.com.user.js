@@ -4,6 +4,7 @@
 // @namespace   name.robgant
 // @include     https://old.reddit.com/*
 // @include     https://www.reddit.com/*
+// @exclude     https://www.reddit.com/media*
 // @version     1
 // @run-at      document-start
 // @grant       none

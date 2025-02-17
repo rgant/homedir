@@ -18,10 +18,10 @@ brew install awscli \
   nano \
   nss \
   nvm \
-  p7zip \
   postgresql@14 \
   pyenv \
   s3cmd \
+  sevenzip \
   shellcheck \
   terraform-docs \
   tflint \

@@ -2,7 +2,7 @@
 // @name        Fix Reddit
 // @description Open articles and comments pages in new tabs. Hide unintersting subreddits.
 // @namespace   name.robgant
-// @include     https://np.reddit.com/*
+// @include     https://old.reddit.com/*
 // @grant       GM.openInTab
 // ==/UserScript==
 'use strict';
@@ -15,10 +15,6 @@ if (head) {
     + '#header-img { max-height: 50px; max-width: 50px; }';
   head.appendChild(style);
 }
-
-document.querySelectorAll('a.choice[href="https://np.reddit.com/gilded/"]').forEach(el => {
-  el.href = 'https://np.reddit.com/r/popular/gilded/';
-});
 
 document.querySelectorAll('.pinnable-content').forEach(el => {
   el.dataset.pinCondition = () => false;
@@ -34,6 +30,57 @@ document.querySelectorAll('.sponsored-indicator').forEach(el => {
 });
 
 const badSubreddts = [
+  'TeenMomOGandTeenMom2',
+  'survivor',
+  'vanderpumprules',
+  'briannachickenfrsnark',
+  'LoveIslandUSA',
+  'travisandtaylor',
+  'TwoSentenceHorror',
+  '49ers',
+  '90DayFiance',
+  'Asmongold',
+  'BostonBruins',
+  'BravoRealHousewives',
+  'Browns',
+  'CFB',
+  'Cricket',
+  'FundieSnarkUncensored',
+  'Genshin_Impact',
+  'GreenBayPackers',
+  'Jujutsufolk',
+  'Kanye',
+  'coys',
+  'LivestreamFail',
+  'Patriots',
+  'SquaredCircle',
+  'Superstonk',
+  'barstoolsports',
+  'baseball',
+  'bostonceltics',
+  'buffalobills',
+  'cowboys',
+  'discordapp',
+  'fantasyfootball',
+  'FFIE',
+  'formula1',
+  'formuladank',
+  'furry_irl',
+  'Helldivers',
+  'hockey',
+  'nhl',
+  'nba',
+  'nbacirclejerk',
+  'nflcirclejerk',
+  'popping',
+  'redsox',
+  'SaintMeghanMarkle',
+  'sports',
+  'steelers',
+  'ufc',
+  'UFOs',
+  'wallstreetbets',
+  'whenthe',
 ];
 document.querySelectorAll('.subreddit').forEach(el => {
   for (const subr of badSubreddts) {

@@ -38,11 +38,18 @@ document.body.appendChild(container);
 const customStyles = document.createElement('style');
 customStyles.setAttribute('type', 'text/css');
 customStyles.textContent = `
+:root {
+  --entry-content-color: #fff;
+  --entry-header-title-link-color: #fff;
+  --link-color: #fff;
+}
+
 body {
-  max-width: 900px;
+  max-width: 70%;
 }
 
 .entry-content figcaption {
+  color: inherit;
   text-transform: none !important;
 }
 
@@ -53,9 +60,16 @@ body {
   right: 0;
   bottom: 0;
   left: 0;
-  grid-template-columns: 1fr 900px 1fr;
+  grid-template-columns: 1fr 70% 1fr;
   z-index: -1;
-}`;
+}
+
+.nav-lnk {
+  text-align: center;
+  text-decoration: none;
+  font-size: 25.5vw;
+}
+`;
 document.head.appendChild(customStyles);
 */
 

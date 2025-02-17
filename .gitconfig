@@ -73,6 +73,8 @@
 	diffFilter = diff-so-fancy --patch
 [log]
 	date = iso
+[merge]
+	conflictStyle = zdiff3
 [protocol]
 	version = 2
 [pull]

@@ -6,12 +6,15 @@
 // @include        https://www.fark.com/comments/*
 // @include        http://www.fark.com/vidplayer/*
 // @include        https://www.fark.com/vidplayer/*
-// @grant          none
+// @grant          GM.openInTab
 // ==/UserScript==
 'use strict';
 
-if (window.history.length <= 1 && !window.location.hash) {
-  const trEl = document.getElementById('newsContainer').getElementsByClassName('headlineRow').item(0);
+/**
+ * Automatically load the linked document
+ */
+function openLink() {
+	const trEl = document.getElementById('newsContainer').getElementsByClassName('headlineRow').item(0);
   if (trEl) {
     // The tag img is now a background on this span / cell
     const iconImg = trEl.cells.item(1).getElementsByTagName('a').item(0);
@@ -19,16 +22,22 @@ if (window.history.length <= 1 && !window.location.hash) {
       const lnk = trEl.getElementsByTagName('a').item(0).href;
       const farkUrlPttrn = /https?:\/\/www\.fark\.co(\/cgi\/go\.pl\?i=\d+&l!|m\/goto\/\d+\/)www\.fark\.com\//;
       if (lnk && !lnk.match(farkUrlPttrn)) {
-        window.location = lnk;
+        // window.location.assign(lnk);
+        GM.openInTab(lnk, true);
       } else {
-        console.error('lnk not found');
+        console.error('MONKEY', 'lnk not found');
       }
     } else {
-      console.error('img not found');
+      console.error('MONKEY', 'img not found');
     }
   } else {
-    console.error('#newsContainer .headlineRow Not Found');
+    console.error('MONKEY', '#newsContainer .headlineRow Not Found');
   }
+}
+
+if (!document.cookie.split("; ").find((row) => row.startsWith('loadLinkOnce'))) {
+  document.cookie = `loadLinkOnce=true; path=${window.location.pathname}`;
+  openLink();
 }
 
 const entries = document.querySelectorAll('div#commentsArea > table.notctable,'

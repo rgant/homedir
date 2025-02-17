@@ -36,3 +36,13 @@ if (gotAmp) {
 } else if (gotTracking) {
   window.history.replaceState(null, '', cleanUrl);
 }
+
+// Show native controls on videos
+const enableVideoControls = () => {
+  document.querySelectorAll('video').forEach((vid) => {
+    vid.controls = true;
+    vid.setAttribute('controls', '');
+  });
+};
+setTimeout(enableVideoControls, 1000);
+enableVideoControls();
