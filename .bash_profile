@@ -337,6 +337,31 @@ servhttp() {
 	python3 -m http.server "${extraargs[@]}" "$port"
 }
 
+sort_json() {
+	if [ "$#" -ne 1 ]; then
+		echo "Usage: ${FUNCNAME[0]} /path/to/file.json" >&2
+		return 1
+	fi
+
+	local filename
+	local tmpfile
+
+	filename=$(basename "$1")
+	tmpfile=$(mktemp -t "${filename}") || exit 2
+
+	# Sort and pretty print JSON into temporary file
+	python -m json.tool --indent 2 --sort-keys "$1" > "$tmpfile"
+
+	# If the temporary file exists and has a size greater than 0
+	if [[ -s "$tmpfile" ]]; then
+		# Overwrite the original file with the new contents to preserve permissions
+		cat "$tmpfile" > "$1"
+	fi
+
+	# Cleanup the temporary file
+	rm -f -- "$tmpfile"
+}
+
 ssh() {
 	osascript -e 'tell application "Terminal" to set current settings of selected tab of the front window to settings set "SSH"'
 	/usr/bin/ssh "$@"

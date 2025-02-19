@@ -97,6 +97,6 @@ if [ -f "$HOME/.nano_history" -a ! -O "$HOME/.nano_history" ]; then
 	sudo chown "$UID:$GID" "$HOME/.nano_history";
 fi
 
-diff --unified "$BACKUPDIR/before" "$BACKUPDIR/after" > "$BACKUPDIR/diff";
+/usr/bin/diff --unified "$BACKUPDIR/before" "$BACKUPDIR/after" > "$BACKUPDIR/diff";
 
 echo "Backups Stored: '$BACKUPDIR'" >&2;

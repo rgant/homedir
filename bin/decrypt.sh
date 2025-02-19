@@ -8,7 +8,7 @@ Use gnupg to decrypt a gpg file.
 Usage: $0 FILENAME
 
 EOF
-  exit 1;
+	exit 1;
 fi
 
 gpg --decrypt "$1";
