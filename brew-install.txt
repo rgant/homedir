@@ -23,6 +23,7 @@ brew install awscli \
   s3cmd \
   sevenzip \
   shellcheck \
+  spacer \
   terraform-docs \
   tflint \
   tidy-html5 \
