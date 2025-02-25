@@ -1,0 +1,5 @@
+<snippet>
+    <content><![CDATA[# type: ignore[$1]]]></content>
+    <tabTrigger># type</tabTrigger>
+    <scope>source.python</scope>
+</snippet>
