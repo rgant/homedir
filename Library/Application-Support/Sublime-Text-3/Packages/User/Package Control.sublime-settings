@@ -17,6 +17,7 @@
 		"LSP-astro",
 		"LSP-basedpyright",
 		"LSP-bash",
+		"LSP-copilot",
 		"LSP-css",
 		"LSP-dockerfile",
 		"LSP-gopls",
