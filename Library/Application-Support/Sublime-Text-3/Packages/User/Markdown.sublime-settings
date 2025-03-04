@@ -1,5 +1,9 @@
 // These settings override both User and Default settings for the Markdown syntax
 {
     "rulers": [80],
+    "spell_check": true,
+    // https://forum.sublimetext.com/t/how-to-customize-spell-check-with-spelling-selector-setting/74857/3
+    // Don't spell check code (raw) markup nor links, but do spellcheck source comments
+    "spelling_selector": "-(markup.raw | markup.underline.link) | source comment",
     "word_wrap": true
 }

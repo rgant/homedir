@@ -5,6 +5,19 @@
 	{ "keys": ["super+v"], "command": "paste_and_indent" },
 	{ "keys": ["super+shift+v"], "command": "paste" },
 	{ "keys": ["super+k", "super+t"], "command": "title_case" },
+	// Jump to matching bracket
+	{
+	    "keys": ["ctrl+m"],
+	    "command": "bh_key",
+	    "args": {
+	        "plugin": {
+	            "args": {"select": "right", "alternate": true},
+	            "command": "bh_modules.bracketselect"
+	        },
+	        "lines": true,
+	        "no_outside_adj": null
+	    }
+	},
 	// Auto-pair backticks
 	{ "keys": ["`"], "command": "insert_snippet", "args": {"contents": "`$0`"}, "context":
 		[
