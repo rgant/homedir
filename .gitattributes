@@ -6,10 +6,3 @@
 
 # Disble diff for minified files
 *.min.* -diff
-
-# Ignore conflicts for auto generated files
-# Add:
-# [merge "ours"]
-# 	driver = true
-# to .git/config
-TODO.md merge=ours

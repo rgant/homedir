@@ -84,6 +84,9 @@ bgc() {
 		green)
 			color='{57825, 65021, 56540}'
 			;;
+		pink)
+			color='{65452, 54493, 61744}'
+			;;
 		yellow | *)
 			color='{65535, 65232, 53533}'
 			;;
@@ -484,7 +487,7 @@ alias npmg='npm --location=global'
 alias path='echo -e ${PATH//:/\\n}'
 alias phpgrep="find ./ -name '*.php' -print0 | xargs -0 grep"
 alias pkgfix='npx sort-package-json && npx package-json-validator --warnings --recommendations'
-alias prettier='nvm exec default -- prettier --ignore-path='' --config ~/Programming/.prettierrc.json'
+alias prettier='nvm exec default -- prettier --ignore-path='' --config ~/.prettierrc.json'
 alias pygrep="find ./ -name '*.py' -print0 | xargs -0 grep"
 alias rm='rm -i'
 alias router_tunnel='ssh home -L 2000:router.home.robgant.com:80 -N'
