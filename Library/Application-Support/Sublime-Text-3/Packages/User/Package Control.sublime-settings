@@ -1,8 +1,5 @@
 {
 	"bootstrapped": true,
-	"in_process_packages":
-	[
-	],
 	"installed_packages":
 	[
 		"A File Icon",
@@ -50,18 +47,53 @@
 		"SublimeLinter-shellcheck",
 		"SublimeLinter-stylelint",
 		"Terraform",
+	],
+	"in_process_packages":
+	[
+		"A File Icon",
+		"Astro",
+		"Awk",
+		"BracketHighlighter",
+		"Compare Side-By-Side",
+		"Dockerfile Syntax Highlighting",
+		"Less",
+		"LSP",
+		"LSP-angular",
+		"LSP-astro",
+		"LSP-basedpyright",
+		"LSP-bash",
+		"LSP-copilot",
+		"LSP-css",
+		"LSP-dockerfile",
+		"LSP-gopls",
+		"LSP-html",
+		"LSP-json",
+		"LSP-ruff",
+		"LSP-terraform",
+		"LSP-typescript",
+		"LSP-yaml",
+		"MypyReveal",
+		"Ngx HTML",
+		"PackageResourceViewer",
+		"PostCSS Sorting",
+		"python-black",
+		"rainbow_csv",
+		"RegReplace",
+		"Sass",
+		"SublimeLinter",
+		"SublimeLinter-contrib-dockerfilelint",
+		"SublimeLinter-contrib-hadolint",
+		"SublimeLinter-contrib-markdownlint",
+		"SublimeLinter-contrib-terraform",
+		"SublimeLinter-contrib-yamllint",
+		"SublimeLinter-eslint",
+		"SublimeLinter-html-tidy",
+		"SublimeLinter-json",
+		"SublimeLinter-mypy",
+		"SublimeLinter-pylint",
+		"SublimeLinter-shellcheck",
+		"SublimeLinter-stylelint",
+		"Terraform",
 		"Wrap Plus",
-	],
-	"install_prereleases":
-	[
-		"Package Control",
-	],
-	"repositories":
-	[
-	],
-	"channels":
-	[
-		"https://packagecontrol.github.io/channel/channel_v4.json",
-		"https://packagecontrol.io/channel_v3.json",
 	],
 }
