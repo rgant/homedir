@@ -199,6 +199,20 @@ gpip() {
 	PIP_REQUIRE_VIRTUALENV=false pip "$@"
 }
 
+# I looked at [McFly](https://github.com/cantino/mcfly) and [Atuin](https://github.com/atuinsh/atuin) for better history
+# searching, but they didn't work well with my heavily customized bash shell. Generally all I need is this.
+h() {
+	local histfile="$HOME/.bash_history" # Apple messes with $HISTFILE!
+
+	if [ "$#" -lt 1 ]; then
+		echo "Search command history in $histfile using grep -E" >&2
+		echo "Usage: ${FUNCNAME[0]} [pattern]" >&2
+		return 1
+	fi
+
+	grep --line-number -E "$@" "$histfile"
+}
+
 man() {
 	if [ "$#" -lt 1 ]; then
 		echo "Usage: ${FUNCNAME[0]} [section number] command_name" >&2
