@@ -51,12 +51,25 @@
 [core]
 	attributesfile = ~/.gitattributes
 	excludesfile = ~/.gitignore
-	pager = diff-so-fancy | less --tabs=4 -RFX
+	# pager = diff-so-fancy | less --tabs=4 -RFX
+	pager = delta
 	quotepath = false
 	# Treat spaces before tabs and all kinds of trailing whitespace as an error.
 	# [default] trailing-space: looks for spaces at the end of a line
 	# [default] space-before-tab: looks for spaces before tabs at the beginning of a line
 	whitespace = space-before-tab,-indent-with-non-tab,trailing-space
+[delta]
+	features = diff-so-fancy zebra-light
+	file-decoration-style = magenta ul ol
+	file-modified-label = "modified:"
+	file-style = magenta
+	hunk-header-decoration-style = yellow ul
+	hunk-header-style = line-number syntax
+	hunk-label = @
+	hyperlinks = true
+	# hyperlinks-file-link-format = "subl://open?url=file://{file}&line={line}"  # Maybe if I use [sublime_url](https://github.com/inopinatus/sublime_url)
+	navigate = true  # use n and N to move between diff sections
+	tabs = 4
 [diff]
 	algorithm = histogram
 	colorMoved = zebra
@@ -75,7 +88,8 @@
 [init]
 	defaultBranch = main
 [interactive]
-	diffFilter = diff-so-fancy --patch
+	# diffFilter = diff-so-fancy --patch
+	diffFilter = delta --color-only
 [log]
 	date = iso
 [merge]

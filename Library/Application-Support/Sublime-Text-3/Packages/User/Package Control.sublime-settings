@@ -47,6 +47,7 @@
 		"SublimeLinter-shellcheck",
 		"SublimeLinter-stylelint",
 		"Terraform",
+		"Wrap Plus",
 	],
 	"in_process_packages":
 	[
@@ -94,6 +95,5 @@
 		"SublimeLinter-shellcheck",
 		"SublimeLinter-stylelint",
 		"Terraform",
-		"Wrap Plus",
 	],
 }
