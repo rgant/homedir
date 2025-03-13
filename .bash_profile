@@ -84,6 +84,7 @@ __rob_fix() {
 			# Before file is the same as $1; $1 was restored to before my changes
 			if [ -O "$1" ]; then
 				# File I own
+				echo "${txtblu}Automatically updating $1.${txtrst}"
 				cp "$backup" "$1"
 			else
 				# File owned by another user, assume root
