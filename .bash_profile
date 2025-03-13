@@ -70,6 +70,35 @@ __kill_jobs() {
 	done
 }
 
+# I've customized some things manually. This will ensure that whenever updates overwrite my changes
+# that either I am told about it to go fix it, or automatically restore my fixes if the restored
+# file is the same as the backup.
+__rob_fix() {
+	local backup="$HOME/backups/$1/after"
+	local original="$HOME/backups/$1/before"
+
+	if ! cmp -z --silent "$1" "$backup"; then
+		# After file differs from $1; $1 does not have my changes
+		if cmp -z --silent "$1" "$original"; then
+			echo "$txtbld$txtred$(/usr/bin/diff --brief "$1" "$backup")$txtrst"
+			# Before file is the same as $1; $1 was restored to before my changes
+			if [ -O "$1" ]; then
+				# File I own
+				cp "$backup" "$1"
+			else
+				# File owned by another user, assume root
+				echo "${txtbld}${txtred}Updating $1 owned by root!${txtrst}"
+				# Replace file contents without touching file inoode
+				sudo cat "$backup" | sudo tee "$1" > /dev/null
+			fi
+			echo "${txtbld}${txtred}Restart shell for changes to take effect!${txtrst}"
+		else
+			# $1 has been altered, not restored. Report for manual fixing.
+			echo "${txtbld}${txtred}Original file changed, needs manual review!$txtrst"
+		fi
+	fi
+}
+
 # Change prompt to red when last command errored
 __status_code() {
 	local status="$?"
@@ -443,12 +472,11 @@ if [[ -f /opt/homebrew/bin/brew ]]; then
 	eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
-if [ -s "${HOMEBREW_PREFIX}/etc/bash_completion.d/git-prompt.sh" ]; then
+if [ -s "${HOMEBREW_PREFIX}/opt/git/etc/bash_completion.d/git-prompt.sh" ]; then
 	# Something else is already sourcing "${HOMEBREW_PREFIX}/etc/bash_completion.d/git-prompt.sh" so this does nothing
 	# shellcheck disable=SC1090,SC1091,SC2086
 	# source ~/bin/git-prompt.sh
 	PS1="\\[$txtgrn$txtbld\\]\\h\\[$txtrst\\]:\\[$txtblu$txtbld\\]\\w\\[$txtrst\\]\$(__git_ps1)\\[\$(__status_code)\\]\$\\[$txtrst\\] "
-	echo -n "$txtbld$txtred$(/usr/bin/diff --brief "${HOMEBREW_PREFIX}/etc/bash_completion.d/git-prompt.sh" ~/backups/opt/homebrew/Cellar/git/2.47.1/etc/bash_completion.d/git-prompt.sh/after | sed -e 's/$/\n/')$txtrst"
 fi
 
 if [ -s "${HOMEBREW_PREFIX}/opt/nvm/nvm.sh" ]; then
@@ -479,10 +507,20 @@ fi
 # Only display system status if we are on a terminal
 test -t 0 && __init_status
 
-# check that my corrected script is still corrected
-# https://gist.github.com/rgant/2bd867c05c534a44524c59a6da7bb29b
-# https://apple.stackexchange.com/a/314363/55422
-echo -n "$txtbld$txtred$(/usr/bin/diff --brief /etc/bashrc_Apple_Terminal backups/private/etc/bashrc_Apple_Terminal/after | sed -e 's/$/\n/')$txtrst"
+# Check that all the backed up customized scripts are still altered.
+for FILE in "$HOME"/backups/{opt,private}/**/after; do
+	# Because MacOS symlinks the /etc folder we must use the complete path /private/etc that is created
+	# using the snano backups
+	ORIG="${FILE#/Users/rgant/backups}" # Remove the backup prefix path (keep slash after 'backups')
+	ORIG="${ORIG%/after}" # Remove the /after suffix from path
+	__rob_fix "$ORIG"
+
+	# https://gist.github.com/rgant/2bd867c05c534a44524c59a6da7bb29b
+	# https://apple.stackexchange.com/a/314363/55422
+	# echo -n "$txtbld$txtred$(/usr/bin/diff --brief /etc/bashrc_Apple_Terminal backups/private/etc/bashrc_Apple_Terminal/after | sed -e 's/$/\n/')$txtrst"
+
+	# echo -n "$txtbld$txtred$(/usr/bin/diff --brief "${HOMEBREW_PREFIX}/etc/bash_completion.d/git-prompt.sh" ~/backups/opt/homebrew/Cellar/git/2.47.1/etc/bash_completion.d/git-prompt.sh/after | sed -e 's/$/\n/')$txtrst"
+done
 
 alias cp='cp -i'
 #alias cpu_temp='sudo powermetrics | grep "CPU die temperature"'
