@@ -312,15 +312,20 @@ Recursive find of project folders that excludes .git and node_modules.
 See man find for more details.
 
 Command template:
-find "PATH" -path '*/.git/*' -prune -o -path '*/node_modules/*' -prune -o FIND FLAGS
+find "PATH" \( -path '*/./*' -o -path '*/build/*' -o -path '*/dist/*' -o -path '*/node_modules/*' -path '*/venv/*' \) -prune -o FIND FLAGS
 EOF
 		return 1
 	fi
 
 	# set -x
-	find "${searchpath[@]-./}" -path '*/.git/*' -prune \
-		-o -path '*/node_modules/*' -prune \
-		-o "${extraargs[@]}"
+	find "${searchpath[@]-./}" \( \
+		-path '*/.*/*' \
+		-o -path '*/build/*' \
+		-o -path '*/dist/*' \
+		-o -path '*/node_modules/*' \
+		-o -path '*/venv/*' \
+	\) -prune \
+	-o "${extraargs[@]}"
 	# set +x
 }
 
@@ -354,12 +359,51 @@ Recursive grep search of project folders that excludes .git and node_modules.
 See man grep for more details.
 
 Command template:
-grep -R --exclude-dir=.git --exclude-dir=build --exclude-dir=dist --exclude-dir=node_modules "GREP_FLAGS" "PTTRN" "PATH"
+grep -R --exclude-dir={.git,.mypy_cache,.venv,build,dist,node_modules,venv} "GREP_FLAGS" "PTTRN" "PATH"
+
+Helpful grep flags:
+	-C num, --context=num
+		Print num lines of leading and trailing context surrounding each match.  See also the -A and -B options.
+
+	-c, --count
+		Only a count of selected lines is written to standard output.
+
+	-E, --extended-regexp
+		Interpret pattern as an extended regular expression (i.e., force grep to behave as egrep).
+
+	--exclude pattern
+		If specified, it excludes files matching the given filename pattern from the search.  Note that --exclude and --include patterns are processed in the order given.  If a name matches multiple
+		patterns, the latest matching rule wins.  If no --include pattern is specified, all files are searched that are not excluded.  Patterns are matched to the full path specified, not only to the
+		filename component.
+
+	-H
+		Always print filename headers with output lines.
+
+	-h, --no-filename
+		Never print filename headers (i.e., filenames) with output lines.
+
+	--include pattern
+		If specified, only files matching the given filename pattern are searched.  Note that --include and --exclude patterns are processed in the order given.  If a name matches multiple patterns, the
+		latest matching rule wins.  Patterns are matched to the full path specified, not only to the filename component.
+
+	-L, --files-without-match
+		Only the names of files not containing selected lines are written to standard output.  Pathnames are listed once per file searched.  If the standard input is searched, the string “(standard input)”
+		is written unless a --label is specified.
+
+	-l, --files-with-matches
+		Only the names of files containing selected lines are written to standard output.  grep will only search a file until a match has been found, making searches potentially less expensive.  Pathnames
+		are listed once per file searched.  If the standard input is searched, the string “(standard input)” is written unless a --label is specified.
+
+	-o, --only-matching
+		Prints only the matching part of the lines.
+
+	-v, --invert-match
+		Selected lines are those not matching any of the specified patterns.
 EOF
 		return 1
 	fi
 
-	grep -R --exclude-dir=.git --exclude-dir=build --exclude-dir=dist --exclude-dir=node_modules "${extraargs[@]}" "${pttrn}" "${searchpath[@]-./}"
+	grep -R --exclude-dir={.git,.mypy_cache,.venv,build,dist,node_modules,venv} "${extraargs[@]}" "${pttrn}" "${searchpath[@]-./}"
 }
 
 # Start an HTTP server from a directory, optionally specifying the port
@@ -523,6 +567,7 @@ for FILE in "$HOME"/backups/{opt,private}/**/after; do
 	# echo -n "$txtbld$txtred$(/usr/bin/diff --brief "${HOMEBREW_PREFIX}/etc/bash_completion.d/git-prompt.sh" ~/backups/opt/homebrew/Cellar/git/2.47.1/etc/bash_completion.d/git-prompt.sh/after | sed -e 's/$/\n/')$txtrst"
 done
 
+alias brew86='/opt/homebrew86/bin/brew'
 alias cp='cp -i'
 #alias cpu_temp='sudo powermetrics | grep "CPU die temperature"'
 #alias dc='cd ~/Documents'
@@ -532,24 +577,25 @@ alias df='df -h'
 alias du='du -h'
 alias funcs='compgen -A function'
 alias headers='curl --verbose --silent 1> /dev/null'
-alias htmlgrep="find ./ -name '*.html' -print0 | xargs -0 grep"
+alias htmlgrep="projfind ./ -name '*.html' -print0 | xargs -0 grep"
 alias modem_tunnel='ssh home -L 2000:modem.home.robgant.com:80 -N'
 alias mv='mv -i'
 alias myip='dig +short myip.opendns.com @resolver1.opendns.com'
 alias npmg='npm --location=global'
 alias path='echo -e ${PATH//:/\\n}'
-alias phpgrep="find ./ -name '*.php' -print0 | xargs -0 grep"
+alias phpgrep="projfind ./ -name '*.php' -print0 | xargs -0 grep"
 alias pkgfix='npx sort-package-json && npx package-json-validator --warnings --recommendations'
 alias prettier='nvm exec default -- prettier --ignore-path='' --config ~/.prettierrc.json'
-alias pygrep="find ./ -name '*.py' -print0 | xargs -0 grep"
+alias pygrep="projfind ./ -name '*.py' -print0 | xargs -0 grep"
 alias rm='rm -i'
 alias router_tunnel='ssh home -L 2000:router.home.robgant.com:80 -N'
-alias tsgrep="find ./ -name '*.ts' -print0 | xargs -0 grep"
+alias tsgrep="projfind ./ -name '*.ts' -print0 | xargs -0 grep"
 alias urldecode='python3 -c "import sys,urllib.parse;print(urllib.parse.unquote(sys.argv[1]))"'
 alias urlencode='python3 -c "import sys,urllib.parse;print(urllib.parse.quote_plus(sys.argv[1]))"'
 alias uuid='uuidgen | tr "[:upper:]" "[:lower:]"'
 alias vnc_tunnel='ssh vnctunnel -N'
 alias wake_media_center='wakeonlan F0:18:98:EC:7C:70'
+alias win_steam='/Applications/Game\ Porting\ Toolkit.app/Contents/Resources/wine/bin/wine64 .wine/drive_c/Program\ Files\ \(x86\)/Steam/steam.exe -noverifyfiles -nobootstrapupdate -skipinitialbootstrap -norepairfiles -overridepackageurl'
 
 # Personal Projects
 alias saas='develop ~/Programming/saas-api-boilerplate'

@@ -47,6 +47,7 @@
 		"SublimeLinter-shellcheck",
 		"SublimeLinter-stylelint",
 		"Terraform",
+		"TOML",
 		"Wrap Plus",
 	],
 	"in_process_packages":
