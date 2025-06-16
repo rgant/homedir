@@ -1,7 +1,10 @@
 {
 	"extensions":
 	[
-		"astro"
+		"astro",
 	],
+	// Astro template puts most everything under the scope source.astro text.html.astro meta.template.astro which is not ideal.
+	// Adding soruce.astro ensures that HTML text is spellchecked, but we need to exclude meta.path, meta.import in multiple places to get this to work.
+	"spelling_selector": "markup.raw, source.astro - keyword - meta.tag - meta.url - meta.import, source string.quoted - punctuation - meta.preprocessor.include - meta.path - meta.import, source comment - source comment.block.preprocessor, text.html -(source, constant, keyword, storage, support, variable, markup.underline.link, meta.tag)",
 	"tab_size": 2,
 }
