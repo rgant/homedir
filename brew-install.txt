@@ -28,6 +28,8 @@ brew install awscli \
   terraform-docs \
   tflint \
   tidy-html5 \
+  uv \
   wakeonlan \
   yamllint
-brew install --cask google-cloud-sdk
+brew install --cask google-cloud-sdk \
+  notunes
