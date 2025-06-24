@@ -1,4 +1,5 @@
 brew install awscli \
+  azure-cli \
   bash-completion@2 \
   colordiff \
   diff-so-fancy \
