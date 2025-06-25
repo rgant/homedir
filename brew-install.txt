@@ -3,6 +3,7 @@ brew install awscli \
   bash-completion@2 \
   colordiff \
   diff-so-fancy \
+  dotnet@8 \
   dprint \
   enchant \
   gawk \
