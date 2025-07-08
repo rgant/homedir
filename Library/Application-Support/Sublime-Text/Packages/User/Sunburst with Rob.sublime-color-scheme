@@ -1,0 +1,257 @@
+// Documentation at https://www.sublimetext.com/docs/color_schemes.html
+{
+	"name": "Rob Color Scheme",
+	"variables":
+	{
+		"constants": "#f99157",
+		"dimmed": "#aeaeae",
+		"dimmed-bg": "color(var(dimmed) alpha(0.15))",
+		"entities": "#89bdff",
+		"entity-html": "#e0c589",
+		"entity-other": "#9b5c2e",
+		"entity-xml": "#E18964",
+		"highlight": "#ff0",
+		"invalid": "#fd5ff1",
+		"keyword-declarations": "#f92672",
+		"keywords": "#cc99cc",
+		"markup-changed": "#4a410d",
+		"markup-deleted": "#420e09",
+		"markup-inserted": "#253B22",
+		"storage": "#99cf50",
+		"string-constants": "#ddf2a4",
+		"strings": "#65b042",
+		"strings-regexp": "#e9c062",
+		"support": "#9b859d",
+		"support-constants": "#cf6a4c",
+		"support-functions": "#dad085",
+		"surface": "#000",
+		"text": "#fff",
+		"variables": "#3e87e3",
+	},
+	"globals":
+	{
+		"active_guide": "color(var(highlight) alpha(0.2))",
+		"background": "var(surface)",
+		"caret": "var(highlight)",
+		"foreground": "var(text)",
+		"invisibles": "color(var(invisibles) alpha(0.626))",
+		"line_highlight": "color(var(highlight) alpha(0.11373))",
+		"misspelling": "var(highlight)",
+		"selection": "color(var(highlight) alpha(0.2))",
+	},
+	"rules":
+	[
+		{
+			"name": "Comments",
+			"scope": "comment",
+			"font_style": "italic",
+			"foreground": "var(dimmed)",
+		},
+		{
+			"name": "Constants",
+			"scope": "constant",
+			"foreground": "var(constants)",
+		},
+		{
+			"name": "Entities",
+			"scope": "entity",
+			"foreground": "var(entities)",
+		},
+		{
+			"name": "Entity - Inherited Classes",
+			"scope": "entity.other.inherited-class",
+			"foreground": "var(entity-other)",
+		},
+		// HTML is a mess in the official Sublime HTML Syntax definition. <table> is called "inline"!
+		// https://github.com/sublimehq/Packages/blob/6f23cf9d8f573bea319e7dfd92ba3ce7fb5cfae0/HTML/HTML.sublime-syntax
+		{
+			"name": "Entity - HTML Attributes",
+			"scope": "entity.other.attribute-name",
+			"foreground": "var(entity-html)"
+		},
+		{
+			"name": "Entity - XML Namespaces",
+			"scope": "entity.name.tag.namespace, entity.other.attribute-name.namespace",
+			"foreground": "var(entity-xml)"
+		},
+		{
+			"name": "Invalid",
+			"scope": "invalid",
+			"foreground": "var(invalid)"
+		},
+		{
+			"name": "Keywords",
+			"scope": "keyword",
+			"foreground": "var(keywords)",
+		},
+		{
+			"name": "Keywords",
+			"scope": "source.css keyword",
+			"foreground": "var(support)",
+		},
+		{
+			"name": "Keyword",
+			"scope": "keyword.declaration",
+			"foreground": "var(keyword-declarations)",
+		},
+		{
+			"name": "Markup - Changed",
+			"scope": "markup.changed",
+			"background": "var(markup-changed)",
+		},
+		{
+			"name": "Markup - Deleted",
+			"scope": "markup.deleted",
+			"background": "var(markup-deleted)",
+		},
+		{
+			"name": "Markup - Inserted",
+			"scope": "markup.inserted",
+			"background": "var(markup-inserted)",
+		},
+		{
+			"name": "Markup: Heading",
+			"scope": "markup.heading",
+			"background": "var(dimmed-bg)",
+		},
+		{
+			"name": "Markup: Italic",
+			"scope": "markup.italic",
+			"font_style": "italic",
+			"foreground": "var(strings-regexp)",
+		},
+		{
+			"name": "Markup: Bold",
+			"scope": "markup.bold",
+			"font_style": "bold",
+			"foreground": "var(keywords)",
+		},
+		{
+			"name": "Markup: Underline",
+			"scope": "markup.underline",
+			"font_style": "underline",
+		},
+		{
+			"name": "Markup: Quote",
+			"scope": "markup.quote",
+			"background": "var(dimmed-bg)",
+		},
+		{
+			"name": "Markup: Lists",
+			"scope": "markup.list.numbered.bullet, markup.list.unnumbered.bullet",
+			"foreground": "var(strings-regexp)",
+		},
+		{
+			"name": "Markup: Raw (Code)",
+			"scope": "markup.raw, meta.code-fence.definition",
+			"background": "var(dimmed-bg)",
+		},
+		{
+			"name": "Meta - Generic Names (Python)",
+			"scope": "meta.generic-name",
+			"foreground": "var(variables)",
+		},
+		{
+			"name": "Meta - Link Descriptions",
+			"scope": "meta.link.inline.description, meta.link.reference.description, meta.image.inline.description, meta.image.reference.description",
+			"foreground": "var(keywords)"
+		},
+		{
+			"name": "Meta - Link Punctuation",
+			"scope": "punctuation.definition.link, punctuation.definition.image",
+			"foreground": "var(text)"
+		},
+		{
+			"name": "Meta - Link URLs",
+			"scope": "markup.underline.link",
+			"foreground": "var(variables)"
+		},
+		{
+			"name": "Meta - Mapping Key Strings",
+			"scope": "meta.mapping.key string",
+			"foreground": "var(storage)"
+		},
+		{
+			"name": "Meta - Separators (Markup)",
+			"scope": "meta.separator",
+			"background": "color(var(support) alpha(0.3))",
+			"foreground": "var(entity-xml)",
+		},
+		{
+			"name": "Punctuation - Blockquotes",
+			"scope": "punctuation.definition.blockquote",
+			"foreground": "var(strings-regexp)",
+		},
+		{
+			"name": "Punctuation - Headings",
+			"scope": "punctuation.definition.heading",
+			"foreground": "var(entities)",
+		},
+		{
+			"name": "Punctuation - Raw",
+			"scope": "punctuation.definition.raw",
+			"foreground": "var(strings-regexp)",
+		},
+		{
+			"name": "Punctuation - Tags",
+			"scope": "punctuation.definition.tag",
+			"foreground": "var(entities)",
+		},
+		{
+			"name": "Punctuation - Tags",
+			"scope": "punctuation.section.interpolation",
+			"foreground": "var(string-constants)",
+		},
+
+		// Source
+
+		{
+			"name": "Storage (Types)",
+			"scope": "storage",
+			"foreground": "var(storage)",
+		},
+		{
+			"name": "Strings",
+			"scope": "string",
+			"foreground": "var(strings)",
+		},
+		{
+			"name": "Strings Constants",
+			"scope": "string constant",
+			"foreground": "var(string-constants)",
+		},
+		{
+			"name": "RegEx Strings",
+			"scope": "string.regexp punctuation",
+			"foreground": "var(strings-regexp)",
+		},
+		{
+			"name": "Support (Classes & Functions)",
+			"scope": "support",
+			"foreground": "var(support)",
+		},
+		{
+			"name": "Support - CSS Properties",
+			"scope": "support",
+			"foreground": "var(keywords)",
+		},
+		{
+			"name": "Support - Constants",
+			"scope": "support.constant",
+			"foreground": "var(support-constants)"
+		},
+		{
+			"name": "Support - Functions",
+			"scope": "support.function",
+			"foreground": "var(support-functions)",
+		},
+
+		// Text
+
+		{
+			"name": "Variables",
+			"scope": "variable",
+			"foreground": "var(variables)",
+		},
+	]
+}
