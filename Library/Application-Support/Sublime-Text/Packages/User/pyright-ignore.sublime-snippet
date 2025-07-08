@@ -1,5 +1,0 @@
-<snippet>
-    <content><![CDATA[# pyright: ignore [$1]]]></content>
-    <tabTrigger># pyright</tabTrigger>
-    <scope>source.python</scope>
-</snippet>

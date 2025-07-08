@@ -1,5 +1,0 @@
-<snippet>
-    <content><![CDATA[// eslint-disable-line $1, $2 -- $3]]></content>
-    <tabTrigger>// eslint</tabTrigger>
-    <scope>source.js, source.ts</scope>
-</snippet>

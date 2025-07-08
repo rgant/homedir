@@ -1,3 +1,4 @@
 {
     "search_threshold": 100000,
+    "show_offscreen_bracket_popup": false,
 }
