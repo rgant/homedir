@@ -1,5 +1,0 @@
-<snippet>
-    <content><![CDATA[# pylint: disable=$1]]></content>
-    <tabTrigger># pylint</tabTrigger>
-    <scope>source.python</scope>
-</snippet>

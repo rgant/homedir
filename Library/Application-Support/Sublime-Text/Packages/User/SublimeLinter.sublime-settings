@@ -1,30 +1,10 @@
 // SublimeLinter Settings - User
 {
-    "debug": false,
-    "lint_mode": "load_save",
-    "linters": {
-        "csslint": {
-            "excludes": ["*.scss"]
-        },
-        "json": {
-            "strict": false
-        },
-        "markdownlint": {
-            "args": [
-                "--config",
-                "~/.markdownlint.json"
-            ]
-        },
-        "mypy": {
-            "disable": true
-        },
-        "shellcheck": {
-            "args": ["--shell=bash"]
-        },
-        "stylelint": {
-            "args": ["--quiet-deprecation-warnings"]
-        }
-    },
-    "no_column_highlights_line": true,
-    "show_panel_on_save": "view"
+	"debug": false,
+	"lint_mode": ["on_load", "on_save"],
+	"linters": {
+
+	},
+	"no_column_highlights_line": true,
+	"show_panel_on_save": "view",
 }

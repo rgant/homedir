@@ -1,7 +1,0 @@
-<snippet>
-	<content><![CDATA[
-"""$1"""
-]]></content>
-	<tabTrigger>"""</tabTrigger>
-	<scope>source.python</scope>
-</snippet>

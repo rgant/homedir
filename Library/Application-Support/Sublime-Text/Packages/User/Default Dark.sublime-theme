@@ -1,0 +1,11 @@
+// Documentation at https://www.sublimetext.com/docs/themes.html
+{
+	"variables":
+	{
+		"base_hue": "hsl(0, 0%, 0%)",
+	},
+	"rules":
+	[
+
+	]
+}
