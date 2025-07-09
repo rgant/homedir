@@ -1,4 +1,7 @@
-npm install --global @awmottaz/prettier-plugin-void-html \
+npm install --global @anthropic-ai/claude-code \
+  @awmottaz/prettier-plugin-void-html \
+  @google/gemini-cli \
+  @openai/codex \
   corepack \
   dockerfilelint \
   markdownlint-cli \
