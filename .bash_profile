@@ -17,6 +17,7 @@ PROMPT_COMMAND=('history -a' "${PROMPT_COMMAND[@]}") # Fancy bashrc_Apple_Termin
 export CLICOLOR=1
 export EDITOR=nano
 export ESLINT_D_LOCAL_ESLINT_ONLY=true
+export DFT_BACKGROUND=light
 export GIT_OPTIONAL_LOCKS=0
 export GIT_PS1_SHOWCOLORHINTS=1
 export GIT_PS1_SHOWDIRTYSTATE=1
