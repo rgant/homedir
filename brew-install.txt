@@ -3,6 +3,7 @@ brew install awscli \
   bash-completion@2 \
   colordiff \
   diff-so-fancy \
+  difftastic \
   dotnet@8 \
   dprint \
   enchant \
@@ -33,5 +34,6 @@ brew install awscli \
   uv \
   wakeonlan \
   yamllint
-brew install --cask google-cloud-sdk \
+brew install --cask gcloud-cli \
+  google-cloud-sdk \
   notunes
