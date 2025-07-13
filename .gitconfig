@@ -10,6 +10,7 @@
 	count = "!f () { compareBranch=\"${1-main}\"; git rev-list --count HEAD \"^$compareBranch\"; }; f"
 	d = diff --ignore-space-change
 	del = restore --staged # Unstage a file (opposite of add)
+	dft = -c diff.external=difft diff
 	ds = diff --staged
 	enforce = push --force-with-lease
 	fixup = "!git log -n 50 --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 | xargs -o git commit --fixup"
