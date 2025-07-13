@@ -1,6 +1,10 @@
 # List all matches in case multiple possible completions are possible
 set show-all-if-ambiguous on
 
+# Set C-w to delete words based on unix filename rules
+stty werase undef
+bind '\C-w:unix-filename-rubout'
+
 # Use the text that has already been typed as the prefix for searching through
 # commands (i.e. more intelligent Up/Down behavior)
 "\e[B": history-search-forward
