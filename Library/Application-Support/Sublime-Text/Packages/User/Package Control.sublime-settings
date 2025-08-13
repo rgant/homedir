@@ -39,7 +39,6 @@
 		"SublimeLinter-contrib-terraform",
 		"SublimeLinter-contrib-yamllint",
 		"SublimeLinter-eslint",
-		"SublimeLinter-flake8",
 		"SublimeLinter-mypy",
 		"SublimeLinter-pylint",
 		"SublimeLinter-shellcheck",

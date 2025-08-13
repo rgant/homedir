@@ -3,7 +3,12 @@
 	"debug": false,
 	"lint_mode": ["on_load", "on_save"],
 	"linters": {
-
+		"markdownlint": {
+		    "args": [
+		        "--config",
+		        "~/.markdownlint.json"
+		    ]
+		},
 	},
 	"no_column_highlights_line": true,
 	"show_panel_on_save": "view",

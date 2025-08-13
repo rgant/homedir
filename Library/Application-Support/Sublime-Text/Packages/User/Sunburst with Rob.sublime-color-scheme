@@ -14,9 +14,9 @@
 		"invalid": "#fd5ff1",
 		"keyword-declarations": "#f92672",
 		"keywords": "#cc99cc",
-		"markup-changed": "#4a410d",
-		"markup-deleted": "#420e09",
-		"markup-inserted": "#253B22",
+		"diff-changed": "#4a410d",
+		"diff-deleted": "#420e09",
+		"diff-inserted": "#253B22",
 		"storage": "#99cf50",
 		"string-constants": "#ddf2a4",
 		"strings": "#65b042",
@@ -95,19 +95,34 @@
 			"foreground": "var(keyword-declarations)",
 		},
 		{
-			"name": "Markup - Changed",
-			"scope": "markup.changed",
-			"background": "var(markup-changed)",
+			"name": "Diff - Changed",
+			"scope": "diff.changed",
+			"background": "var(diff-changed)",
 		},
 		{
-			"name": "Markup - Deleted",
-			"scope": "markup.deleted",
-			"background": "var(markup-deleted)",
+			"name": "Diff - Changed Characters",
+			"scope": "diff.changed.char",
+			"foreground": "#ADA906",
 		},
 		{
-			"name": "Markup - Inserted",
-			"scope": "markup.inserted",
-			"background": "var(markup-inserted)",
+			"name": "Diff - Deleted",
+			"scope": "diff.deleted",
+			"background": "var(diff-deleted)",
+		},
+		{
+			"name": "Diff - Deleted Characters",
+			"scope": "diff.deleted.char",
+			"foreground": "#BA0503",
+		},
+		{
+			"name": "Diff - Inserted",
+			"scope": "diff.inserted",
+			"background": "var(diff-inserted)",
+		},
+		{
+			"name": "Diff - Inserted Characters",
+			"scope": "diff.inserted.char",
+			"foreground": "#0DB80C",
 		},
 		{
 			"name": "Markup: Heading",
@@ -148,7 +163,7 @@
 		},
 		{
 			"name": "Meta - Generic Names (Python)",
-			"scope": "meta.generic-name",
+			"scope": "meta.generic-name - meta.type",
 			"foreground": "var(variables)",
 		},
 		{
@@ -227,7 +242,7 @@
 		},
 		{
 			"name": "Support (Classes & Functions)",
-			"scope": "support",
+			"scope": "support, meta.type",
 			"foreground": "var(support)",
 		},
 		{

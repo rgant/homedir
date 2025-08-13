@@ -1,4 +1,10 @@
 // Settings in here override those in "LSP-ruff/LSP-ruff.sublime-settings"
 {
     "lint.select": ["ALL"],
+    "lint.ignore": [
+        "D",
+        "EM101",
+        "ISC001",
+        "TRY003",
+    ],
 }
