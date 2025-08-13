@@ -1,6 +1,8 @@
 brew install awscli \
   azure-cli \
+  azure/azd/azd \
   bash-completion@2 \
+  beautysh \
   colordiff \
   diff-so-fancy \
   difftastic \
@@ -17,11 +19,14 @@ brew install awscli \
   hadolint \
   hashicorp/tap/terraform \
   imagemagick \
+  libb2 \
   libpq \
+  libxcb \
   mkcert \
   nano \
   nss \
   nvm \
+  opentofu \
   postgresql@14 \
   pyenv \
   s3cmd \
