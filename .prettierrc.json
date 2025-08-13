@@ -22,12 +22,12 @@
     }
   ],
   "plugins": [
-    "/Users/rgant/.nvm/versions/node/v22.14.0/lib/node_modules/@awmottaz/prettier-plugin-void-html/prettier-plugin-void-html.js",
-    "/Users/rgant/.nvm/versions/node/v22.14.0/lib/node_modules/prettier-plugin-embed/dist/index.js",
-    "/Users/rgant/.nvm/versions/node/v22.14.0/lib/node_modules/prettier-plugin-multiline-arrays/dist/index.js",
-    "/Users/rgant/.nvm/versions/node/v22.14.0/lib/node_modules/prettier-plugin-organize-attributes/lib/index.js",
-    "/Users/rgant/.nvm/versions/node/v22.14.0/lib/node_modules/prettier-plugin-sh/lib/index.js",
-    "/Users/rgant/.nvm/versions/node/v22.14.0/lib/node_modules/prettier-plugin-sql-cst/dist/index.js"
+    "/Users/rgant/.nvm/versions/node/v24.2.0/lib/node_modules/@awmottaz/prettier-plugin-void-html/prettier-plugin-void-html.js",
+    "/Users/rgant/.nvm/versions/node/v24.2.0/lib/node_modules/prettier-plugin-embed/dist/index.js",
+    "/Users/rgant/.nvm/versions/node/v24.2.0/lib/node_modules/prettier-plugin-multiline-arrays/dist/index.js",
+    "/Users/rgant/.nvm/versions/node/v24.2.0/lib/node_modules/prettier-plugin-organize-attributes/lib/index.js",
+    "/Users/rgant/.nvm/versions/node/v24.2.0/lib/node_modules/prettier-plugin-sh/lib/index.js",
+    "/Users/rgant/.nvm/versions/node/v24.2.0/lib/node_modules/prettier-plugin-sql-cst/dist/index.js"
   ],
   "printWidth": 140,
   "proseWrap": "always",

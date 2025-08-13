@@ -1,12 +1,8 @@
 {
   "excludes": [
-    "**/*-lock.json",
-    "**/.angular",
-    "**/coverage",
-    "**/dist",
+	"/Users/rgant/Library/*",
     "**/node_modules",
-    "**/types/*.d.ts",
-    "**/vendors"
+    "**/*-lock.json"
   ],
   "plugins": [
     "https://plugins.dprint.dev/dockerfile-0.3.2.wasm",

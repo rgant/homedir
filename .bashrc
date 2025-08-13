@@ -371,7 +371,7 @@ EOF
 		return 1
 	fi
 
-	grep -R --exclude-dir={.git,.mypy_cache,.venv,build,dist,node_modules,venv} "${extraargs[@]}" "${pttrn}" "${searchpath[@]-./}"
+	grep -R --exclude-dir={.git,.venv,build,dist,node_modules,venv,*cache*} "${extraargs[@]}" "${pttrn}" "${searchpath[@]-./}"
 }
 
 # Start an HTTP server from a directory, optionally specifying the port
