@@ -434,11 +434,12 @@ sys_status() {
 	w
 
 	echo -e "\\n${txtbld}Disk Usage${txtrst}"
-	df -h | grep '^Filesystem\|^/' | grep --color=always ' \|9[0-9]%\|100%'
+	df -h 2>/dev/null | grep '^Filesystem\|^/' | sed -E "s/(9[0-9]%|100%)/${txtred}\1${txtrst}/g"
 
 	echo -e "\\n${txtbld}Network${txtrst}"
 	hostname -f
 	ifconfig | grep inet | grep -v '::1\| 127\.\| fe80:\| detached\| deprecated' | cut -d' ' -f2 | sort
+	dig +short myip.opendns.com @resolver1.opendns.com
 
 	local cols
 	cols=$(tput cols)
