@@ -514,6 +514,7 @@ alias df='df -h'
 # alias diff='diff --unified'
 #alias dl='cd ~/Downloads'
 alias du='du -h'
+alias exclude_backup='find ~/Programming/ -type d -name .git -prune -o \( -name node_modules -o -name venv -o -name .venv -o -name .tox -o -name '\''*cache*'\'' \) -type d -prune -exec tmutil addexclusion '\''{}'\'' \;'
 alias funcs='compgen -A function'
 alias headers='curl --verbose --silent 1> /dev/null'
 alias htmlgrep="projfind ./ -name '*.html' -print0 | xargs -0 grep"
