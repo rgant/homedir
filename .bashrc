@@ -2,6 +2,9 @@
 # that are specific to interactive sessions, such as aliases, functions, and
 # interactive shell options. It is sourced by .bash_profile for login shells.
 
+# Only execute the rest if we're in an interactive shell
+[[ $- != *i* ]] && return
+
 #txtund=$(tput sgr 0 1) # Underline
 txtbld=$(tput bold) # Bold
 #txtblk=$(tput setaf 0) # Black
@@ -511,7 +514,7 @@ alias cp='cp -i'
 #alias cpu_temp='sudo powermetrics | grep "CPU die temperature"'
 #alias dc='cd ~/Documents'
 alias df='df -h'
-# alias diff='diff --unified'
+#alias diff='diff --unified'
 #alias dl='cd ~/Downloads'
 alias du='du -h'
 alias exclude_backup='find ~/Programming/ -type d -name .git -prune -o \( -name node_modules -o -name venv -o -name .venv -o -name .tox -o -name '\''*cache*'\'' \) -type d -prune -exec tmutil addexclusion '\''{}'\'' \;'
@@ -534,7 +537,7 @@ alias urldecode='python3 -c "import sys,urllib.parse;print(urllib.parse.unquote(
 alias urlencode='python3 -c "import sys,urllib.parse;print(urllib.parse.quote_plus(sys.argv[1]))"'
 alias uuid='uuidgen | tr "[:upper:]" "[:lower:]"'
 alias vnc_tunnel='ssh vnctunnel -N'
-alias wake_media_center='wakeonlan F0:18:98:EC:7C:70'
+#alias wake_media_center='wakeonlan F0:18:98:EC:7C:70'
 alias win_steam='/Applications/Game\ Porting\ Toolkit.app/Contents/Resources/wine/bin/wine64 .wine/drive_c/Program\ Files\ \(x86\)/Steam/steam.exe -noverifyfiles -nobootstrapupdate -skipinitialbootstrap -norepairfiles -overridepackageurl'
 
 # Personal Projects
