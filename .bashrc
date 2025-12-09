@@ -176,6 +176,16 @@ fixwin() {
 	done < <(find "${1-./}" -name '.git' -prune -o -name 'node_modules' -prune -o -name 'bower_components' -prune -o -type f -print0)
 }
 
+# Lazy load gcloud / gsutil when first used
+gcloud() {
+	unset -f gcloud gsutil bq
+	# shellcheck source=/opt/homebrew/share/google-cloud-sdk/path.bash.inc
+	[ -s "${HOMEBREW_PREFIX}/share/google-cloud-sdk/path.bash.inc" ] && source "${HOMEBREW_PREFIX}/share/google-cloud-sdk/path.bash.inc"
+	gcloud "$@"
+}
+gsutil() { gcloud; gsutil "$@"; }
+bq() { gcloud; bq "$@"; }
+
 gitbranchgrep() {
 	local grepargs=()
 	local pathspecs=()
@@ -228,6 +238,13 @@ man() {
 }
 
 md5() { /sbin/md5 "$@" | sed -e's/^MD5 (\(.*\)) = \([0-9a-f]*\)$/\2 \1/' | sort; }
+
+nvm() {
+	unset -f nvm
+	# shellcheck disable=SC1091
+	source "${HOMEBREW_PREFIX}/opt/nvm/nvm.sh"
+	nvm "$@"
+}
 
 pdfmerge() {
 	if [ "$#" -lt 3 ]; then
@@ -375,6 +392,25 @@ EOF
 	fi
 
 	grep -R --exclude-dir={.git,.venv,build,dist,node_modules,venv,*cache*} "${extraargs[@]}" "${pttrn}" "${searchpath[@]-./}"
+}
+
+# Lazy load pyenv when first used
+pyenv() {
+	unset -f pyenv
+	eval "$(command pyenv init -)"
+	# Homebrew has a messed up python right now. Might need to try a clean install of everything. I've already tried uninstalling and installing python and s3cmd.
+	# Fixes this error when running s3cmd:
+	# ERROR: SSL certificate verification failure: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028)
+	SSL_CERT_FILE=$(python3 -m certifi)
+	export SSL_CERT_FILE
+	pyenv "$@"
+}
+
+# Lazy load rbenv when first used
+rbenv() {
+	unset -f rbenv
+	eval "$(rbenv init -)"
+	rbenv "$@"
 }
 
 # Start an HTTP server from a directory, optionally specifying the port

@@ -34,42 +34,24 @@ export RUBY_CONFIGURE_OPTS="--with-openssl-dir=${OPENSSL_PREFIX}"
 # Force per shell history files from /etc/bashrc_Apple_Terminal even though we have histappend enabled.
 export SHELL_SESSION_HISTORY=1
 
-# Homebrew
+# Homebrew (Cache brew shellenv)
 if [[ -f /opt/homebrew/bin/brew ]]; then
-	eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
-
-if [ -s "${HOMEBREW_PREFIX}/opt/nvm/nvm.sh" ]; then
-	# shellcheck disable=SC1091
-	source "${HOMEBREW_PREFIX}/opt/nvm/nvm.sh"
-fi
-
-if command -v pyenv 1> /dev/null 2>&1; then
-	eval "$(pyenv init -)"
-	# Homebrew has a messed up python right now. Might need to try a clean install of everything. I've already tried uninstalling and installing python and s3cmd.
-	# Fixes this error when running s3cmd:
-	# ERROR: SSL certificate verification failure: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028)
-	SSL_CERT_FILE=$(python3 -m certifi)
-	export SSL_CERT_FILE
-fi
-
-if command -v rbenv 1> /dev/null 2>&1; then
-	eval "$(rbenv init -)"
-fi
-
-if [ -s "${HOMEBREW_PREFIX}/share/google-cloud-sdk/path.bash.inc" ]; then
-	# shellcheck disable=SC1091
-	source "${HOMEBREW_PREFIX}/share/google-cloud-sdk/path.bash.inc"
+	if [[ ! -f ~/.bash_brew_cache || ~/.bash_brew_cache -ot /opt/homebrew/bin/brew ]]; then
+		/opt/homebrew/bin/brew shellenv > ~/.bash_brew_cache
+	fi
+	# shellcheck source=/Users/rgant/.bash_brew_cache
+	source ~/.bash_brew_cache
 fi
 
 # Use bash-completion, if available (after intializing the commands!)
 if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
 	export BASH_COMPLETION_COMPAT_DIR="${HOMEBREW_PREFIX}/etc/bash_completion.d"
-	# shellcheck disable=SC1091
+	# shellcheck source=/opt/homebrew/etc/profile.d/bash_completion.sh
 	source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
 fi
 
 # Source .bashrc for interactive shell settings
 if [ -t 0 ] && [[ -f ~/.bashrc ]]; then
-    source ~/.bashrc
+	# shellcheck source=/Users/rgant/.bashrc
+	source ~/.bashrc
 fi
