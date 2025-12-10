@@ -176,15 +176,15 @@ fixwin() {
 	done < <(find "${1-./}" -name '.git' -prune -o -name 'node_modules' -prune -o -name 'bower_components' -prune -o -type f -print0)
 }
 
-# Lazy load gcloud / gsutil when first used
+# Lazy load gcloud, gsutil, & bq when first used
 gcloud() {
 	unset -f gcloud gsutil bq
 	# shellcheck source=/opt/homebrew/share/google-cloud-sdk/path.bash.inc
 	[ -s "${HOMEBREW_PREFIX}/share/google-cloud-sdk/path.bash.inc" ] && source "${HOMEBREW_PREFIX}/share/google-cloud-sdk/path.bash.inc"
 	gcloud "$@"
 }
-gsutil() { gcloud; gsutil "$@"; }
-bq() { gcloud; bq "$@"; }
+gsutil() { gcloud; unset -f gcloud gsutil bq; gsutil "$@"; }
+bq() { gcloud; unset -f gcloud gsutil bq; bq "$@"; }
 
 gitbranchgrep() {
 	local grepargs=()
@@ -239,12 +239,16 @@ man() {
 
 md5() { /sbin/md5 "$@" | sed -e's/^MD5 (\(.*\)) = \([0-9a-f]*\)$/\2 \1/' | sort; }
 
+# Lazy load nvm, node, npm, & npx when first used
 nvm() {
-	unset -f nvm
+	unset -f nvm node npm npx
 	# shellcheck disable=SC1091
 	source "${HOMEBREW_PREFIX}/opt/nvm/nvm.sh"
 	nvm "$@"
 }
+node() { nvm use default --silent; unset -f node npm npx; node "$@"; }
+npm() { nvm use default --silent; unset -f node npm npx; npm "$@"; }
+npx() { nvm use default --silent; unset -f node npm npx; npx "$@"; }
 
 pdfmerge() {
 	if [ "$#" -lt 3 ]; then
