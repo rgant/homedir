@@ -20,9 +20,6 @@ brew install awscli \
   hadolint \
   hashicorp/tap/terraform \
   imagemagick \
-  libb2 \
-  libpq \
-  libxcb \
   mkcert \
   nano \
   nss \
