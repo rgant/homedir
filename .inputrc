@@ -1,5 +1,17 @@
+# --- General Behavior ---
+
 # List all matches in case multiple possible completions are possible
 set show-all-if-ambiguous on
+
+# Why: Highlight the common prefix of completion matches in color.
+set colored-stats on
+set colored-completion-prefix on
+
+# Why: Prevent "cd ~/src/mozillail" style bugs by ignoring text already present after the cursor.
+set skip-completed-text on
+
+
+# --- Search & Navigation ---
 
 # Use the text that has already been typed as the prefix for searching through
 # commands (i.e. more intelligent Up/Down behavior)
