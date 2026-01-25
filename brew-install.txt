@@ -1,6 +1,7 @@
 brew install awscli \
   azure-cli \
   azure/azd/azd \
+  azure/functions/azure-functions-core-tools@4 \
   bash-completion@2 \
   beautysh \
   colordiff \
@@ -20,6 +21,8 @@ brew install awscli \
   hadolint \
   hashicorp/tap/terraform \
   imagemagick \
+  just \
+  microsoft/dev-proxy/dev-proxy \
   mkcert \
   nano \
   nss \
@@ -36,6 +39,7 @@ brew install awscli \
   tidy-html5 \
   uv \
   yamllint
-brew install --cask gcloud-cli \
+brew install --cask docker-desktop \
+  gcloud-cli \
   google-cloud-sdk \
   notunes
