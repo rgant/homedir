@@ -6,7 +6,7 @@
 		"markdownlint": {
 		    "args": [
 		        "--config",
-		        "~/.markdownlint.json"
+		        "~/.markdownlint.jsonc"
 		    ]
 		},
 	},

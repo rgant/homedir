@@ -7,5 +7,5 @@
     "spelling_selector": "-(markup.raw | markup.underline.link) | source comment",
     "translate_tabs_to_spaces": true,
     "wrap_width": 80,
-    "word_wrap": true,
+    // "word_wrap": true,
 }
