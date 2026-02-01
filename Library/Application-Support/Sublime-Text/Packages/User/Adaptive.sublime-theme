@@ -7,10 +7,32 @@
 	[
 		{
 			"class": "title_bar",
+			"settings": ["themed_title_bar"],
+			"attributes": ["file_dark"],
+			// "bg": "var(dark_bg)",
+			"style": "dark"
+		},
+		{
+			"class": "title_bar",
 			"attributes": ["file_medium_dark"],
 			"settings": ["themed_title_bar"],
 			// "bg": "var(medium_dark_bg)", // Fixes problem with native Tabs in MacOS
 			"style": "dark"
+		},
+		{
+			"class": "title_bar",
+			"attributes": ["file_medium"],
+			"settings": ["themed_title_bar"],
+			// "bg": "var(medium_bg)",
+			"style": "light"
+		},
+		{
+			"class": "title_bar",
+			"attributes": ["file_light"],
+			"settings": ["themed_title_bar"],
+			// "bg": "var(light_bg)",
+			"fg": "color(var(--background) blend(black 30%))",
+			"style": "light"
 		},
 	]
 }
