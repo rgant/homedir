@@ -1,5 +1,6 @@
 [alias]
 	a = add
+	add-upstream = "!f() { git remote add upstream \"$1\" && git remote set-head upstream --auto && branch=$(git symbolic-ref refs/remotes/upstream/HEAD | sed 's|refs/remotes/upstream/||') && git config remote.upstream.fetch \"+refs/heads/$branch:refs/remotes/upstream/$branch\"; }; f"
 	alias = !git config --get-regexp alias | sed -E 's/alias\\.([a-z]+)/\\1\\t=>/' | sort
 	ap = add --patch
 	br = branch
@@ -13,6 +14,7 @@
 	dft = -c diff.external=difft diff
 	ds = diff --staged
 	enforce = push --force-with-lease
+	extras-list = "!git extras --help 2>&1 | col -b | awk '/^COMMANDS$/,/^AUTHOR$/' | grep '•' | sed 's/.*•   git-//; s/(1) /  /'"
 	fixup = "!git log -n 50 --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 | xargs -o git commit --fixup"
 	go = "!f () { git switch \"$1\" || git switch --create \"$1\"; }; f"
 	gone = "!git br -vv | grep 'gone'"
@@ -31,7 +33,7 @@
 	stow = stash push --message
 	sw = switch
 	toss = restore --source=HEAD --staged --worktree --
-	undo = restore # Throw away modification to a file
+	sync-upstream = "!git fetch upstream --no-tags && git merge upstream/$(git symbolic-ref refs/remotes/upstream/HEAD | sed 's|refs/remotes/upstream/||')"
 [apply]
 	whitespace = fix # Detect whitespace errors when applying a patch.
 [branch "main"]
