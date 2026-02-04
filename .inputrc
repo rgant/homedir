@@ -1,33 +1,25 @@
 # --- General Behavior ---
 
-# List all matches in case multiple possible completions are possible
+# Why: Immediately show all possibilities if there's more than one match.
 set show-all-if-ambiguous on
 
-# Why: Highlight the common prefix of completion matches in color.
+# Why: Improve scannability of completions via colors and prefix highlighting.
 set colored-stats on
 set colored-completion-prefix on
 
-# Why: Prevent "cd ~/src/mozillail" style bugs by ignoring text already present after the cursor.
+# Why: Prevents double-completion bugs (e.g., "cd ~/src/mozillail") by ignoring 
+# text already present after the cursor.
 set skip-completed-text on
 
 
 # --- Search & Navigation ---
 
-# Use the text that has already been typed as the prefix for searching through
-# commands (i.e. more intelligent Up/Down behavior)
-"\e[B": history-search-forward
+# Why: Support both ANSI (\e[) and Application (\eO) sequences. 
+# Some programs leave the terminal in Application mode, which breaks standard bindings.
 "\e[A": history-search-backward
+"\eOA": history-search-backward
+"\e[B": history-search-forward
+"\eOB": history-search-forward
 
-# Be more intelligent when autocompleting by also looking at the text after
-# the cursor. For example, when the current line is "cd ~/src/mozil", and
-# the cursor is on the "z", pressing Tab will not autocomplete it to "cd
-# ~/src/mozillail", but to "cd ~/src/mozilla". (This is supported by the
-# Readline used by Bash 4.)
-set skip-completed-text on
-
-# Enable colors when completing filenames and directories.
-set colored-stats on
-
-# https://superuser.com/a/1630718
-# complete filenames on meta+tab (option+tab, ⌥+tab)
+# Why: Specific binding for filename-only completion via Option+Tab.
 M-TAB: complete-filename
