@@ -2,7 +2,6 @@ npm install --global @awmottaz/prettier-plugin-void-html \
   @google/gemini-cli \
   corepack \
   dockerfilelint \
-  markdownlint-cli \
   npm \
   prettier-plugin-embed \
   prettier-plugin-multiline-arrays \

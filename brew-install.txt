@@ -11,21 +11,22 @@ brew install awscli \
   dprint \
   enchant \
   gawk \
+  gdal \
   git \
   git-absorb \
   git-delta \
   git-extras \
   git-machete \
-  gnupg \
   go \
   hadolint \
   hashicorp/tap/terraform \
   imagemagick \
   just \
+  mariadb \
+  markdownlint-cli \
   microsoft/dev-proxy/dev-proxy \
   mkcert \
   nano \
-  nss \
   nvm \
   opentofu \
   postgresql@14 \
