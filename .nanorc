@@ -6,3 +6,7 @@ set historylog
 set regexp
 set tabsize 4
 set unix
+#unbind M-Left all
+#unbind M-Right all
+bind M-B prevword main
+bind M-F nextword main
