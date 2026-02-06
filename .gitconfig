@@ -1,9 +1,13 @@
+[absorb]
+	maxStack = 50
 [alias]
 	a = add
-	add-upstream = "!f() { git remote add upstream \"$1\" && git remote set-head upstream --auto && branch=$(git symbolic-ref refs/remotes/upstream/HEAD | sed 's|refs/remotes/upstream/||') && git config remote.upstream.fetch \"+refs/heads/$branch:refs/remotes/upstream/$branch\"; }; f"
+	add-upstream = "!f() { git remote add upstream \"$1\" && git remote set-head upstream --auto && branch=$(git symbolic-ref refs/remotes/upstream/HEAD | sed 's|refs/remotes/upstream/||') && git config remote.upstream.fetch \"+refs/heads/$branch:refs/remotes/upstream/$branch\" && git config remote.upstream.pruneTags false; }; f"
 	alias = !git config --get-regexp alias | sed -E 's/alias\\.([a-z]+)/\\1\\t=>/' | sort
+	ab = absorb --and-rebase
 	ap = add --patch
 	br = branch
+	brclean = "!git delete-merged-branches && git delete-squashed-branches"
 	c = commit
 	ca = commit --amend
 	ch = checkout
@@ -15,7 +19,7 @@
 	ds = diff --staged
 	enforce = push --force-with-lease
 	extras-list = "!git extras --help 2>&1 | col -b | awk '/^COMMANDS$/,/^AUTHOR$/' | grep '•' | sed 's/.*•   git-//; s/(1) /  /'"
-	fixup = "!git log -n 50 --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 | xargs -o git commit --fixup"
+	fixup = "!git log -n 50 --pretty=format:'%h %s' --no-merges | fzf | awk '{print $1}' | xargs -o git commit --fixup"
 	go = "!f () { git switch \"$1\" || git switch --create \"$1\"; }; f"
 	gone = "!git br -vv | grep 'gone'"
 	grepbrs = "!f () { where=\"${2-./}\"; git for-each-ref --format='%(refname:short)' refs/heads/ | xargs -I '{}' git grep \"$1\" '{}' -- \"$where\"; }; f"
@@ -27,7 +31,7 @@
 	main = switch main
 	master = switch master
 	mkeep = merge -X ours
-	moverwrite = merge -x theirs
+	moverwrite = merge -X theirs
 	remotes = remote --verbose
 	s = status
 	stow = stash push --message
