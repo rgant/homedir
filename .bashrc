@@ -119,6 +119,7 @@ develop() {
 
 	cd "$1" || return 2
 	tabname "$(basename "$PWD")"
+
 	if [ -f .nvmrc ]; then
 		nvm use
 	fi
@@ -126,9 +127,21 @@ develop() {
 		# shellcheck disable=SC1091
 		source .venv/bin/activate
 	fi
-	if [ -d node_modules/.bin/ ]; then
+	if [ -d node_modules/.bin/ ] && [[ ":$PATH:" != *":$PWD/node_modules/.bin:"* ]]; then
 		export PATH="$PWD/node_modules/.bin:${PATH}"
 	fi
+	for env_file in .env .env.local; do
+		if [ -f "$env_file" ]; then
+			set -a
+			# shellcheck disable=SC1090
+			source "$env_file"
+			set +a
+		fi
+	done
+	if ls Dockerfile compose.y*ml docker-compose.y*ml .hadolint.y*ml >/dev/null 2>&1; then
+		open -a Docker
+	fi
+
 	# https://www.derekgourlay.com/blog/git-when-to-merge-vs-when-to-rebase/
 	git fetch --all
 	git status
@@ -221,7 +234,7 @@ h() {
 		return 1
 	fi
 
-	grep --line-number -E "$@" "$histfile"
+	grep --line-number -E "$*" "$histfile"
 }
 
 man() {
@@ -304,7 +317,7 @@ Recursive find of project folders that excludes .git and node_modules.
 See man find for more details.
 
 Command template:
-find "PATH" \( -path '*/./*' -o -path '*/build/*' -o -path '*/dist/*' -o -path '*/node_modules/*' -path '*/venv/*' \) -prune -o FIND FLAGS
+find "PATH" \( -path '*/.*/*' -o -path '*/build/*' -o -path '*/dist/*' -o -path '*/node_modules/*' -o -path '*/venv/*' \) -prune -o FIND FLAGS
 EOF
 		return 1
 	fi
@@ -405,8 +418,8 @@ pyenv() {
 	# Homebrew has a messed up python right now. Might need to try a clean install of everything. I've already tried uninstalling and installing python and s3cmd.
 	# Fixes this error when running s3cmd:
 	# ERROR: SSL certificate verification failure: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028)
-	SSL_CERT_FILE=$(python3 -m certifi)
-	export SSL_CERT_FILE
+	# SSL_CERT_FILE=$(python3 -m certifi)
+	# export SSL_CERT_FILE
 	pyenv "$@"
 }
 

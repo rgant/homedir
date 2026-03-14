@@ -2,9 +2,9 @@
 	maxStack = 50
 [alias]
 	a = add
-	add-upstream = "!f() { git remote add upstream \"$1\" && git remote set-head upstream --auto && branch=$(git symbolic-ref refs/remotes/upstream/HEAD | sed 's|refs/remotes/upstream/||') && git config remote.upstream.fetch \"+refs/heads/$branch:refs/remotes/upstream/$branch\" && git config remote.upstream.pruneTags false; }; f"
-	alias = !git config --get-regexp alias | sed -E 's/alias\\.([a-z]+)/\\1\\t=>/' | sort
 	ab = absorb --and-rebase
+	add-upstream = "!f() { git remote add upstream \"$1\" && git fix-upstream; }; f"
+	alias = !git config --get-regexp alias | sed -E 's/alias\\.([a-z]+)/\\1\\t=>/' | sort
 	ap = add --patch
 	br = branch
 	brclean = "!git delete-merged-branches && git delete-squashed-branches"
@@ -19,15 +19,16 @@
 	ds = diff --staged
 	enforce = push --force-with-lease
 	extras-list = "!git extras --help 2>&1 | col -b | awk '/^COMMANDS$/,/^AUTHOR$/' | grep '•' | sed 's/.*•   git-//; s/(1) /  /'"
+	fix-upstream = "!f() { branch=$(git ls-remote --symref upstream HEAD | awk '/^ref:/ {sub(/.*\\//, \"\", $2); print $2}') && git config remote.upstream.fetch \"+refs/heads/$branch:refs/remotes/upstream/$branch\" && git config remote.upstream.pruneTags false; }; f"
 	fixup = "!git log -n 50 --pretty=format:'%h %s' --no-merges | fzf | awk '{print $1}' | xargs -o git commit --fixup"
 	go = "!f () { git switch \"$1\" || git switch --create \"$1\"; }; f"
 	gone = "!git br -vv | grep 'gone'"
 	grepbrs = "!f () { where=\"${2-./}\"; git for-each-ref --format='%(refname:short)' refs/heads/ | xargs -I '{}' git grep \"$1\" '{}' -- \"$where\"; }; f"
 	l = log --graph --all --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset'
 	ll = log --stat --abbrev-commit
-	lp = log --pretty=format:"%C(yellow)%h%Creset - %C(green)%an%Creset, %ar : %s"
-	logsearch = log -S
 	loggrep = log -G
+	logsearch = log -S
+	lp = log --pretty=format:"%C(yellow)%h%Creset - %C(green)%an%Creset, %ar : %s"
 	main = switch main
 	master = switch master
 	mkeep = merge -X ours
@@ -36,8 +37,8 @@
 	s = status
 	stow = stash push --message
 	sw = switch
-	toss = restore --source=HEAD --staged --worktree --
 	sync-upstream = "!git fetch upstream --no-tags && git merge upstream/$(git symbolic-ref refs/remotes/upstream/HEAD | sed 's|refs/remotes/upstream/||')"
+	toss = restore --source=HEAD --staged --worktree --
 [apply]
 	whitespace = fix # Detect whitespace errors when applying a patch.
 [branch "main"]
@@ -58,7 +59,6 @@
 	oldNormal = red
 [commit]
 	gpgsign = true
-	template = ~/.gitmessage
 [core]
 	attributesfile = ~/.gitattributes
 	excludesfile = ~/.gitignore

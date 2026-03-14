@@ -1,0 +1,4 @@
+# Ignore everything
+*
+# But do not ignore .md files
+!*.md

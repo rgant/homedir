@@ -7,18 +7,18 @@ set show-all-if-ambiguous on
 set colored-stats on
 set colored-completion-prefix on
 
-# Why: Prevents double-completion bugs (e.g., "cd ~/src/mozillail") by ignoring 
+# Why: Prevents double-completion bugs (e.g., "cd ~/src/mozillail") by ignoring
 # text already present after the cursor.
 set skip-completed-text on
 
 
 # --- Search & Navigation ---
 
-# Why: Support both ANSI (\e[) and Application (\eO) sequences. 
+# Why: Support both ANSI (\e[) and Application (\eO) sequences.
 # Some programs leave the terminal in Application mode, which breaks standard bindings.
 "\e[A": history-search-backward
-"\eOA": history-search-backward
 "\e[B": history-search-forward
+"\eOA": history-search-backward
 "\eOB": history-search-forward
 
 # Why: Specific binding for filename-only completion via Option+Tab.

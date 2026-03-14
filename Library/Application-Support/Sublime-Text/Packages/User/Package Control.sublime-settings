@@ -24,6 +24,7 @@
 		"LSP-html",
 		"LSP-json",
 		"LSP-ruff",
+		"LSP-taplo",
 		"LSP-terraform",
 		"LSP-typescript",
 		"LSP-yaml",

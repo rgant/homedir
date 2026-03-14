@@ -4,5 +4,9 @@
 
 *.md text diff=markdown
 
-# Disble diff for minified files
+# Disable diff for minified files
 *.min.* -diff
+
+# Disable diff for lock files
+*.lock         diff=nodiff
+*-lock.json    diff=nodiff

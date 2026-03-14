@@ -7,7 +7,7 @@ brew install awscli \
   colordiff \
   diff-so-fancy \
   difftastic \
-  dotnet@8 \
+  dotnet \
   dprint \
   enchant \
   gawk \
