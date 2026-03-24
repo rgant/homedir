@@ -53,6 +53,7 @@
 		"timeframes",
 		"unbudgeted",
 		"uploaders",
+		"upsert",
 		"viewport",
 		"webhooks",
 	],
