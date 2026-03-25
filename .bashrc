@@ -26,7 +26,7 @@ __init_status() {
 	hr=$(date +'%F %H')
 	# shellcheck disable=SC2143
 	if [[ ! -f "$watchfile" || ! $(grep "$hr" "$watchfile") ]]; then
-		echo "$hr" > "$watchfile"
+		echo "$hr" >"$watchfile"
 		sys_status
 	fi
 }
@@ -61,7 +61,7 @@ __rob_fix() {
 				# File owned by another user, assume root
 				echo "${txtbld}${txtred}Updating $1 owned by root!${txtrst}"
 				# Replace file contents without touching file inoode
-				sudo cat "$backup" | sudo tee "$1" > /dev/null
+				sudo cat "$backup" | sudo tee "$1" >/dev/null
 			fi
 			echo "${txtbld}${txtred}Restart shell for changes to take effect!${txtrst}"
 		else
@@ -82,15 +82,15 @@ __status_code() {
 bgc() {
 	local color
 	case $1 in
-		green)
-			color='{57825, 65021, 56540}'
-			;;
-		pink)
-			color='{65452, 54493, 61744}'
-			;;
-		yellow | *)
-			color='{65535, 65232, 53533}'
-			;;
+	green)
+		color='{57825, 65021, 56540}'
+		;;
+	pink)
+		color='{65452, 54493, 61744}'
+		;;
+	yellow | *)
+		color='{65535, 65232, 53533}'
+		;;
 	esac
 	osascript -e 'tell application "Terminal" to set background color of selected tab of the front window to '"${color}"
 }
@@ -138,7 +138,7 @@ develop() {
 			set +a
 		fi
 	done
-	if ls Dockerfile compose.y*ml docker-compose.y*ml .hadolint.y*ml >/dev/null 2>&1; then
+	if [ -f Dockerfile ] || [ -f compose.yaml ] || [ -f compose.yml ] || [ -f docker-compose.yaml ] || [ -f docker-compose.yml ] || [ -f .hadolint.yaml ] || [ -f .hadolint.yml ]; then
 		open -a Docker
 	fi
 
@@ -196,8 +196,16 @@ gcloud() {
 	[ -s "${HOMEBREW_PREFIX}/share/google-cloud-sdk/path.bash.inc" ] && source "${HOMEBREW_PREFIX}/share/google-cloud-sdk/path.bash.inc"
 	gcloud "$@"
 }
-gsutil() { gcloud; unset -f gcloud gsutil bq; gsutil "$@"; }
-bq() { gcloud; unset -f gcloud gsutil bq; bq "$@"; }
+gsutil() {
+	gcloud
+	unset -f gcloud gsutil bq
+	gsutil "$@"
+}
+bq() {
+	gcloud
+	unset -f gcloud gsutil bq
+	bq "$@"
+}
 
 gitbranchgrep() {
 	local grepargs=()
@@ -205,13 +213,13 @@ gitbranchgrep() {
 
 	while test $# -gt 0; do
 		case $1 in
-			--)
-				shift
-				pathspecs=("$@")
-				;;
-			*)
-				grepargs+=("$1")
-				;;
+		--)
+			shift
+			pathspecs=("$@")
+			;;
+		*)
+			grepargs+=("$1")
+			;;
 		esac
 		shift
 	done
@@ -259,9 +267,21 @@ nvm() {
 	source "${HOMEBREW_PREFIX}/opt/nvm/nvm.sh"
 	nvm "$@"
 }
-node() { nvm use default --silent; unset -f node npm npx; node "$@"; }
-npm() { nvm use default --silent; unset -f node npm npx; npm "$@"; }
-npx() { nvm use default --silent; unset -f node npm npx; npx "$@"; }
+node() {
+	nvm use default --silent
+	unset -f node npm npx
+	node "$@"
+}
+npm() {
+	nvm use default --silent
+	unset -f node npm npx
+	npm "$@"
+}
+npx() {
+	nvm use default --silent
+	unset -f node npm npx
+	npx "$@"
+}
 
 pdfmerge() {
 	if [ "$#" -lt 3 ]; then
@@ -294,22 +314,22 @@ projfind() {
 
 	while test $# -gt 0; do
 		case $1 in
-			-*)
+		-*)
+			extraargs+=("$1")
+			;;
+		*)
+			if [ -e "$1" ]; then
+				searchpath+=(-f "$1" --)
+			else
 				extraargs+=("$1")
-				;;
-			*)
-				if [ -e "$1" ]; then
-					searchpath+=(-f "$1" --)
-				else
-					extraargs+=("$1")
-				fi
-				;;
+			fi
+			;;
 		esac
 		shift
 	done
 
 	if [ -z "${extraargs[0]}" ]; then
-		cat >&2 << EOF
+		cat >&2 <<EOF
 Usage: ${FUNCNAME[0]} [path ...] [-find-flags]
 
 Recursive find of project folders that excludes .git and node_modules.
@@ -329,8 +349,8 @@ EOF
 		-o -path '*/dist/*' \
 		-o -path '*/node_modules/*' \
 		-o -path '*/venv/*' \
-	\) -prune \
-	-o "${extraargs[@]}"
+		\) -prune \
+		-o "${extraargs[@]}"
 	# set +x
 }
 
@@ -341,22 +361,22 @@ projgrep() {
 
 	while test $# -gt 0; do
 		case $1 in
-			-*)
-				extraargs+=("$1")
-				;;
-			*)
-				if [ -e "$1" ]; then
-					searchpath+=("$1")
-				else
-					pttrn="$1"
-				fi
-				;;
+		-*)
+			extraargs+=("$1")
+			;;
+		*)
+			if [ -e "$1" ]; then
+				searchpath+=("$1")
+			else
+				pttrn="$1"
+			fi
+			;;
 		esac
 		shift
 	done
 
 	if [ -z "${pttrn}" ]; then
-		cat >&2 << EOF
+		cat >&2 <<EOF
 Usage: ${FUNCNAME[0]} [-grep --flags] [pattern] [path ...]
 
 Recursive grep search of project folders that excludes .git and node_modules.
@@ -465,12 +485,12 @@ sort_json() {
 	tmpfile=$(mktemp -t "${filename}") || exit 2
 
 	# Sort and pretty print JSON into temporary file
-	python -m json.tool --indent 2 --sort-keys "$1" > "$tmpfile"
+	python -m json.tool --indent 2 --sort-keys "$1" >"$tmpfile"
 
 	# If the temporary file exists and has a size greater than 0
 	if [[ -s "$tmpfile" ]]; then
 		# Overwrite the original file with the new contents to preserve permissions
-		cat "$tmpfile" > "$1"
+		cat "$tmpfile" >"$1"
 	fi
 
 	# Cleanup the temporary file
@@ -515,18 +535,18 @@ tabname() {
 update_brew_install() {
 	local installed
 	installed=$(brew leaves | sed -e 's/^/  /' -e 's/$/ \\/' -e '$ s/ \\//' -e '1 s/^  //')
-	echo "brew install ${installed}" > "${HOME}/Programming/homedir/brew-install.txt"
+	echo "brew install ${installed}" >"${HOME}/Programming/homedir/brew-install.txt"
 	local cask_installs
 	cask_installs=$(brew list --cask | sed -e 's/^/  /' -e 's/$/ \\/' -e '$ s/ \\//' -e '1 s/^  //')
 	if [[ -n $cask_installs ]]; then
-		echo "brew install --cask ${cask_installs}" >> "${HOME}/Programming/homedir/brew-install.txt"
+		echo "brew install --cask ${cask_installs}" >>"${HOME}/Programming/homedir/brew-install.txt"
 	fi
 }
 
 update_npm_install() {
 	local installed
 	installed=$(npm list --global --depth=0 --parseable | sed -e '1d' -e 's|.*/node_modules/||' -e 's/^/  /' -e 's/$/ \\/' -e '$ s/ \\//' -e '2 s/^  //')
-	echo "npm install --global ${installed}" > "${HOME}/Programming/homedir/npm-global-install.txt"
+	echo "npm install --global ${installed}" >"${HOME}/Programming/homedir/npm-global-install.txt"
 }
 
 #### Implement configuration
@@ -552,7 +572,7 @@ for FILE in "$HOME"/backups/{opt,private}/**/after; do
 	# Because MacOS symlinks the /etc folder we must use the complete path /private/etc that is created
 	# using the snano backups
 	ORIG="${FILE#/Users/rgant/backups}" # Remove the backup prefix path (keep slash after 'backups')
-	ORIG="${ORIG%/after}" # Remove the /after suffix from path
+	ORIG="${ORIG%/after}"               # Remove the /after suffix from path
 	__rob_fix "$ORIG"
 
 	# https://gist.github.com/rgant/2bd867c05c534a44524c59a6da7bb29b

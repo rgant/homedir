@@ -5,7 +5,7 @@
 set -e
 
 OMNI_PATH=/Applications/Firefox.app/Contents/Resources/browser/omni.ja
-DIR_PATH="$(dirname $OMNI_PATH)";
+DIR_PATH="$(dirname $OMNI_PATH)"
 BACKUP_PATH="$HOME/backups/$DIR_PATH"
 
 osascript -e 'quit application "Firefox"'

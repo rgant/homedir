@@ -3,13 +3,13 @@
 
 iterations=$1
 shift
-(($# > 0)) || return                   # bail if no command given
+(($# > 0)) || return # bail if no command given
 for ((i = 0; i < iterations; i++)); do
-  { time -p "$@" &>/dev/null; } 2>&1 # ignore the output of the command but collect time's output in stdout
+	{ time -p "$@" &>/dev/null; } 2>&1 # ignore the output of the command but collect time's output in stdout
 
-  if [ $? -ne 0 ]; then
-    echo 'Command Error' >&2
-  fi
+	if [ $? -ne 0 ]; then
+		echo 'Command Error' >&2
+	fi
 done | awk '
   /^real/ { real = real + $2; nr++ }
   /^user/ { user = user + $2; nu++ }
