@@ -66,7 +66,7 @@ __rob_fix() {
 			echo "${txtbld}${txtred}Restart shell for changes to take effect!${txtrst}"
 		else
 			# $1 has been altered, not restored. Report for manual fixing.
-			echo "${txtbld}${txtred}Original file changed, needs manual review!$txtrst"
+			echo "${txtbld}${txtred}Original $1 changed, needs manual review!$txtrst"
 		fi
 	fi
 }
@@ -139,7 +139,7 @@ develop() {
 		fi
 	done
 	if [ -f Dockerfile ] || [ -f compose.yaml ] || [ -f compose.yml ] || [ -f docker-compose.yaml ] || [ -f docker-compose.yml ] || [ -f .hadolint.yaml ] || [ -f .hadolint.yml ]; then
-		open -a Docker
+		open -a Docker &
 	fi
 
 	# https://www.derekgourlay.com/blog/git-when-to-merge-vs-when-to-rebase/

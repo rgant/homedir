@@ -17,7 +17,6 @@ brew install awscli \
   git-delta \
   git-extras \
   git-machete \
-  gnupg \
   go \
   hadolint \
   hashicorp/tap/terraform \
@@ -27,7 +26,6 @@ brew install awscli \
   microsoft/dev-proxy/dev-proxy \
   mkcert \
   nano \
-  nss \
   nvm \
   opentofu \
   postgresql@14 \
@@ -35,6 +33,7 @@ brew install awscli \
   s3cmd \
   sevenzip \
   shellcheck \
+  shfmt \
   spacer \
   terraform-docs \
   tflint \
