@@ -1,5 +1,4 @@
 npm install --global @awmottaz/prettier-plugin-void-html \
-  @google/gemini-cli \
   corepack \
   dockerfilelint \
   npm \

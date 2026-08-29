@@ -1,4 +1,11 @@
 [
+	{
+	    "keys": ["alt+w"],
+	    "command": "wrap_lines",
+	    "args": {
+	        "width": 100
+	    },
+	},
 	{ "keys": ["super+t"], "command": "unbound" },
 	{ "keys": ["super+v"], "command": "paste_and_indent" },
 	{ "keys": ["super+shift+v"], "command": "paste" },

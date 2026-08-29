@@ -34,7 +34,7 @@
 		"background": "var(surface)",
 		"caret": "var(highlight)",
 		"foreground": "var(text)",
-		"invisibles": "color(var(invisibles) alpha(0.626))",
+		"invisibles": "color(var(text) alpha(0.626))",
 		"line_highlight": "color(var(highlight) alpha(0.11373))",
 		"misspelling": "var(highlight)",
 		"selection": "color(var(highlight) alpha(0.2))",

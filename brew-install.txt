@@ -1,6 +1,6 @@
-brew install awscli \
+brew install actionlint \
+  awscli \
   azure-cli \
-  azure/azd/azd \
   azure/functions/azure-functions-core-tools@4 \
   bash-completion@2 \
   beautysh \
@@ -10,7 +10,10 @@ brew install awscli \
   dotnet \
   dprint \
   enchant \
+  ffmpeg \
+  firebase-cli \
   gawk \
+  gdal \
   gh \
   git \
   git-absorb \
@@ -21,26 +24,33 @@ brew install awscli \
   hadolint \
   hashicorp/tap/terraform \
   imagemagick \
+  innoextract \
   just \
+  mariadb \
   markdownlint-cli \
   microsoft/dev-proxy/dev-proxy \
   mkcert \
   nano \
   nvm \
   opentofu \
+  pixi \
+  pnpm \
   postgresql@14 \
   pyenv \
   s3cmd \
   sevenzip \
-  shellcheck \
   shfmt \
   spacer \
+  sqlcmd \
   terraform-docs \
-  tflint \
   tidy-html5 \
   uv \
-  yamllint
-brew install --cask docker-desktop \
+  yamllint \
+  zizmor
+brew install --cask antigravity-cli \
+  box-drive \
+  docker-desktop \
   gcloud-cli \
   google-cloud-sdk \
-  notunes
+  notunes \
+  tflint
