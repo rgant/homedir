@@ -1,6 +1,6 @@
 brew install actionlint \
+  asimov \
   awscli \
-  azure-cli \
   azure/functions/azure-functions-core-tools@4 \
   bash-completion@2 \
   beautysh \
@@ -17,6 +17,7 @@ brew install actionlint \
   gh \
   git \
   git-absorb \
+  git-cliff \
   git-delta \
   git-extras \
   git-machete \
@@ -28,15 +29,16 @@ brew install actionlint \
   just \
   mariadb \
   markdownlint-cli \
-  microsoft/dev-proxy/dev-proxy \
   mkcert \
   nano \
   nvm \
   opentofu \
+  pango \
   pixi \
   pnpm \
   postgresql@14 \
   pyenv \
+  python@3.13 \
   s3cmd \
   sevenzip \
   shfmt \
@@ -44,13 +46,16 @@ brew install actionlint \
   sqlcmd \
   terraform-docs \
   tidy-html5 \
+  trivy \
   uv \
   yamllint \
   zizmor
 brew install --cask antigravity-cli \
+  azure-cli \
   box-drive \
   docker-desktop \
   gcloud-cli \
   google-cloud-sdk \
   notunes \
-  tflint
+  tflint \
+  whatcable
